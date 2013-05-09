@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="STHTDatum" representedClassName="STHTDatum" isAbstract="YES" syncable="YES">
+        <attribute name="cts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sqts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="ts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="xid" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="STHTImage" representedClassName="STHTImage" isAbstract="YES" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+    </entity>
+    <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="track" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTTrack" inverseName="locations" inverseEntity="STHTTrack" syncable="YES"/>
+    </entity>
+    <entity name="STHTLogMessage" representedClassName="STHTLogMessage" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STHTSettings" representedClassName="STHTSettings" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STHTSpot" representedClassName="STHTSpot" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarXid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="STHTSpotImage" inverseName="spot" inverseEntity="STHTSpotImage" syncable="YES"/>
+    </entity>
+    <entity name="STHTSpotImage" representedClassName="STHTSpotImage" parentEntity="STHTImage" syncable="YES">
+        <relationship name="spot" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTSpot" inverseName="images" inverseEntity="STHTSpot" syncable="YES"/>
+    </entity>
+    <entity name="STHTTrack" representedClassName="STHTTrack" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="finishTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="STHTLocation" inverseName="track" inverseEntity="STHTLocation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="STHTDatum" positionX="-783" positionY="-324" width="128" height="148"/>
+        <element name="STHTImage" positionX="-810" positionY="-495" width="128" height="58"/>
+        <element name="STHTLocation" positionX="-873" positionY="-126" width="128" height="163"/>
+        <element name="STHTLogMessage" positionX="-1044" positionY="-414" width="128" height="73"/>
+        <element name="STHTSettings" positionX="-990" positionY="-558" width="128" height="88"/>
+        <element name="STHTSpot" positionX="-452" positionY="-553" width="128" height="133"/>
+        <element name="STHTSpotImage" positionX="-641" positionY="-522" width="128" height="58"/>
+        <element name="STHTTrack" positionX="-1098" positionY="-153" width="128" height="88"/>
+    </elements>
+</model>

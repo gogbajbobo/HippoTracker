@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2421CB8A50B94B9396E97083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E16D92E4A04E48A75B0766 /* libPods.a */; };
 		2C73CF78173BF0520070238F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF77173BF0520070238F /* UIKit.framework */; };
 		2C73CF7A173BF0520070238F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF79173BF0520070238F /* Foundation.framework */; };
 		2C73CF7C173BF0520070238F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF7B173BF0520070238F /* CoreGraphics.framework */; };
@@ -24,6 +25,38 @@
 		2C73CFA1173BF0520070238F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF79173BF0520070238F /* Foundation.framework */; };
 		2C73CFA9173BF0520070238F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C73CFA7173BF0520070238F /* InfoPlist.strings */; };
 		2C73CFAC173BF0520070238F /* HippoTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFAB173BF0520070238F /* HippoTrackerTests.m */; };
+		2C73CFBC173BF0C60070238F /* STSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFB7173BF0C60070238F /* STSessionManager.m */; };
+		2C73CFBD173BF0C60070238F /* STSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFB7173BF0C60070238F /* STSessionManager.m */; };
+		2C73CFBE173BF0C60070238F /* STSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFB9173BF0C60070238F /* STSession.m */; };
+		2C73CFBF173BF0C60070238F /* STSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFB9173BF0C60070238F /* STSession.m */; };
+		2C73CFC0173BF0C60070238F /* STManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFBB173BF0C60070238F /* STManagedDocument.m */; };
+		2C73CFC1173BF0C60070238F /* STManagedDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFBB173BF0C60070238F /* STManagedDocument.m */; };
+		2C73CFC7173BF14D0070238F /* STSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFC6173BF14D0070238F /* STSyncer.m */; };
+		2C73CFCA173BF19C0070238F /* STAuthBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFC9173BF19C0070238F /* STAuthBasic.m */; };
+		2C73CFD1173BF1ED0070238F /* STTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCC173BF1EC0070238F /* STTracker.m */; };
+		2C73CFD2173BF1ED0070238F /* STHTLocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCE173BF1EC0070238F /* STHTLocationTracker.m */; };
+		2C73CFD6173BF23B0070238F /* STHTDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFD5173BF23B0070238F /* STHTDataModel.xcdatamodel */; };
+		2C73CFF1173BF3330070238F /* STHTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFF0173BF3330070238F /* STHTSettings.m */; };
+		2C73CFF4173BF3330070238F /* STHTDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFF3173BF3330070238F /* STHTDatum.m */; };
+		2C73CFF7173BF3330070238F /* STHTTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFF6173BF3330070238F /* STHTTrack.m */; };
+		2C73CFFA173BF3330070238F /* STHTSpotImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFF9173BF3330070238F /* STHTSpotImage.m */; };
+		2C73CFFD173BF3330070238F /* STHTSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFFC173BF3330070238F /* STHTSpot.m */; };
+		2C73D000173BF3330070238F /* STHTImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFFF173BF3330070238F /* STHTImage.m */; };
+		2C73D003173BF3330070238F /* STHTLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D002173BF3330070238F /* STHTLogMessage.m */; };
+		2C73D006173BF3330070238F /* STHTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D005173BF3330070238F /* STHTLocation.m */; };
+		2C73D009173BF3DE0070238F /* STHTSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D008173BF3DE0070238F /* STHTSettingsController.m */; };
+		2C73D00C173BF5780070238F /* STLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D00B173BF5780070238F /* STLogger.m */; };
+		2C73D00F173BF5E30070238F /* STHTLogMessage+dayAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D00E173BF5E30070238F /* STHTLogMessage+dayAsString.m */; };
+		2C73D012173BF61A0070238F /* STHTTrack+dayAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D011173BF61A0070238F /* STHTTrack+dayAsString.m */; };
+		2C73D014173BF78F0070238F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D013173BF78E0070238F /* CoreData.framework */; };
+		2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D015173BF7940070238F /* CoreLocation.framework */; };
+		2C73D018173BF79A0070238F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D017173BF79A0070238F /* MapKit.framework */; };
+		2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D019173BF84F0070238F /* QuartzCore.framework */; };
+		2C73D01B173BF8CB0070238F /* STAuthBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFC9173BF19C0070238F /* STAuthBasic.m */; };
+		2C73D01C173BF8CE0070238F /* STSyncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFC6173BF14D0070238F /* STSyncer.m */; };
+		2C73D01D173BF8D00070238F /* STHTSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D008173BF3DE0070238F /* STHTSettingsController.m */; };
+		2C73D01E173BF8D20070238F /* STHTLocationTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCE173BF1EC0070238F /* STHTLocationTracker.m */; };
+		2C73D01F173BF9650070238F /* STTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCC173BF1EC0070238F /* STTracker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +93,53 @@
 		2C73CFA8173BF0520070238F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C73CFAA173BF0520070238F /* HippoTrackerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HippoTrackerTests.h; sourceTree = "<group>"; };
 		2C73CFAB173BF0520070238F /* HippoTrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HippoTrackerTests.m; sourceTree = "<group>"; };
+		2C73CFB6173BF0C60070238F /* STSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSessionManager.h; sourceTree = "<group>"; };
+		2C73CFB7173BF0C60070238F /* STSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSessionManager.m; sourceTree = "<group>"; };
+		2C73CFB8173BF0C60070238F /* STSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSession.h; sourceTree = "<group>"; };
+		2C73CFB9173BF0C60070238F /* STSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSession.m; sourceTree = "<group>"; };
+		2C73CFBA173BF0C60070238F /* STManagedDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STManagedDocument.h; sourceTree = "<group>"; };
+		2C73CFBB173BF0C60070238F /* STManagedDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STManagedDocument.m; sourceTree = "<group>"; };
+		2C73CFC3173BF0EB0070238F /* STSessionManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSessionManagement.h; sourceTree = "<group>"; };
+		2C73CFC4173BF12B0070238F /* STRequestAuthenticatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRequestAuthenticatable.h; sourceTree = "<group>"; };
+		2C73CFC5173BF14D0070238F /* STSyncer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSyncer.h; sourceTree = "<group>"; };
+		2C73CFC6173BF14D0070238F /* STSyncer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSyncer.m; sourceTree = "<group>"; };
+		2C73CFC8173BF19C0070238F /* STAuthBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAuthBasic.h; sourceTree = "<group>"; };
+		2C73CFC9173BF19C0070238F /* STAuthBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAuthBasic.m; sourceTree = "<group>"; };
+		2C73CFCB173BF1EC0070238F /* STTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTracker.h; sourceTree = "<group>"; };
+		2C73CFCC173BF1EC0070238F /* STTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTracker.m; sourceTree = "<group>"; };
+		2C73CFCD173BF1EC0070238F /* STHTLocationTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLocationTracker.h; sourceTree = "<group>"; };
+		2C73CFCE173BF1EC0070238F /* STHTLocationTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLocationTracker.m; sourceTree = "<group>"; };
+		2C73CFD5173BF23B0070238F /* STHTDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = STHTDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2C73CFEF173BF3330070238F /* STHTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettings.h; sourceTree = "<group>"; };
+		2C73CFF0173BF3330070238F /* STHTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettings.m; sourceTree = "<group>"; };
+		2C73CFF2173BF3330070238F /* STHTDatum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTDatum.h; sourceTree = "<group>"; };
+		2C73CFF3173BF3330070238F /* STHTDatum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTDatum.m; sourceTree = "<group>"; };
+		2C73CFF5173BF3330070238F /* STHTTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTTrack.h; sourceTree = "<group>"; };
+		2C73CFF6173BF3330070238F /* STHTTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTTrack.m; sourceTree = "<group>"; };
+		2C73CFF8173BF3330070238F /* STHTSpotImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSpotImage.h; sourceTree = "<group>"; };
+		2C73CFF9173BF3330070238F /* STHTSpotImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSpotImage.m; sourceTree = "<group>"; };
+		2C73CFFB173BF3330070238F /* STHTSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSpot.h; sourceTree = "<group>"; };
+		2C73CFFC173BF3330070238F /* STHTSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSpot.m; sourceTree = "<group>"; };
+		2C73CFFE173BF3330070238F /* STHTImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTImage.h; sourceTree = "<group>"; };
+		2C73CFFF173BF3330070238F /* STHTImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTImage.m; sourceTree = "<group>"; };
+		2C73D001173BF3330070238F /* STHTLogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLogMessage.h; sourceTree = "<group>"; };
+		2C73D002173BF3330070238F /* STHTLogMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLogMessage.m; sourceTree = "<group>"; };
+		2C73D004173BF3330070238F /* STHTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLocation.h; sourceTree = "<group>"; };
+		2C73D005173BF3330070238F /* STHTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLocation.m; sourceTree = "<group>"; };
+		2C73D007173BF3DE0070238F /* STHTSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettingsController.h; sourceTree = "<group>"; };
+		2C73D008173BF3DE0070238F /* STHTSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettingsController.m; sourceTree = "<group>"; };
+		2C73D00A173BF5780070238F /* STLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STLogger.h; sourceTree = "<group>"; };
+		2C73D00B173BF5780070238F /* STLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STLogger.m; sourceTree = "<group>"; };
+		2C73D00D173BF5E30070238F /* STHTLogMessage+dayAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTLogMessage+dayAsString.h"; sourceTree = "<group>"; };
+		2C73D00E173BF5E30070238F /* STHTLogMessage+dayAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STHTLogMessage+dayAsString.m"; sourceTree = "<group>"; };
+		2C73D010173BF61A0070238F /* STHTTrack+dayAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTTrack+dayAsString.h"; sourceTree = "<group>"; };
+		2C73D011173BF61A0070238F /* STHTTrack+dayAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STHTTrack+dayAsString.m"; sourceTree = "<group>"; };
+		2C73D013173BF78E0070238F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2C73D015173BF7940070238F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2C73D017173BF79A0070238F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2C73D019173BF84F0070238F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +147,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */,
+				2C73D018173BF79A0070238F /* MapKit.framework in Frameworks */,
+				2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */,
+				2C73D014173BF78F0070238F /* CoreData.framework in Frameworks */,
 				2C73CF78173BF0520070238F /* UIKit.framework in Frameworks */,
 				2C73CF7A173BF0520070238F /* Foundation.framework in Frameworks */,
 				2C73CF7C173BF0520070238F /* CoreGraphics.framework in Frameworks */,
+				2421CB8A50B94B9396E97083 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +178,7 @@
 				2C73CFA4173BF0520070238F /* HippoTrackerTests */,
 				2C73CF76173BF0520070238F /* Frameworks */,
 				2C73CF75173BF0520070238F /* Products */,
+				574EC16DB59B4674974FC33C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,10 +194,15 @@
 		2C73CF76173BF0520070238F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C73D019173BF84F0070238F /* QuartzCore.framework */,
+				2C73D017173BF79A0070238F /* MapKit.framework */,
+				2C73D015173BF7940070238F /* CoreLocation.framework */,
+				2C73D013173BF78E0070238F /* CoreData.framework */,
 				2C73CF77173BF0520070238F /* UIKit.framework */,
 				2C73CF79173BF0520070238F /* Foundation.framework */,
 				2C73CF7B173BF0520070238F /* CoreGraphics.framework */,
 				2C73CF9E173BF0520070238F /* SenTestingKit.framework */,
+				E9E16D92E4A04E48A75B0766 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,6 +210,9 @@
 		2C73CF7D173BF0520070238F /* HippoTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2C73CFD4173BF2190070238F /* DataModel */,
+				2C73CFC2173BF0D70070238F /* Protocols */,
+				2C73CFB5173BF0870070238F /* Classes */,
 				2C73CF86173BF0520070238F /* STAppDelegate.h */,
 				2C73CF87173BF0520070238F /* STAppDelegate.m */,
 				2C73CF8F173BF0520070238F /* MainStoryboard_iPhone.storyboard */,
@@ -163,6 +257,68 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2C73CFB5173BF0870070238F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2C73CFC8173BF19C0070238F /* STAuthBasic.h */,
+				2C73CFC9173BF19C0070238F /* STAuthBasic.m */,
+				2C73CFB6173BF0C60070238F /* STSessionManager.h */,
+				2C73CFB7173BF0C60070238F /* STSessionManager.m */,
+				2C73CFB8173BF0C60070238F /* STSession.h */,
+				2C73CFB9173BF0C60070238F /* STSession.m */,
+				2C73CFBA173BF0C60070238F /* STManagedDocument.h */,
+				2C73CFBB173BF0C60070238F /* STManagedDocument.m */,
+				2C73D007173BF3DE0070238F /* STHTSettingsController.h */,
+				2C73D008173BF3DE0070238F /* STHTSettingsController.m */,
+				2C73CFC5173BF14D0070238F /* STSyncer.h */,
+				2C73CFC6173BF14D0070238F /* STSyncer.m */,
+				2C73CFCB173BF1EC0070238F /* STTracker.h */,
+				2C73CFCC173BF1EC0070238F /* STTracker.m */,
+				2C73D00A173BF5780070238F /* STLogger.h */,
+				2C73D00B173BF5780070238F /* STLogger.m */,
+				2C73CFCD173BF1EC0070238F /* STHTLocationTracker.h */,
+				2C73CFCE173BF1EC0070238F /* STHTLocationTracker.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		2C73CFC2173BF0D70070238F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2C73CFC4173BF12B0070238F /* STRequestAuthenticatable.h */,
+				2C73CFC3173BF0EB0070238F /* STSessionManagement.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		2C73CFD4173BF2190070238F /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C73CFD5173BF23B0070238F /* STHTDataModel.xcdatamodel */,
+				2C73D004173BF3330070238F /* STHTLocation.h */,
+				2C73D005173BF3330070238F /* STHTLocation.m */,
+				2C73D001173BF3330070238F /* STHTLogMessage.h */,
+				2C73D002173BF3330070238F /* STHTLogMessage.m */,
+				2C73D00D173BF5E30070238F /* STHTLogMessage+dayAsString.h */,
+				2C73D00E173BF5E30070238F /* STHTLogMessage+dayAsString.m */,
+				2C73CFFE173BF3330070238F /* STHTImage.h */,
+				2C73CFFF173BF3330070238F /* STHTImage.m */,
+				2C73CFFB173BF3330070238F /* STHTSpot.h */,
+				2C73CFFC173BF3330070238F /* STHTSpot.m */,
+				2C73CFF8173BF3330070238F /* STHTSpotImage.h */,
+				2C73CFF9173BF3330070238F /* STHTSpotImage.m */,
+				2C73CFF5173BF3330070238F /* STHTTrack.h */,
+				2C73CFF6173BF3330070238F /* STHTTrack.m */,
+				2C73D010173BF61A0070238F /* STHTTrack+dayAsString.h */,
+				2C73D011173BF61A0070238F /* STHTTrack+dayAsString.m */,
+				2C73CFF2173BF3330070238F /* STHTDatum.h */,
+				2C73CFF3173BF3330070238F /* STHTDatum.m */,
+				2C73CFEF173BF3330070238F /* STHTSettings.h */,
+				2C73CFF0173BF3330070238F /* STHTSettings.m */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,9 +326,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C73CFAF173BF0520070238F /* Build configuration list for PBXNativeTarget "HippoTracker" */;
 			buildPhases = (
+				844AA736F9FB4A5DA21A0167 /* Check Pods Manifest.lock */,
 				2C73CF70173BF0520070238F /* Sources */,
 				2C73CF71173BF0520070238F /* Frameworks */,
 				2C73CF72173BF0520070238F /* Resources */,
+				E8F017A1B78F41E3A034112B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +426,34 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		844AA736F9FB4A5DA21A0167 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
+		};
+		E8F017A1B78F41E3A034112B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -278,6 +464,26 @@
 				2C73CF84173BF0520070238F /* main.m in Sources */,
 				2C73CF88173BF0520070238F /* STAppDelegate.m in Sources */,
 				2C73CF97173BF0520070238F /* STViewController.m in Sources */,
+				2C73CFBC173BF0C60070238F /* STSessionManager.m in Sources */,
+				2C73CFBE173BF0C60070238F /* STSession.m in Sources */,
+				2C73CFC0173BF0C60070238F /* STManagedDocument.m in Sources */,
+				2C73CFD6173BF23B0070238F /* STHTDataModel.xcdatamodel in Sources */,
+				2C73D01B173BF8CB0070238F /* STAuthBasic.m in Sources */,
+				2C73CFF1173BF3330070238F /* STHTSettings.m in Sources */,
+				2C73CFF4173BF3330070238F /* STHTDatum.m in Sources */,
+				2C73CFF7173BF3330070238F /* STHTTrack.m in Sources */,
+				2C73CFFA173BF3330070238F /* STHTSpotImage.m in Sources */,
+				2C73D01C173BF8CE0070238F /* STSyncer.m in Sources */,
+				2C73CFFD173BF3330070238F /* STHTSpot.m in Sources */,
+				2C73D01F173BF9650070238F /* STTracker.m in Sources */,
+				2C73D01D173BF8D00070238F /* STHTSettingsController.m in Sources */,
+				2C73D000173BF3330070238F /* STHTImage.m in Sources */,
+				2C73D01E173BF8D20070238F /* STHTLocationTracker.m in Sources */,
+				2C73D003173BF3330070238F /* STHTLogMessage.m in Sources */,
+				2C73D006173BF3330070238F /* STHTLocation.m in Sources */,
+				2C73D00C173BF5780070238F /* STLogger.m in Sources */,
+				2C73D00F173BF5E30070238F /* STHTLogMessage+dayAsString.m in Sources */,
+				2C73D012173BF61A0070238F /* STHTTrack+dayAsString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +492,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C73CFAC173BF0520070238F /* HippoTrackerTests.m in Sources */,
+				2C73CFBD173BF0C60070238F /* STSessionManager.m in Sources */,
+				2C73CFBF173BF0C60070238F /* STSession.m in Sources */,
+				2C73CFC1173BF0C60070238F /* STManagedDocument.m in Sources */,
+				2C73CFC7173BF14D0070238F /* STSyncer.m in Sources */,
+				2C73CFCA173BF19C0070238F /* STAuthBasic.m in Sources */,
+				2C73CFD1173BF1ED0070238F /* STTracker.m in Sources */,
+				2C73CFD2173BF1ED0070238F /* STHTLocationTracker.m in Sources */,
+				2C73D009173BF3DE0070238F /* STHTSettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +609,7 @@
 		};
 		2C73CFB0173BF0520070238F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 574EC16DB59B4674974FC33C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HippoTracker/HippoTracker-Prefix.pch";
@@ -406,6 +621,7 @@
 		};
 		2C73CFB1173BF0520070238F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 574EC16DB59B4674974FC33C /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HippoTracker/HippoTracker-Prefix.pch";
@@ -468,6 +684,7 @@
 				2C73CFB1173BF0520070238F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C73CFB2173BF0520070238F /* Build configuration list for PBXNativeTarget "HippoTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +693,7 @@
 				2C73CFB4173BF0520070238F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
