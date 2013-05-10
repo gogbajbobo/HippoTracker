@@ -28,11 +28,10 @@
     
     
     NSDictionary *sessionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"10", @"desiredAccuracy",
+                                     @"-1", @"desiredAccuracy",
                                      @"10", @"requiredAccuracy",
-                                     @"20", @"distanceFilter",
-                                     @"20", @"timeFilter",
-                                     @"180", @"trackDetectionTime",
+                                     @"10", @"distanceFilter",
+                                     @"0.5", @"timeFilter",
                                      nil];
     
     [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] settings:sessionSettings];

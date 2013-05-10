@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STManagedDocument.h"
 
 @protocol STSessionManager <NSObject>
 
@@ -30,7 +31,7 @@
 - (void)dismissSession;
 - (void)settingsLoadComplete;
 
-@property (strong, nonatomic) UIManagedDocument *document;
+@property (strong, nonatomic) STManagedDocument *document;
 @property (nonatomic, strong) id <STHTSettingsController> settingsController;
 @property (strong, nonatomic) NSString *status;
 

@@ -73,6 +73,10 @@
     }
 }
 
+- (STSession *)currentSession {
+    return [self.sessions objectForKey:self.currentSessionUID];
+}
+
 - (NSMutableDictionary *)sessions {
     if (!_sessions) {
         _sessions = [NSMutableDictionary dictionary];

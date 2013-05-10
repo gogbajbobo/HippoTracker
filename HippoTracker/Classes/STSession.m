@@ -82,7 +82,10 @@
     self.syncer = [[STSyncer alloc] init];
     self.syncer.session = self;
     self.syncer.authDelegate = self.authDelegate;
-    self.status = @"running";    
+    self.spotController = [[STHTSpotController alloc] init];
+    self.spotController.session = self;
+    self.status = @"running";
+    [self.locationTracker startTracking];
 }
 
 - (void)setAuthDelegate:(id<STRequestAuthenticatable>)authDelegate {

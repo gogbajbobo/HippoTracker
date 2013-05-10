@@ -26,15 +26,10 @@
     NSMutableDictionary *defaultSettings = [NSMutableDictionary dictionary];
     
     NSMutableDictionary *locationTrackerSettings = [NSMutableDictionary dictionary];
-    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLLocationAccuracyNearestTenMeters] forKey:@"desiredAccuracy"];
+    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLLocationAccuracyBest] forKey:@"desiredAccuracy"];
     [locationTrackerSettings setValue:@"10.0" forKey:@"requiredAccuracy"];
-    [locationTrackerSettings setValue:@"50.0" forKey:@"distanceFilter"];
-    [locationTrackerSettings setValue:@"20.0" forKey:@"timeFilter"];
-    [locationTrackerSettings setValue:@"300.0" forKey:@"trackDetectionTime"];
-    [locationTrackerSettings setValue:@"100.0" forKey:@"trackSeparationDistance"];
-    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%d", NO] forKey:@"locationTrackerAutoStart"];
-    [locationTrackerSettings setValue:@"8.0" forKey:@"locationTrackerStartTime"];
-    [locationTrackerSettings setValue:@"20.0" forKey:@"locationTrackerFinishTime"];
+    [locationTrackerSettings setValue:@"10.0" forKey:@"distanceFilter"];
+    [locationTrackerSettings setValue:@"0.5" forKey:@"timeFilter"];
     
     [defaultSettings setValue:locationTrackerSettings forKey:@"location"];
     
@@ -61,15 +56,6 @@
     [generalSettings setValue:[NSString stringWithFormat:@"%d", YES] forKey:@"localAccessToSettings"];
     
     [defaultSettings setValue:generalSettings forKey:@"general"];
-    
-    
-    NSMutableDictionary *batteryTrackerSettings = [NSMutableDictionary dictionary];
-    [batteryTrackerSettings setValue:[NSString stringWithFormat:@"%d", NO] forKey:@"batteryTrackerAutoStart"];
-    [batteryTrackerSettings setValue:@"8.0" forKey:@"batteryTrackerStartTime"];
-    [batteryTrackerSettings setValue:@"20.0" forKey:@"batteryTrackerFinishTime"];
-    
-    [defaultSettings setValue:batteryTrackerSettings forKey:@"battery"];
-    
     
     return [defaultSettings copy];
 }

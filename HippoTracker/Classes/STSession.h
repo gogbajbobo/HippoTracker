@@ -15,6 +15,7 @@
 #import "STHTSettings.h"
 #import "STHTSettingsController.h"
 #import "STLogger.h"
+#import "STHTSpotController.h"
 
 @interface STSession : NSObject <STSession>
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) id <STRequestAuthenticatable> authDelegate;
 @property (nonatomic, strong) STHTSettingsController *settingsController;
 @property (nonatomic, strong) STLogger *logger;
+@property (nonatomic, strong) STHTSpotController *spotController;
 
 + (STSession *)initWithUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate;
 + (STSession *)initWithUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate settings:(NSDictionary *)settings;

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "STHTSpotController.h"
 
 @interface STMapViewController : UIViewController
+
+@property (nonatomic, strong) STHTSpot *spot;
 
 @end

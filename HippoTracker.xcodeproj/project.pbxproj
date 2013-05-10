@@ -56,6 +56,7 @@
 		2C73D037173D08FF0070238F /* STMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D036173D08FF0070238F /* STMainViewController.m */; };
 		2C73D03A173D0AA30070238F /* STMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D039173D0AA30070238F /* STMapViewController.m */; };
 		2C73D03D173D0C840070238F /* STHTDatum+Init.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D03C173D0C840070238F /* STHTDatum+Init.m */; };
+		2CAB6AC8173D1B43000185DD /* STHTSpotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB6AC7173D1B43000185DD /* STHTSpotController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,8 @@
 		2C73D039173D0AA30070238F /* STMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMapViewController.m; sourceTree = "<group>"; };
 		2C73D03B173D0C840070238F /* STHTDatum+Init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTDatum+Init.h"; sourceTree = "<group>"; };
 		2C73D03C173D0C840070238F /* STHTDatum+Init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STHTDatum+Init.m"; sourceTree = "<group>"; };
+		2CAB6AC6173D1B43000185DD /* STHTSpotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSpotController.h; sourceTree = "<group>"; };
+		2CAB6AC7173D1B43000185DD /* STHTSpotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSpotController.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -267,12 +270,14 @@
 				2C73D008173BF3DE0070238F /* STHTSettingsController.m */,
 				2C73CFC5173BF14D0070238F /* STSyncer.h */,
 				2C73CFC6173BF14D0070238F /* STSyncer.m */,
-				2C73CFCB173BF1EC0070238F /* STTracker.h */,
-				2C73CFCC173BF1EC0070238F /* STTracker.m */,
 				2C73D00A173BF5780070238F /* STLogger.h */,
 				2C73D00B173BF5780070238F /* STLogger.m */,
+				2C73CFCB173BF1EC0070238F /* STTracker.h */,
+				2C73CFCC173BF1EC0070238F /* STTracker.m */,
 				2C73CFCD173BF1EC0070238F /* STHTLocationTracker.h */,
 				2C73CFCE173BF1EC0070238F /* STHTLocationTracker.m */,
+				2CAB6AC6173D1B43000185DD /* STHTSpotController.h */,
+				2CAB6AC7173D1B43000185DD /* STHTSpotController.m */,
 				2C73D035173D08FF0070238F /* STMainViewController.h */,
 				2C73D036173D08FF0070238F /* STMainViewController.m */,
 				2C73D038173D0AA30070238F /* STMapViewController.h */,
@@ -480,6 +485,7 @@
 				2C73D037173D08FF0070238F /* STMainViewController.m in Sources */,
 				2C73D03A173D0AA30070238F /* STMapViewController.m in Sources */,
 				2C73D03D173D0C840070238F /* STHTDatum+Init.m in Sources */,
+				2CAB6AC8173D1B43000185DD /* STHTSpotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

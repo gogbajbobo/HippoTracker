@@ -79,7 +79,7 @@
 
 - (STHTTrack *)currentTrack {
     if (!_currentTrack) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STGTTrack"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTTrack"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:NO selector:@selector(compare:)]];
         NSError *error;
         NSArray *result = [self.document.managedObjectContext executeFetchRequest:request error:&error];

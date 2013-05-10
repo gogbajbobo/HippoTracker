@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "STSessionManagement.h"
 #import "STRequestAuthenticatable.h"
+#import "STSession.h"
 
 @interface STSessionManager : NSObject <STSessionManager>
 
 
 @property (nonatomic, strong) NSMutableDictionary *sessions;
 @property (nonatomic, strong) NSString *currentSessionUID;
+@property (nonatomic, strong) id <STSession> currentSession;
 
 - (void)startSessionForUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate;
 - (void)startSessionForUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate settings:(NSDictionary *)settings;

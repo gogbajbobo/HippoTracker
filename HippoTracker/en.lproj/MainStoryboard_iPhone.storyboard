@@ -24,7 +24,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="qjB-ud-rLc" kind="push" id="Lgj-k4-9v2"/>
+                                    <segue destination="qjB-ud-rLc" kind="push" identifier="newSpot" id="Lgj-k4-9v2"/>
                                 </connections>
                             </button>
                         </subviews>
