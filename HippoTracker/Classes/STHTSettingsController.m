@@ -1,5 +1,5 @@
 //
-//  STGTSettingsController.m
+//  STHTSettingsController.m
 //  geotracking
 //
 //  Created by Maxim Grigoriev on 1/24/13.
@@ -177,7 +177,7 @@
 
 - (NSFetchedResultsController *)fetchedSettingsResultController {
     if (!_fetchedSettingsResultController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STGTSettings"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTSettings"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"ts" ascending:NO selector:@selector(compare:)]];
         _fetchedSettingsResultController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.session.document.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _fetchedSettingsResultController.delegate = self;
@@ -227,7 +227,7 @@
 
             if (!settingToCheck) {
 //                    NSLog(@"settingName %@", settingName);
-                STHTSettings *newSetting = (STHTSettings *)[NSEntityDescription insertNewObjectForEntityForName:@"STGTSettings" inManagedObjectContext:self.session.document.managedObjectContext];
+                STHTSettings *newSetting = (STHTSettings *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTSettings" inManagedObjectContext:self.session.document.managedObjectContext];
                 newSetting.group = settingsGroupName;
                 newSetting.name = settingName;
                 newSetting.value = settingValue;

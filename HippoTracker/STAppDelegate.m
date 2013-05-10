@@ -28,18 +28,11 @@
     
     
     NSDictionary *sessionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"1", @"batteryTrackerAutoStart",
-                                     @"8.0", @"batteryTrackerStartTime",
-                                     @"20.0", @"batteryTrackerFinishTime",
-                                     @"0", @"locationTrackerAutoStart",
-                                     @"8.0", @"locationTrackerStartTime",
-                                     @"20.0", @"locationTrackerFinishTime",
                                      @"10", @"desiredAccuracy",
                                      @"10", @"requiredAccuracy",
                                      @"20", @"distanceFilter",
                                      @"20", @"timeFilter",
                                      @"180", @"trackDetectionTime",
-                                     @"1", @"localAccessToSettings",
                                      nil];
     
     [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] settings:sessionSettings];

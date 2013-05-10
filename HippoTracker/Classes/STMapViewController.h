@@ -1,17 +1,14 @@
 //
-//  STHTLogMessage.m
+//  STMapViewController.h
 //  HippoTracker
 //
 //  Created by Maxim Grigoriev on 5/10/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTLogMessage.h"
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-
-@implementation STHTLogMessage
-
-@dynamic text;
-@dynamic type;
+@interface STMapViewController : UIViewController
 
 @end

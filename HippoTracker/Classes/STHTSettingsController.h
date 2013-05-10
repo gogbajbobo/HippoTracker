@@ -1,5 +1,5 @@
 //
-//  STGTSettingsController.h
+//  STHTSettingsController.h
 //  geotracking
 //
 //  Created by Maxim Grigoriev on 1/24/13.
@@ -15,7 +15,7 @@
 #define mapYandex 0
 #define mapApple 1
 
-@interface STHTSettingsController : NSObject <STGTSettingsController>
+@interface STHTSettingsController : NSObject <STHTSettingsController>
 
 + (NSDictionary *)defaultSettings;
 
