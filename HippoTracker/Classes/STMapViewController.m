@@ -69,6 +69,14 @@
     span.latitudeDelta = 0.001;
     [self.mapView setRegion:MKCoordinateRegionMake(center, span) animated:YES];
     self.mapView.delegate = self;
+    double centerX = self.mapView.bounds.size.width / 2;
+    double centerY = self.mapView.bounds.size.height / 2;
+    UIView *hLine = [[UIView alloc] initWithFrame:CGRectMake(centerX-20, centerY, 40, 1)];
+    hLine.backgroundColor = [UIColor blackColor];
+    [self.mapView addSubview:hLine];
+    UIView *vLine = [[UIView alloc] initWithFrame:CGRectMake(centerX, centerY-20, 1, 40)];
+    vLine.backgroundColor = [UIColor blackColor];
+    [self.mapView addSubview:vLine];
 }
 
 #pragma mark - MKMapViewDelegate
