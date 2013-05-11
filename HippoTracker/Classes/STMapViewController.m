@@ -32,6 +32,7 @@
     self.cancelButton.enabled = NO;
     self.spot.latitude2 = [NSNumber numberWithDouble:self.mapView.centerCoordinate.latitude];
     self.spot.longitude2 = [NSNumber numberWithDouble:self.mapView.centerCoordinate.longitude];
+    [self setSpotAddress];
     [self drawStartLine];
 }
 
@@ -50,6 +51,22 @@
     MKPolyline *startLine = [MKPolyline polylineWithCoordinates:coordinates count:2];
     startLine.title = @"startLine";
     [self.mapView insertOverlay:(id<MKOverlay>)startLine atIndex:self.mapView.overlays.count];
+}
+
+- (void)setSpotAddress {
+    CLLocationDegrees longitude = ([self.spot.longitude1 doubleValue] + [self.spot.longitude2 doubleValue]) / 2;
+    CLLocationDegrees latitude = ([self.spot.latitude1 doubleValue] + [self.spot.latitude2 doubleValue]) / 2;
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        //            NSLog(@"placemarks %@", placemarks);
+        if (error) {
+            NSLog(@"error %@", error.localizedDescription);
+        }
+        CLPlacemark *place = [placemarks lastObject];
+        NSLog(@"place.name %@", place.name);
+        self.spot.address = place.name;
+    }];
 }
 
 - (void)buttonInit {

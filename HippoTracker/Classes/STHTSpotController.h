@@ -10,9 +10,10 @@
 #import "STSessionManagement.h"
 #import "STHTSpot.h"
 
-@interface STHTSpotController : NSObject
+@interface STHTSpotController : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) id <STSession> session;
+@property (nonatomic, weak) UITableView *tableView;
 
 - (STHTSpot *)newSpot;
 - (void)saveChanges;

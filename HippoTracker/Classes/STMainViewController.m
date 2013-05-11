@@ -9,6 +9,7 @@
 #import "STMainViewController.h"
 #import "STMapViewController.h"
 #import "STHTSpotController.h"
+#import "STHTSpotTVC.h"
 #import "STTracker.h"
 #import "STSession.h"
 
@@ -28,6 +29,14 @@
             STHTSpot *newSpot = [self.currentSession.spotController newSpot];
             [(STMapViewController *)segue.destinationViewController setSpot:newSpot];
         }
+    } else if ([segue.identifier isEqualToString:@"showSpotTVC"]) {
+        if ([segue.destinationViewController isKindOfClass:[STHTSpotTVC class]]) {
+            STHTSpotTVC *spotTVC = segue.destinationViewController;
+            spotTVC.tableView.delegate = self.currentSession.spotController;
+            spotTVC.tableView.dataSource = self.currentSession.spotController;
+            self.currentSession.spotController.tableView = spotTVC.tableView;
+        }
+
     }
     
 }
