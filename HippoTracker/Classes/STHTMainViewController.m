@@ -28,7 +28,14 @@
 }
 
 - (IBAction)startTrackerButtonPressed:(id)sender {
-    
+    STHTLapTracker *lapTracker = self.session.lapTracker;
+    if (!lapTracker.tracking) {
+        [lapTracker startTracking];
+        [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
+    } else {
+        [lapTracker stopTracking];
+        [self.startTrackerButton setTitle:@"START TRACKER" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)lapsHistoryButtonPressed:(id)sender {

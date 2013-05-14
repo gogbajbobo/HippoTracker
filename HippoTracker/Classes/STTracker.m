@@ -78,8 +78,8 @@
         [self releaseTimers];
         [self stopTracking];
     } else if ([[(id <STSession>)notification.object status] isEqualToString:@"running"]) {
-//        [self checkTrackerAutoStart];
-        [self startTracking];
+        [self checkTrackerAutoStart];
+//        [self startTracking];
     }
 }
 
