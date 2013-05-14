@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface STHTDatum : NSManagedObject
+@interface STDatum : NSManagedObject
 
 @property (nonatomic, retain) NSDate * cts;
 @property (nonatomic, retain) NSNumber * id;

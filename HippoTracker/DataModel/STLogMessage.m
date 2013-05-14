@@ -1,18 +1,17 @@
 //
-//  STHTSettings.m
+//  STHTLogMessage.m
 //  HippoTracker
 //
 //  Created by Maxim Grigoriev on 5/13/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTSettings.h"
+#import "STLogMessage.h"
 
 
-@implementation STHTSettings
+@implementation STLogMessage
 
-@dynamic group;
-@dynamic name;
-@dynamic value;
+@dynamic text;
+@dynamic type;
 
 @end

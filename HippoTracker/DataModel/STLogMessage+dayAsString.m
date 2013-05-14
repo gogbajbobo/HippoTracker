@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTLogMessage+dayAsString.h"
+#import "STLogMessage+dayAsString.h"
 
-@implementation STHTLogMessage (dayAsString)
+@implementation STLogMessage (dayAsString)
 
 - (NSString *)dayAsString {
     static NSDateFormatter *formatter;

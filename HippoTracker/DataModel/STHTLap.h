@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STHTDatum.h"
+#import "STDatum.h"
 
-@class STHTHippodrome, STHTLocation;
+@class STHTHippodrome, STLocation;
 
-@interface STHTLap : STHTDatum
+@interface STHTLap : STDatum
 
 @property (nonatomic, retain) STHTHippodrome *hippodrome;
 @property (nonatomic, retain) NSSet *locations;
@@ -20,8 +20,8 @@
 
 @interface STHTLap (CoreDataGeneratedAccessors)
 
-- (void)addLocationsObject:(STHTLocation *)value;
-- (void)removeLocationsObject:(STHTLocation *)value;
+- (void)addLocationsObject:(STLocation *)value;
+- (void)removeLocationsObject:(STLocation *)value;
 - (void)addLocations:(NSSet *)values;
 - (void)removeLocations:(NSSet *)values;
 

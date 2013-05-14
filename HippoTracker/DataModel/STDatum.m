@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTDatum.h"
+#import "STDatum.h"
 
 
-@implementation STHTDatum
+@implementation STDatum
 
 @dynamic cts;
 @dynamic id;

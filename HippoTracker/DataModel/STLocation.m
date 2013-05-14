@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTLocation.h"
+#import "STLocation.h"
 #import "STHTLap.h"
 
 
-@implementation STHTLocation
+@implementation STLocation
 
 @dynamic altitude;
 @dynamic course;

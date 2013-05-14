@@ -8,7 +8,7 @@
 
 #import "STLogger.h"
 #import "STManagedDocument.h"
-#import "STHTLogMessage.h"
+#import "STLogMessage.h"
 
 @interface STLogger() <NSFetchedResultsControllerDelegate>
 
@@ -42,7 +42,7 @@
 
 - (NSFetchedResultsController *)resultsController {
     if (!_resultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTLogMessage"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STLogMessage"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"cts" ascending:NO selector:@selector(compare:)]];
         _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.document.managedObjectContext sectionNameKeyPath:@"dayAsString" cacheName:nil];
         _resultsController.delegate = self;
@@ -51,7 +51,7 @@
 }
 
 - (void)saveLogMessageWithText:(NSString *)text type:(NSString *)type {
-    STHTLogMessage *logMessage = (STHTLogMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLogMessage" inManagedObjectContext:self.document.managedObjectContext];
+    STLogMessage *logMessage = (STLogMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"STLogMessage" inManagedObjectContext:self.document.managedObjectContext];
     logMessage.text = text;
     logMessage.type = type;
 
@@ -108,7 +108,7 @@
     [startDateFormatter setDateStyle:NSDateFormatterShortStyle];
     [startDateFormatter setTimeStyle:NSDateFormatterMediumStyle];
 
-    STHTLogMessage *logMessage = [self.resultsController.fetchedObjects objectAtIndex:indexPath.row];
+    STLogMessage *logMessage = [self.resultsController.fetchedObjects objectAtIndex:indexPath.row];
     
     cell.textLabel.text = logMessage.text;
     if ([logMessage.type isEqualToString:@"error"]) {

@@ -28,9 +28,9 @@
 
 - (NSManagedObjectModel *)myManagedObjectModel {
     if (!_myManagedObjectModel) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"STHTDataModel" ofType:@"momd"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"STDataModel" ofType:@"momd"];
         if (!path) {
-            path = [[NSBundle mainBundle] pathForResource:@"STHTDataModel" ofType:@"mom"];
+            path = [[NSBundle mainBundle] pathForResource:@"STDataModel" ofType:@"mom"];
         }
 //        NSLog(@"path %@", path);
         NSURL *url = [NSURL fileURLWithPath:path];
@@ -69,7 +69,7 @@
 + (STManagedDocument *)documentWithUID:(NSString *)uid {
 
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"STHT_%@.%@", uid, @"sqlite"]];
+    url = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"ST_%@.%@", uid, @"sqlite"]];
     STManagedDocument *document = [[STManagedDocument alloc] initWithFileURL:url];
     document.persistentStoreOptions = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     

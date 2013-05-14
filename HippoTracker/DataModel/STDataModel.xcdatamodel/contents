@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="STHTDatum" representedClassName="STHTDatum" isAbstract="YES" syncable="YES">
+    <entity name="STDatum" representedClassName="STDatum" isAbstract="YES" syncable="YES">
         <attribute name="cts" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="lts" optional="YES" attributeType="Date" syncable="YES"/>
@@ -9,24 +9,24 @@
         <attribute name="ts" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="xid" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
-    <entity name="STHTHippodrome" representedClassName="STHTHippodrome" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STHTHippodrome" representedClassName="STHTHippodrome" parentEntity="STDatum" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
-    <entity name="STHTHundred" representedClassName="STHTHundred" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STHTHundred" representedClassName="STHTHundred" parentEntity="STDatum" syncable="YES">
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hundreds" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
-    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
         <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
         <relationship name="hundreds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTHundred" inverseName="lap" inverseEntity="STHTHundred" syncable="YES"/>
-        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STLocation" inverseName="lap" inverseEntity="STLocation" syncable="YES"/>
     </entity>
-    <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STLocation" representedClassName="STLocation" parentEntity="STDatum" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -37,22 +37,22 @@
         <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="locations" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
-    <entity name="STHTLogMessage" representedClassName="STHTLogMessage" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STLogMessage" representedClassName="STLogMessage" parentEntity="STDatum" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="STHTSettings" representedClassName="STHTSettings" parentEntity="STHTDatum" syncable="YES">
+    <entity name="STSettings" representedClassName="STSettings" parentEntity="STDatum" syncable="YES">
         <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="STHTDatum" positionX="-783" positionY="-324" width="128" height="148"/>
-        <element name="STHTLocation" positionX="-873" positionY="-126" width="128" height="178"/>
-        <element name="STHTLogMessage" positionX="-1044" positionY="-262" width="128" height="73"/>
-        <element name="STHTSettings" positionX="-983" positionY="-414" width="128" height="88"/>
-        <element name="STHTHippodrome" positionX="-587" positionY="-396" width="128" height="118"/>
-        <element name="STHTLap" positionX="-630" positionY="-162" width="128" height="88"/>
-        <element name="STHTHundred" positionX="-666" positionY="-9" width="128" height="88"/>
+        <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="STHTHippodrome" positionX="205" positionY="-99" width="128" height="120"/>
+        <element name="STHTHundred" positionX="171" positionY="297" width="128" height="90"/>
+        <element name="STHTLap" positionX="207" positionY="135" width="128" height="90"/>
+        <element name="STLocation" positionX="-83" positionY="225" width="128" height="180"/>
+        <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>
+        <element name="STSettings" positionX="-225" positionY="-72" width="128" height="90"/>
     </elements>
 </model>

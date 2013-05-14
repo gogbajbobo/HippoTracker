@@ -7,7 +7,7 @@
 //
 
 #import "STHTLapTracker.h"
-#import "STHTLocation.h"
+#import "STLocation.h"
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
@@ -169,8 +169,8 @@
 
 }
 
-- (STHTLocation *)locationObjectFromCLLocation:(CLLocation *)location {
-    STHTLocation *locationObject = (STHTLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLocation" inManagedObjectContext:self.document.managedObjectContext];
+- (STLocation *)locationObjectFromCLLocation:(CLLocation *)location {
+    STLocation *locationObject = (STLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"STLocation" inManagedObjectContext:self.document.managedObjectContext];
     [locationObject setLatitude:[NSNumber numberWithDouble:location.coordinate.latitude]];
     [locationObject setLongitude:[NSNumber numberWithDouble:location.coordinate.longitude]];
     [locationObject setHorizontalAccuracy:[NSNumber numberWithDouble:location.horizontalAccuracy]];
@@ -182,7 +182,7 @@
     return locationObject;
 }
 
-- (CLLocation *)locationFromLocationObject:(STHTLocation *)locationObject {
+- (CLLocation *)locationFromLocationObject:(STLocation *)locationObject {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([locationObject.latitude doubleValue], [locationObject.longitude doubleValue]);
     CLLocation *location = [[CLLocation alloc] initWithCoordinate:coordinate
                                                   altitude:[locationObject.altitude doubleValue]

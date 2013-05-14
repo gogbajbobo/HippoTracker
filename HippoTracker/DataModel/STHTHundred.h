@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STHTDatum.h"
+#import "STDatum.h"
 
 @class STHTLap;
 
-@interface STHTHundred : STHTDatum
+@interface STHTHundred : STDatum
 
 @property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) NSNumber * speed;

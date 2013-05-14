@@ -68,7 +68,7 @@
 
 - (void)documentReady:(NSNotification *)notification {
     if ([[notification.userInfo valueForKey:@"uid"] isEqualToString:self.uid]) {
-        self.settingsController = [STHTSettingsController initWithSettings:self.startSettings];
+        self.settingsController = [STSettingsController initWithSettings:self.startSettings];
         self.settingsController.session = self;
     }
 }

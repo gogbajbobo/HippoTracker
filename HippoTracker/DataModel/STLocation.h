@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STHTDatum.h"
+#import "STDatum.h"
 
 @class STHTLap;
 
-@interface STHTLocation : STHTDatum
+@interface STLocation : STDatum
 
 @property (nonatomic, retain) NSNumber * altitude;
 @property (nonatomic, retain) NSNumber * course;

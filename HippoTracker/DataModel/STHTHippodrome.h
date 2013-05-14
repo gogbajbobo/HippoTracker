@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STHTDatum.h"
+#import "STDatum.h"
 
 @class STHTLap;
 
-@interface STHTHippodrome : STHTDatum
+@interface STHTHippodrome : STDatum
 
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * label;

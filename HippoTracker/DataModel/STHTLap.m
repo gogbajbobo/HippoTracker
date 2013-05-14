@@ -8,7 +8,7 @@
 
 #import "STHTLap.h"
 #import "STHTHippodrome.h"
-#import "STHTLocation.h"
+#import "STLocation.h"
 
 
 @implementation STHTLap

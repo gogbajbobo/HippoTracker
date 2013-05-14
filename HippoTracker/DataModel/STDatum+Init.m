@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTDatum+Init.h"
+#import "STDatum+Init.h"
 
-@implementation STHTDatum (Init)
+@implementation STDatum (Init)
 
 
 - (NSData *)newXid {

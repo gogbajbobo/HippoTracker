@@ -191,7 +191,7 @@
 
 - (NSFetchedResultsController *)resultsController {
     if (!_resultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTDatum"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STDatum"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"sqts" ascending:YES selector:@selector(compare:)]];
         [request setIncludesSubentities:YES];
         request.predicate = [NSPredicate predicateWithFormat:@"SELF.lts == %@ || SELF.ts > SELF.lts", nil];

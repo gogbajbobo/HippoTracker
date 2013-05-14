@@ -12,8 +12,8 @@
 #import "STManagedDocument.h"
 #import "STSyncer.h"
 #import "STHTLapTracker.h"
-#import "STHTSettings.h"
-#import "STHTSettingsController.h"
+#import "STSettings.h"
+#import "STSettingsController.h"
 #import "STLogger.h"
 
 @interface STSession : NSObject <STSession>
@@ -25,7 +25,7 @@
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *status;
 @property (nonatomic, strong) id <STRequestAuthenticatable> authDelegate;
-@property (nonatomic, strong) STHTSettingsController *settingsController;
+@property (nonatomic, strong) STSettingsController *settingsController;
 @property (nonatomic, strong) STLogger *logger;
 
 + (STSession *)initWithUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate;

@@ -8,6 +8,7 @@
 
 #import "STHTMainViewController.h"
 #import "STSessionManager.h"
+#import "STHTLapViewController.h"
 
 @interface STHTMainViewController ()
 

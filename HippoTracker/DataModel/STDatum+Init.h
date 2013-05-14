@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTDatum.h"
+#import "STDatum.h"
 
-@interface STHTDatum (Init)
+@interface STDatum (Init)
 
 @end

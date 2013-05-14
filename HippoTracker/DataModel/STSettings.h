@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STHTDatum.h"
+#import "STDatum.h"
 
 
-@interface STHTSettings : STHTDatum
+@interface STSettings : STDatum
 
 @property (nonatomic, retain) NSString * group;
 @property (nonatomic, retain) NSString * name;
