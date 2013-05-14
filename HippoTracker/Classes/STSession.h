@@ -11,24 +11,24 @@
 #import "STSessionManager.h"
 #import "STManagedDocument.h"
 #import "STSyncer.h"
-#import "STHTLocationTracker.h"
+#import "STHTLapTracker.h"
 #import "STHTSettings.h"
 #import "STHTSettingsController.h"
 #import "STLogger.h"
-#import "STHTSpotController.h"
+#import "STHTHippodromeController.h"
 
 @interface STSession : NSObject <STSession>
 
 @property (strong, nonatomic) STManagedDocument *document;
 @property (strong, nonatomic) STSyncer *syncer;
-@property (strong, nonatomic) STHTLocationTracker *locationTracker;
+@property (strong, nonatomic) STHTLapTracker *lapTracker;
 @property (weak, nonatomic) id <STSessionManager> manager;
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *status;
 @property (nonatomic, strong) id <STRequestAuthenticatable> authDelegate;
 @property (nonatomic, strong) STHTSettingsController *settingsController;
 @property (nonatomic, strong) STLogger *logger;
-@property (nonatomic, strong) STHTSpotController *spotController;
+@property (nonatomic, strong) STHTHippodromeController *hippodromeController;
 
 + (STSession *)initWithUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate;
 + (STSession *)initWithUID:(NSString *)uid authDelegate:(id <STRequestAuthenticatable>)authDelegate settings:(NSDictionary *)settings;

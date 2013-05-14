@@ -26,10 +26,10 @@
     NSMutableDictionary *defaultSettings = [NSMutableDictionary dictionary];
     
     NSMutableDictionary *locationTrackerSettings = [NSMutableDictionary dictionary];
-    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLLocationAccuracyBest] forKey:@"desiredAccuracy"];
+    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLLocationAccuracyBestForNavigation] forKey:@"desiredAccuracy"];
     [locationTrackerSettings setValue:@"10.0" forKey:@"requiredAccuracy"];
-    [locationTrackerSettings setValue:@"10.0" forKey:@"distanceFilter"];
-    [locationTrackerSettings setValue:@"0.5" forKey:@"timeFilter"];
+    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLDistanceFilterNone] forKey:@"distanceFilter"];
+    [locationTrackerSettings setValue:@"0" forKey:@"timeFilter"];
     
     [defaultSettings setValue:locationTrackerSettings forKey:@"location"];
     

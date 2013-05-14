@@ -77,15 +77,15 @@
 //    NSLog(@"currentSettings %@", [self.settingsController currentSettings]);
     self.logger = [[STLogger alloc] init];
     self.logger.session = self;
-    self.locationTracker = [[STHTLocationTracker alloc] init];
-    self.locationTracker.session = self;
+    self.lapTracker = [[STHTLapTracker alloc] init];
+    self.lapTracker.session = self;
     self.syncer = [[STSyncer alloc] init];
     self.syncer.session = self;
     self.syncer.authDelegate = self.authDelegate;
-    self.spotController = [[STHTSpotController alloc] init];
-    self.spotController.session = self;
+    self.hippodromeController = [[STHTHippodromeController alloc] init];
+    self.hippodromeController.session = self;
     self.status = @"running";
-    [self.locationTracker startTracking];
+//    [self.lapTracker startTracking];
 }
 
 - (void)setAuthDelegate:(id<STRequestAuthenticatable>)authDelegate {

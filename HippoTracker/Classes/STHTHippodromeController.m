@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTSpotController.h"
+#import "STHTHippodromeController.h"
 
-@interface STHTSpotController() <NSFetchedResultsControllerDelegate>
+@interface STHTHippodromeController() <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 
 @end
 
-@implementation STHTSpotController
+@implementation STHTHippodromeController
 
-- (STHTSpot *)newSpot {
-    STHTSpot *newSpot = (STHTSpot *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTSpot" inManagedObjectContext:self.session.document.managedObjectContext];
-    return newSpot;
+- (STHTHippodrome *)newHippodrome {
+    STHTHippodrome *newHippodrome = (STHTHippodrome *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTHippodrome" inManagedObjectContext:self.session.document.managedObjectContext];
+    return newHippodrome;
 }
 
 - (void)saveChanges {
@@ -47,7 +47,7 @@
 
 - (NSFetchedResultsController *)resultsController {
     if (!_resultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTSpot"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTHippodrome"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"address" ascending:NO selector:@selector(compare:)]];
         _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.session.document.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _resultsController.delegate = self;
@@ -75,15 +75,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-    STHTSpot *spot = (STHTSpot *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+    STHTHippodrome *hippodrome = (STHTHippodrome *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
-    if (spot.label) {
-        cell.textLabel.text = spot.label;
+    if (hippodrome.label) {
+        cell.textLabel.text = hippodrome.label;
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
     }
-    if (spot.address) {
-        cell.detailTextLabel.text = spot.address;
+    if (hippodrome.address) {
+        cell.detailTextLabel.text = hippodrome.address;
     } else {
         cell.detailTextLabel.text = @"no address";
     }
@@ -99,8 +99,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-        STHTSpot *spot= (STHTSpot *)[[sectionInfo objects] objectAtIndex:indexPath.row];
-        [self.session.document.managedObjectContext deleteObject:spot];
+        STHTHippodrome *hippodrome= (STHTHippodrome *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+        [self.session.document.managedObjectContext deleteObject:hippodrome];
     }
 
 }

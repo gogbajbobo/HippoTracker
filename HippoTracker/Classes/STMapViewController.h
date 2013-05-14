@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "STHTSpotController.h"
+#import "STSession.h"
+//#import "STHTHippodromeController.h"
 
 @interface STMapViewController : UIViewController
 
-@property (nonatomic, strong) STHTSpot *spot;
+@property (nonatomic, strong) STSession *session;
 
 @end

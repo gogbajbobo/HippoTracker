@@ -9,6 +9,19 @@
         <attribute name="ts" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="xid" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
+    <entity name="STHTHippodrome" representedClassName="STHTHippodrome" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startLineLat1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startLineLat2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startLineLon1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startLineLon2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STHTDatum" syncable="YES">
+        <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
+    </entity>
     <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STHTDatum" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -16,8 +29,9 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="track" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTTrack" inverseName="locations" inverseEntity="STHTTrack" syncable="YES"/>
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="locations" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STHTLogMessage" representedClassName="STHTLogMessage" parentEntity="STHTDatum" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,25 +42,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="STHTSpot" representedClassName="STHTSpot" parentEntity="STHTDatum" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="latitude1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="latitude2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-    </entity>
-    <entity name="STHTTrack" representedClassName="STHTTrack" parentEntity="STHTDatum" syncable="YES">
-        <attribute name="finishTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="STHTLocation" inverseName="track" inverseEntity="STHTLocation" syncable="YES"/>
-    </entity>
     <elements>
         <element name="STHTDatum" positionX="-783" positionY="-324" width="128" height="148"/>
-        <element name="STHTLocation" positionX="-873" positionY="-126" width="128" height="163"/>
-        <element name="STHTLogMessage" positionX="-1044" positionY="-414" width="128" height="73"/>
-        <element name="STHTSettings" positionX="-990" positionY="-558" width="128" height="88"/>
-        <element name="STHTSpot" positionX="-641" positionY="-526" width="128" height="133"/>
-        <element name="STHTTrack" positionX="-1098" positionY="-153" width="128" height="88"/>
+        <element name="STHTLocation" positionX="-873" positionY="-126" width="128" height="178"/>
+        <element name="STHTLogMessage" positionX="-1044" positionY="-262" width="128" height="73"/>
+        <element name="STHTSettings" positionX="-983" positionY="-414" width="128" height="88"/>
+        <element name="STHTHippodrome" positionX="-587" positionY="-396" width="128" height="148"/>
+        <element name="STHTLap" positionX="-632" positionY="-171" width="128" height="73"/>
     </elements>
 </model>

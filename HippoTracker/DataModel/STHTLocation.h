@@ -2,7 +2,7 @@
 //  STHTLocation.h
 //  HippoTracker
 //
-//  Created by Maxim Grigoriev on 5/10/13.
+//  Created by Maxim Grigoriev on 5/13/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "STHTDatum.h"
 
-@class STHTTrack;
+@class STHTLap;
 
 @interface STHTLocation : STHTDatum
 
@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * speed;
 @property (nonatomic, retain) NSNumber * verticalAccuracy;
-@property (nonatomic, retain) STHTTrack *track;
+@property (nonatomic, retain) NSDate * timestamp;
+@property (nonatomic, retain) STHTLap *lap;
 
 @end

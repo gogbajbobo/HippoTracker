@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "STSessionManagement.h"
-#import "STHTSpot.h"
+#import "STHTHippodrome.h"
 
-@interface STHTSpotController : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface STHTHippodromeController : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) id <STSession> session;
 @property (nonatomic, weak) UITableView *tableView;
 
-- (STHTSpot *)newSpot;
+- (STHTHippodrome *)newHippodrome;
 - (void)saveChanges;
 
 @end
