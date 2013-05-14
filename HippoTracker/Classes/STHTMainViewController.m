@@ -32,9 +32,11 @@
     if (!lapTracker.tracking) {
         [lapTracker startTracking];
         [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
+        [self currentAccuracyChanged:nil];
     } else {
         [lapTracker stopTracking];
         [self.startTrackerButton setTitle:@"START TRACKER" forState:UIControlStateNormal];
+        self.startNewLapButton.enabled = NO;
     }
 }
 
@@ -52,6 +54,21 @@
     }
 }
 
+- (void)currentAccuracyChanged:(NSNotification *)notification {
+
+    CLLocationAccuracy currentAccuracy = self.session.lapTracker.currentAccuracy;
+    CLLocationAccuracy requiredAccuracy = [[self.session.lapTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
+    
+    if (currentAccuracy <= requiredAccuracy) {
+        self.startNewLapButton.enabled = YES;
+    } else {
+        self.startNewLapButton.enabled = NO;
+    }
+
+}
+
+#pragma mark - view init
+
 - (void)buttonsInit {
     [self.startTrackerButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
@@ -63,10 +80,12 @@
 
 - (void)addNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.lapTracker];
 }
 
 - (void)removeNotificationsObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.lapTracker];
 }
 
 #pragma mark - view lifecycle

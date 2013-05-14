@@ -62,24 +62,32 @@
 
 + (NSString *)normalizeValue:(NSString *)value forKey:(NSString *)key {
     
-    NSArray *positiveDouble = [NSArray arrayWithObjects:@"requiredAccuracy", @"timeFilter", @"trackDetectionTime", @"trackSeparationDistance", @"trackScale", @"fetchLimit", @"syncInterval", nil];
+    NSArray *positiveDouble = [NSArray arrayWithObjects:@"requiredAccuracy", @"trackDetectionTime", @"trackSeparationDistance", @"trackScale", @"fetchLimit", @"syncInterval", nil];
     
-    if ([key isEqualToString:@"desiredAccuracy"]) {
+    if ([positiveDouble containsObject:key]) {
+        if ([self isPositiveDouble:value]) {
+            return [NSString stringWithFormat:@"%f", [value doubleValue]];
+        }
+        
+    } else if ([key isEqualToString:@"desiredAccuracy"]) {
         double dValue = [value doubleValue];
         if (dValue == -2 || dValue == -1 || dValue == 10 || dValue == 100 || dValue == 1000 || dValue == 3000) {
             return [NSString stringWithFormat:@"%f", dValue];
         }
+        
     } else if ([key isEqualToString:@"distanceFilter"]) {
         double dValue = [value doubleValue];
         if (dValue == -1 || dValue >= 0) {
             return [NSString stringWithFormat:@"%f", dValue];
         }
         
-    } else if ([positiveDouble containsObject:key]) {
-        if ([self isPositiveDouble:value]) {
-            return [NSString stringWithFormat:@"%f", [value doubleValue]];
+    } else if ([key isEqualToString:@"timeFilter"]) {
+        double dValue = [value doubleValue];
+        if (dValue >= 0) {
+            return [NSString stringWithFormat:@"%f", dValue];
         }
-    } else if ([key hasSuffix:@"TrackerAutoStart"] || [key isEqualToString:@"localAccessToSettings"]) {
+        
+    } else  if ([key hasSuffix:@"TrackerAutoStart"] || [key isEqualToString:@"localAccessToSettings"]) {
         if ([self isBool:value]) {
             return [NSString stringWithFormat:@"%d", [value boolValue]];
         }
@@ -206,7 +214,7 @@
                 if (nValue) {
                     settingValue = nValue;
                 } else {
-                    NSLog(@"value is not correct %@", [self.startSettings valueForKey:settingName]);
+                    NSLog(@"value %@ is not correct for %@", [self.startSettings valueForKey:settingName], settingName);
                     [self.startSettings removeObjectForKey:settingName];
                 }
             }
