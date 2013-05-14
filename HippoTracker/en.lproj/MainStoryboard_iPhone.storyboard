@@ -75,11 +75,19 @@
                                     <action selector="lapsHistoryButtonPressed:" destination="ETD-yH-C6t" eventType="touchUpInside" id="bwM-3V-L5W"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Current accuracy: N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0ZE-Le-Jch">
+                                <rect key="frame" x="20" y="279" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="OwZ-LQ-dH6"/>
                     <connections>
+                        <outlet property="currentAccuracyLabel" destination="0ZE-Le-Jch" id="C52-ko-fxP"/>
                         <outlet property="lapsHistoryButton" destination="IRD-fF-UJU" id="ZTj-ep-deh"/>
                         <outlet property="startNewLapButton" destination="hbs-2u-Gce" id="qtr-9g-BMX"/>
                         <outlet property="startTrackerButton" destination="bV9-kI-rh7" id="n96-pc-MDk"/>

@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *startTrackerButton;
 @property (nonatomic, weak) IBOutlet UIButton *lapsHistoryButton;
 @property (nonatomic, weak) IBOutlet UIButton *startNewLapButton;
+@property (weak, nonatomic) IBOutlet UILabel *currentAccuracyLabel;
 @property (nonatomic, strong) STSession *session;
 
 @end
@@ -37,6 +38,8 @@
         [lapTracker stopTracking];
         [self.startTrackerButton setTitle:@"START TRACKER" forState:UIControlStateNormal];
         self.startNewLapButton.enabled = NO;
+        self.currentAccuracyLabel.text = @"Current accuracy: N/A";
+        self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     }
 }
 
@@ -59,10 +62,18 @@
     CLLocationAccuracy currentAccuracy = self.session.lapTracker.currentAccuracy;
     CLLocationAccuracy requiredAccuracy = [[self.session.lapTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
     
-    if (currentAccuracy <= requiredAccuracy) {
+    if (currentAccuracy == 0.0) {
+        self.currentAccuracyLabel.text = @"Current accuracy: N/A";
+    } else {
+        self.currentAccuracyLabel.text = [NSString stringWithFormat:@"Current accuracy: %.fm", currentAccuracy];
+    }
+    
+    if (currentAccuracy > 0.0 && currentAccuracy <= requiredAccuracy) {
         self.startNewLapButton.enabled = YES;
+        self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
     } else {
         self.startNewLapButton.enabled = NO;
+        self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.0 blue:0.0 alpha:1.0];
     }
 
 }
@@ -76,6 +87,8 @@
     self.startTrackerButton.enabled = NO;
     self.lapsHistoryButton.enabled = NO;
     self.startNewLapButton.enabled = NO;
+    self.currentAccuracyLabel.text = @"Current accuracy: N/A";
+    self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
 }
 
 - (void)addNotificationObservers {
