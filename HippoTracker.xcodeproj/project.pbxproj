@@ -55,8 +55,6 @@
 		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
 		2C749DF817426881005B7844 /* STHTHundred.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF717426881005B7844 /* STHTHundred.m */; };
 		2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DFA17426D59005B7844 /* STHTHippodrome.m */; };
-		2C749DFE1742726D005B7844 /* STHTLapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DFD1742726D005B7844 /* STHTLapViewController.m */; };
-		2C749E01174274ED005B7844 /* STHTSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E00174274ED005B7844 /* STHTSettingsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,10 +133,6 @@
 		2C749DF717426881005B7844 /* STHTHundred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHundred.m; sourceTree = "<group>"; };
 		2C749DF917426D59005B7844 /* STHTHippodrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodrome.h; sourceTree = "<group>"; };
 		2C749DFA17426D59005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
-		2C749DFC1742726D005B7844 /* STHTLapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapViewController.h; sourceTree = "<group>"; };
-		2C749DFD1742726D005B7844 /* STHTLapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapViewController.m; sourceTree = "<group>"; };
-		2C749DFF174274EC005B7844 /* STHTSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettingsController.h; sourceTree = "<group>"; };
-		2C749E00174274ED005B7844 /* STHTSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettingsController.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -268,8 +262,6 @@
 				2C73CFBB173BF0C60070238F /* STManagedDocument.m */,
 				2C73D007173BF3DE0070238F /* STSettingsController.h */,
 				2C73D008173BF3DE0070238F /* STSettingsController.m */,
-				2C749DFF174274EC005B7844 /* STHTSettingsController.h */,
-				2C749E00174274ED005B7844 /* STHTSettingsController.m */,
 				2C73CFC5173BF14D0070238F /* STSyncer.h */,
 				2C73CFC6173BF14D0070238F /* STSyncer.m */,
 				2C73D00A173BF5780070238F /* STLogger.h */,
@@ -280,8 +272,6 @@
 				2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */,
 				2C749DF317420786005B7844 /* STHTMainViewController.h */,
 				2C749DF417420787005B7844 /* STHTMainViewController.m */,
-				2C749DFC1742726D005B7844 /* STHTLapViewController.h */,
-				2C749DFD1742726D005B7844 /* STHTLapViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -484,8 +474,6 @@
 				2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */,
 				2C749DF817426881005B7844 /* STHTHundred.m in Sources */,
 				2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */,
-				2C749DFE1742726D005B7844 /* STHTLapViewController.m in Sources */,
-				2C749E01174274ED005B7844 /* STHTSettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

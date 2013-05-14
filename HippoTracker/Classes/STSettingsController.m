@@ -31,6 +31,12 @@
     [locationTrackerSettings setValue:[NSString stringWithFormat:@"%f", kCLDistanceFilterNone] forKey:@"distanceFilter"];
     [locationTrackerSettings setValue:@"0" forKey:@"timeFilter"];
     
+    [locationTrackerSettings setValue:@"300.0" forKey:@"trackDetectionTime"];
+    [locationTrackerSettings setValue:@"100.0" forKey:@"trackSeparationDistance"];
+    [locationTrackerSettings setValue:[NSString stringWithFormat:@"%d", NO] forKey:@"locationTrackerAutoStart"];
+    [locationTrackerSettings setValue:@"8.0" forKey:@"locationTrackerStartTime"];
+    [locationTrackerSettings setValue:@"20.0" forKey:@"locationTrackerFinishTime"];
+
     [defaultSettings setValue:locationTrackerSettings forKey:@"location"];
     
     
@@ -38,7 +44,7 @@
     [mapSettings setValue:[NSString stringWithFormat:@"%d", MKUserTrackingModeNone] forKey:@"mapHeading"];
     [mapSettings setValue:[NSString stringWithFormat:@"%d", MKMapTypeStandard] forKey:@"mapType"];
     [mapSettings setValue:@"1.5" forKey:@"trackScale"];
-    [mapSettings setValue:[NSString stringWithFormat:@"%d", mapYandex] forKey:@"mapProvider"];
+    [mapSettings setValue:[NSString stringWithFormat:@"%d", mapApple] forKey:@"mapProvider"];
     
     [defaultSettings setValue:mapSettings forKey:@"map"];
     
@@ -51,6 +57,13 @@
     
     [defaultSettings setValue:syncerSettings forKey:@"syncer"];
     
+    NSMutableDictionary *batteryTrackerSettings = [NSMutableDictionary dictionary];
+    [batteryTrackerSettings setValue:[NSString stringWithFormat:@"%d", NO] forKey:@"batteryTrackerAutoStart"];
+    [batteryTrackerSettings setValue:@"8.0" forKey:@"batteryTrackerStartTime"];
+    [batteryTrackerSettings setValue:@"20.0" forKey:@"batteryTrackerFinishTime"];
+    
+    [defaultSettings setValue:batteryTrackerSettings forKey:@"battery"];
+
     
     NSMutableDictionary *generalSettings = [NSMutableDictionary dictionary];
     [generalSettings setValue:[NSString stringWithFormat:@"%d", YES] forKey:@"localAccessToSettings"];
@@ -118,7 +131,6 @@
     
     return nil;
 }
-
 
 + (BOOL)isPositiveDouble:(NSString *)value {
     return ([value doubleValue] > 0);
