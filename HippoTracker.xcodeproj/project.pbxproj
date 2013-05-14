@@ -46,8 +46,6 @@
 		2C73D01D173BF8D00070238F /* STHTSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D008173BF3DE0070238F /* STHTSettingsController.m */; };
 		2C73D01E173BF8D20070238F /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */; };
 		2C73D01F173BF9650070238F /* STTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCC173BF1EC0070238F /* STTracker.m */; };
-		2C73D037173D08FF0070238F /* STMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D036173D08FF0070238F /* STMainViewController.m */; };
-		2C73D03A173D0AA30070238F /* STMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D039173D0AA30070238F /* STMapViewController.m */; };
 		2C73D03D173D0C840070238F /* STHTDatum+Init.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73D03C173D0C840070238F /* STHTDatum+Init.m */; };
 		2C749DE3174110F8005B7844 /* STHTLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DE2174110F8005B7844 /* STHTLogMessage.m */; };
 		2C749DE6174110F8005B7844 /* STHTDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DE5174110F8005B7844 /* STHTDatum.m */; };
@@ -55,6 +53,7 @@
 		2C749DEC174110F8005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DEB174110F8005B7844 /* STHTHippodrome.m */; };
 		2C749DEF174110F8005B7844 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DEE174110F8005B7844 /* STHTLap.m */; };
 		2C749DF2174110F9005B7844 /* STHTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF1174110F9005B7844 /* STHTSettings.m */; };
+		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
 		2CAB6AC8173D1B43000185DD /* STHTHippodromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAB6AC7173D1B43000185DD /* STHTHippodromeController.m */; };
 /* End PBXBuildFile section */
 
@@ -116,10 +115,6 @@
 		2C73D015173BF7940070238F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2C73D017173BF79A0070238F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2C73D019173BF84F0070238F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2C73D035173D08FF0070238F /* STMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMainViewController.h; sourceTree = "<group>"; };
-		2C73D036173D08FF0070238F /* STMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMainViewController.m; sourceTree = "<group>"; };
-		2C73D038173D0AA30070238F /* STMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMapViewController.h; sourceTree = "<group>"; };
-		2C73D039173D0AA30070238F /* STMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMapViewController.m; sourceTree = "<group>"; };
 		2C73D03B173D0C840070238F /* STHTDatum+Init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTDatum+Init.h"; sourceTree = "<group>"; };
 		2C73D03C173D0C840070238F /* STHTDatum+Init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STHTDatum+Init.m"; sourceTree = "<group>"; };
 		2C749DE1174110F8005B7844 /* STHTLogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLogMessage.h; sourceTree = "<group>"; };
@@ -134,6 +129,8 @@
 		2C749DEE174110F8005B7844 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		2C749DF0174110F9005B7844 /* STHTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettings.h; sourceTree = "<group>"; };
 		2C749DF1174110F9005B7844 /* STHTSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettings.m; sourceTree = "<group>"; };
+		2C749DF317420786005B7844 /* STHTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTMainViewController.h; sourceTree = "<group>"; };
+		2C749DF417420787005B7844 /* STHTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTMainViewController.m; sourceTree = "<group>"; };
 		2CAB6AC6173D1B43000185DD /* STHTHippodromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodromeController.h; sourceTree = "<group>"; };
 		2CAB6AC7173D1B43000185DD /* STHTHippodromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodromeController.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -275,10 +272,8 @@
 				2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */,
 				2CAB6AC6173D1B43000185DD /* STHTHippodromeController.h */,
 				2CAB6AC7173D1B43000185DD /* STHTHippodromeController.m */,
-				2C73D035173D08FF0070238F /* STMainViewController.h */,
-				2C73D036173D08FF0070238F /* STMainViewController.m */,
-				2C73D038173D0AA30070238F /* STMapViewController.h */,
-				2C73D039173D0AA30070238F /* STMapViewController.m */,
+				2C749DF317420786005B7844 /* STHTMainViewController.h */,
+				2C749DF417420787005B7844 /* STHTMainViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -470,8 +465,6 @@
 				2C73D01E173BF8D20070238F /* STHTLapTracker.m in Sources */,
 				2C73D00C173BF5780070238F /* STLogger.m in Sources */,
 				2C73D00F173BF5E30070238F /* STHTLogMessage+dayAsString.m in Sources */,
-				2C73D037173D08FF0070238F /* STMainViewController.m in Sources */,
-				2C73D03A173D0AA30070238F /* STMapViewController.m in Sources */,
 				2C73D03D173D0C840070238F /* STHTDatum+Init.m in Sources */,
 				2CAB6AC8173D1B43000185DD /* STHTHippodromeController.m in Sources */,
 				2C749DE3174110F8005B7844 /* STHTLogMessage.m in Sources */,
@@ -480,6 +473,7 @@
 				2C749DEC174110F8005B7844 /* STHTHippodrome.m in Sources */,
 				2C749DEF174110F8005B7844 /* STHTLap.m in Sources */,
 				2C749DF2174110F9005B7844 /* STHTSettings.m in Sources */,
+				2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
