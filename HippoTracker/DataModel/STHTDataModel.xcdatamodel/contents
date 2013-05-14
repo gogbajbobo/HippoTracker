@@ -18,8 +18,14 @@
         <attribute name="startLineLon2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
+    <entity name="STHTHundred" representedClassName="STHTHundred" parentEntity="STHTDatum" syncable="YES">
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hundreds" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
     <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STHTDatum" syncable="YES">
         <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
+        <relationship name="hundreds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTHundred" inverseName="lap" inverseEntity="STHTHundred" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
     </entity>
     <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STHTDatum" syncable="YES">
@@ -48,6 +54,7 @@
         <element name="STHTLogMessage" positionX="-1044" positionY="-262" width="128" height="73"/>
         <element name="STHTSettings" positionX="-983" positionY="-414" width="128" height="88"/>
         <element name="STHTHippodrome" positionX="-587" positionY="-396" width="128" height="148"/>
-        <element name="STHTLap" positionX="-632" positionY="-171" width="128" height="73"/>
+        <element name="STHTLap" positionX="-630" positionY="-162" width="128" height="88"/>
+        <element name="STHTHundred" positionX="-666" positionY="-9" width="128" height="88"/>
     </elements>
 </model>

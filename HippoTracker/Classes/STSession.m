@@ -82,8 +82,6 @@
     self.syncer = [[STSyncer alloc] init];
     self.syncer.session = self;
     self.syncer.authDelegate = self.authDelegate;
-    self.hippodromeController = [[STHTHippodromeController alloc] init];
-    self.hippodromeController.session = self;
     self.status = @"running";
 //    [self.lapTracker startTracking];
 }
