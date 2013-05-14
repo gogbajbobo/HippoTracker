@@ -37,6 +37,22 @@
     [super customInit];
 }
 
+- (STHTHippodrome *)hippodrome {
+    if (!_hippodrome) {        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTHippodrome"];
+        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"label" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        NSError *error;
+        STHTHippodrome *hippodrome = [[self.document.managedObjectContext executeFetchRequest:request error:&error] lastObject];
+        if (!hippodrome) {
+            hippodrome = (STHTHippodrome *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTHippodrome" inManagedObjectContext:self.document.managedObjectContext];
+        }
+        _hippodrome = hippodrome;
+    }
+    return _hippodrome;
+}
+
+#pragma mark - locationTracker settings
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -49,9 +65,6 @@
     }
     
 }
-
-
-#pragma mark - locationTracker settings
 
 - (CLLocationAccuracy) desiredAccuracy {
     return [[self.settings valueForKey:@"desiredAccuracy"] doubleValue];
@@ -69,40 +82,6 @@
 - (NSTimeInterval)timeFilter {
     return [[self.settings valueForKey:@"timeFilter"] doubleValue];
 }
-
-//- (NSTimeInterval)trackDetectionTime {
-//    return [[self.settings valueForKey:@"trackDetectionTime"] doubleValue];
-//}
-//
-//- (CLLocationDistance)trackSeparationDistance {
-//    return [[self.settings valueForKey:@"trackSeparationDistance"] doubleValue];
-//}
-
-//- (STHTTrack *)currentTrack {
-//    if (!_currentTrack) {
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTLap"];
-//        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:NO selector:@selector(compare:)]];
-//        NSError *error;
-//        NSArray *result = [self.document.managedObjectContext executeFetchRequest:request error:&error];
-//        if (result.count > 0) {
-//            _currentTrack = [result objectAtIndex:0];
-//        }
-//    }
-//    return _currentTrack;
-//}
-//
-//- (CLLocation *)lastLocation {
-//    if (!_lastLocation) {
-//        if (self.currentTrack.locations.count > 0) {
-//            NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"cts" ascending:NO selector:@selector(compare:)]];
-//            STHTLocation *lastLocation = [[self.currentTrack.locations sortedArrayUsingDescriptors:sortDescriptors] objectAtIndex:0];
-//            if (lastLocation) {
-//                _lastLocation = [self locationFromLocationObject:lastLocation];
-//            }
-//        }
-//    }
-//    return _lastLocation;
-//}
 
 - (void)setCurrentAccuracy:(CLLocationAccuracy)currentAccuracy {
     if (_currentAccuracy != currentAccuracy) {
@@ -163,76 +142,32 @@
 
 - (void)addLocation:(CLLocation *)currentLocation {
 
+    [self.currentLap addLocationsObject:[self locationObjectFromCLLocation:currentLocation]];
+    self.lastLocation = currentLocation;
     
-    //    NSLog(@"addLocation %@", [NSDate date]);
-//    if (!self.currentTrack) {
-//        [self startNewTrack];
-//    }
-//    NSDate *timestamp = currentLocation.timestamp;
-//    if ([currentLocation.timestamp timeIntervalSinceDate:self.lastLocation.timestamp] > self.trackDetectionTime && self.currentTrack.locations.count != 0) {
-//        [self startNewTrack];
-//        if ([currentLocation distanceFromLocation:self.lastLocation] < self.trackSeparationDistance) {
-//            NSDate *ts = [NSDate date];
-//            [self.currentTrack setStartTime:ts];
-//            [self.currentTrack addLocationsObject:[self locationObjectFromCLLocation:self.lastLocation]];
-//            //            NSLog(@"copy lastLocation to new Track as first location");
-//        } else {
-//            //            NSLog(@"no");
-//            self.lastLocation = currentLocation;
-//        }
-//        timestamp = [NSDate date];
-//    }
-//        
-//    if (self.currentTrack.locations.count == 0) {
-//        self.currentTrack.startTime = timestamp;
-//    }
-//    [self.currentTrack addLocationsObject:[self locationObjectFromCLLocation:currentLocation]];
-//    self.currentTrack.finishTime = timestamp;
-//        
-//    self.lastLocation = currentLocation;
-//    
-//    [self.document saveDocument:^(BOOL success) {
-//        NSLog(@"save newLocation");
-//        if (success) {
-//            NSLog(@"save newLocation success");
-//        }
-//    }];
-    
+    [self.document saveDocument:^(BOOL success) {
+        NSLog(@"save newLocation");
+        if (success) {
+            NSLog(@"save newLocation success");
+        }
+    }];
+  
 }
 
 - (void)startNewLap {
+    
+    STHTLap *lap = (STHTLap *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLap" inManagedObjectContext:self.document.managedObjectContext];
+    self.currentLap = lap;
+    [self.hippodrome addLapsObject:lap];
     self.lapTracking = YES;
+    [self.document saveDocument:^(BOOL success) {
+        NSLog(@"save newLap");
+        if (success) {
+            NSLog(@"save newLap success");
+        }
+    }];
+
 }
-
-//- (void)startNewTrack {
-//    STHTTrack *track = (STHTTrack *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTTrack" inManagedObjectContext:self.document.managedObjectContext];
-//    track.startTime = [NSDate date];
-//    self.currentTrack = track;
-//    //    NSLog(@"track %@", track);
-//    [self.document saveDocument:^(BOOL success) {
-//        NSLog(@"save newTrack");
-//        if (success) {
-//            NSLog(@"save newTrack success");
-//        }
-//    }];
-//}
-
-//- (void)deleteTrack:(STHTTrack *)track {
-//    [self.document.managedObjectContext deleteObject:track];
-//    [self.document saveDocument:^(BOOL success) {
-//        if (success) {
-//            NSLog(@"deleteTrack success");
-//        }
-//    }];
-//}
-
-//- (void)splitTrack {
-//    self.currentTrack.finishTime = self.lastLocation.timestamp;
-//    [self startNewTrack];
-//    STHTLocation *location = [self locationObjectFromCLLocation:self.lastLocation];
-//    [self.currentTrack addLocationsObject:location];
-//    self.lastLocation = [self locationFromLocationObject:location];
-//}
 
 - (STHTLocation *)locationObjectFromCLLocation:(CLLocation *)location {
     STHTLocation *locationObject = (STHTLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLocation" inManagedObjectContext:self.document.managedObjectContext];
@@ -243,6 +178,7 @@
     [locationObject setCourse:[NSNumber numberWithDouble:location.course]];
     [locationObject setAltitude:[NSNumber numberWithDouble:location.altitude]];
     [locationObject setVerticalAccuracy:[NSNumber numberWithDouble:location.verticalAccuracy]];
+    [locationObject setTimestamp:location.timestamp];
     return locationObject;
 }
 
@@ -254,7 +190,7 @@
                                           verticalAccuracy:[locationObject.verticalAccuracy doubleValue]
                                                     course:[locationObject.course doubleValue]
                                                      speed:[locationObject.speed doubleValue]
-                                                 timestamp:locationObject.cts];
+                                                 timestamp:locationObject.timestamp];
     return location;
 }
 

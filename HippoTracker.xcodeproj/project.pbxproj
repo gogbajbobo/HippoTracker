@@ -50,11 +50,11 @@
 		2C749DE3174110F8005B7844 /* STHTLogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DE2174110F8005B7844 /* STHTLogMessage.m */; };
 		2C749DE6174110F8005B7844 /* STHTDatum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DE5174110F8005B7844 /* STHTDatum.m */; };
 		2C749DE9174110F8005B7844 /* STHTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DE8174110F8005B7844 /* STHTLocation.m */; };
-		2C749DEC174110F8005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DEB174110F8005B7844 /* STHTHippodrome.m */; };
 		2C749DEF174110F8005B7844 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DEE174110F8005B7844 /* STHTLap.m */; };
 		2C749DF2174110F9005B7844 /* STHTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF1174110F9005B7844 /* STHTSettings.m */; };
 		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
 		2C749DF817426881005B7844 /* STHTHundred.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF717426881005B7844 /* STHTHundred.m */; };
+		2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DFA17426D59005B7844 /* STHTHippodrome.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,8 +123,6 @@
 		2C749DE5174110F8005B7844 /* STHTDatum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTDatum.m; sourceTree = "<group>"; };
 		2C749DE7174110F8005B7844 /* STHTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLocation.h; sourceTree = "<group>"; };
 		2C749DE8174110F8005B7844 /* STHTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLocation.m; sourceTree = "<group>"; };
-		2C749DEA174110F8005B7844 /* STHTHippodrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodrome.h; sourceTree = "<group>"; };
-		2C749DEB174110F8005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
 		2C749DED174110F8005B7844 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
 		2C749DEE174110F8005B7844 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		2C749DF0174110F9005B7844 /* STHTSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettings.h; sourceTree = "<group>"; };
@@ -133,6 +131,8 @@
 		2C749DF417420787005B7844 /* STHTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTMainViewController.m; sourceTree = "<group>"; };
 		2C749DF617426881005B7844 /* STHTHundred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHundred.h; sourceTree = "<group>"; };
 		2C749DF717426881005B7844 /* STHTHundred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHundred.m; sourceTree = "<group>"; };
+		2C749DF917426D59005B7844 /* STHTHippodrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodrome.h; sourceTree = "<group>"; };
+		2C749DFA17426D59005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -288,6 +288,8 @@
 		2C73CFD4173BF2190070238F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				2C749DF917426D59005B7844 /* STHTHippodrome.h */,
+				2C749DFA17426D59005B7844 /* STHTHippodrome.m */,
 				2C73CFD5173BF23B0070238F /* STHTDataModel.xcdatamodel */,
 				2C749DF0174110F9005B7844 /* STHTSettings.h */,
 				2C749DF1174110F9005B7844 /* STHTSettings.m */,
@@ -295,8 +297,6 @@
 				2C749DEE174110F8005B7844 /* STHTLap.m */,
 				2C749DF617426881005B7844 /* STHTHundred.h */,
 				2C749DF717426881005B7844 /* STHTHundred.m */,
-				2C749DEA174110F8005B7844 /* STHTHippodrome.h */,
-				2C749DEB174110F8005B7844 /* STHTHippodrome.m */,
 				2C749DE7174110F8005B7844 /* STHTLocation.h */,
 				2C749DE8174110F8005B7844 /* STHTLocation.m */,
 				2C749DE4174110F8005B7844 /* STHTDatum.h */,
@@ -469,11 +469,11 @@
 				2C749DE3174110F8005B7844 /* STHTLogMessage.m in Sources */,
 				2C749DE6174110F8005B7844 /* STHTDatum.m in Sources */,
 				2C749DE9174110F8005B7844 /* STHTLocation.m in Sources */,
-				2C749DEC174110F8005B7844 /* STHTHippodrome.m in Sources */,
 				2C749DEF174110F8005B7844 /* STHTLap.m in Sources */,
 				2C749DF2174110F9005B7844 /* STHTSettings.m in Sources */,
 				2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */,
 				2C749DF817426881005B7844 /* STHTHundred.m in Sources */,
+				2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

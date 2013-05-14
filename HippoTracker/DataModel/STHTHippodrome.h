@@ -2,7 +2,7 @@
 //  STHTHippodrome.h
 //  HippoTracker
 //
-//  Created by Maxim Grigoriev on 5/13/13.
+//  Created by Maxim Grigoriev on 5/14/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
@@ -16,10 +16,8 @@
 
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) NSString * label;
-@property (nonatomic, retain) NSNumber * startLineLat1;
-@property (nonatomic, retain) NSNumber * startLineLat2;
-@property (nonatomic, retain) NSNumber * startLineLon1;
-@property (nonatomic, retain) NSNumber * startLineLon2;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSSet *laps;
 @end
 

@@ -2,7 +2,7 @@
 //  STHTHippodrome.m
 //  HippoTracker
 //
-//  Created by Maxim Grigoriev on 5/13/13.
+//  Created by Maxim Grigoriev on 5/14/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
@@ -14,10 +14,8 @@
 
 @dynamic address;
 @dynamic label;
-@dynamic startLineLat1;
-@dynamic startLineLat2;
-@dynamic startLineLon1;
-@dynamic startLineLon2;
+@dynamic latitude;
+@dynamic longitude;
 @dynamic laps;
 
 @end

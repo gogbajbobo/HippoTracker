@@ -12,10 +12,8 @@
     <entity name="STHTHippodrome" representedClassName="STHTHippodrome" parentEntity="STHTDatum" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="startLineLat1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="startLineLat2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="startLineLon1" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="startLineLon2" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STHTHundred" representedClassName="STHTHundred" parentEntity="STHTDatum" syncable="YES">
@@ -53,7 +51,7 @@
         <element name="STHTLocation" positionX="-873" positionY="-126" width="128" height="178"/>
         <element name="STHTLogMessage" positionX="-1044" positionY="-262" width="128" height="73"/>
         <element name="STHTSettings" positionX="-983" positionY="-414" width="128" height="88"/>
-        <element name="STHTHippodrome" positionX="-587" positionY="-396" width="128" height="148"/>
+        <element name="STHTHippodrome" positionX="-587" positionY="-396" width="128" height="118"/>
         <element name="STHTLap" positionX="-630" positionY="-162" width="128" height="88"/>
         <element name="STHTHundred" positionX="-666" positionY="-9" width="128" height="88"/>
     </elements>

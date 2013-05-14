@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) STHTHippodrome *hippodrome;
 @property (nonatomic) CLLocationAccuracy currentAccuracy;
+@property (nonatomic, strong) STHTLap *currentLap;
 
 - (void)startNewLap;
 //- (void)deleteLap:(STHTLap *)lap;
