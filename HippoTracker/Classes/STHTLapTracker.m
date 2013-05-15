@@ -22,7 +22,6 @@
 //@property (nonatomic) NSTimeInterval trackDetectionTime;
 //@property (nonatomic) CLLocationDistance trackSeparationDistance;
 
-@property (nonatomic) BOOL lapTracking;
 
 @end
 
@@ -128,9 +127,6 @@
         self.currentAccuracy = newLocation.horizontalAccuracy;
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
-                if (!self.lastLocation) {
-                    self.lastLocation = newLocation;
-                }
                 [self addLocation:newLocation];
             }
         }
@@ -167,6 +163,16 @@
         }
     }];
 
+}
+
+- (void)finishLap {
+    self.lapTracking = NO;
+    [self.document saveDocument:^(BOOL success) {
+        NSLog(@"save lap");
+        if (success) {
+            NSLog(@"save lap success");
+        }
+    }];
 }
 
 - (STHTLocation *)locationObjectFromCLLocation:(CLLocation *)location {

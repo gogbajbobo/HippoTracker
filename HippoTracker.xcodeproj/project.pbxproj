@@ -491,6 +491,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HippoTracker/HippoTracker-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "HippoTracker/HippoTracker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -504,6 +505,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HippoTracker/HippoTracker-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "HippoTracker/HippoTracker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

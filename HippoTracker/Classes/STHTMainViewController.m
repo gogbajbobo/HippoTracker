@@ -49,6 +49,16 @@
 }
 
 - (IBAction)startNewLapButtonPressed:(id)sender {
+    STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
+    if (!lapTracker.lapTracking) {
+        self.startTrackerButton.enabled = NO;
+        [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
+        [lapTracker startNewLap];
+    } else {
+        self.startTrackerButton.enabled = YES;
+        [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
+        [lapTracker finishLap];
+    }
     
 }
 
