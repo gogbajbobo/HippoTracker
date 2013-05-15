@@ -40,12 +40,9 @@
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTHippodrome"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"label" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
         NSError *error;
-        NSLog(@"document %@", self.document);
         STHTHippodrome *hippodrome = [[self.document.managedObjectContext executeFetchRequest:request error:&error] lastObject];
-        NSLog(@"hippodrome %@", hippodrome);
         if (!hippodrome) {
             hippodrome = (STHTHippodrome *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTHippodrome" inManagedObjectContext:self.document.managedObjectContext];
-            NSLog(@"managedObjectContext2 %@", self.document.managedObjectContext);
         }
         _hippodrome = hippodrome;
     }
@@ -199,6 +196,10 @@
 - (void)finishLap {
     self.lapTracking = NO;
     self.locationManager.distanceFilter = 0;
+    if (!self.currentLap.startTime) {
+        [self.document.managedObjectContext deleteObject:self.currentLap];
+        self.currentLap = nil;
+    }
     [self.document saveDocument:^(BOOL success) {
         NSLog(@"save lap");
         if (success) {

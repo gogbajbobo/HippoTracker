@@ -65,6 +65,7 @@
 - (void)sessionStatusChanged:(NSNotification *)notification {
     if ([self.session.status isEqualToString:@"running"]) {
         self.startTrackerButton.enabled = YES;
+        self.lapsHistoryButton.enabled = YES;
     }
 }
 
@@ -96,11 +97,7 @@
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.startNewLapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     self.startTrackerButton.enabled = NO;
-    if ([[[(STHTLapTracker *)self.session.locationTracker hippodrome] laps] count] > 0) {
-        self.lapsHistoryButton.enabled = YES;
-    } else {
-        self.lapsHistoryButton.enabled = NO;        
-    }
+    self.lapsHistoryButton.enabled = NO;
     self.startNewLapButton.enabled = NO;
     self.currentAccuracyLabel.text = @"Current accuracy: N/A";
     self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];

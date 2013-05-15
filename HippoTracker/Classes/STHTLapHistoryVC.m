@@ -77,7 +77,11 @@
     STHTLap *lap = (STHTLap *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
     UILabel *startTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
-    startTimeLabel.text = [NSString stringWithFormat:@"%@", lap.startTime];
+    if (lap.startTime) {
+        startTimeLabel.text = [NSString stringWithFormat:@"%@", lap.startTime];
+    } else {
+        startTimeLabel.text = @"N/A";
+    }
 
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, 100, 24)];
     NSTimeInterval time = 0;
@@ -87,7 +91,11 @@
     timeLabel.text = [NSString stringWithFormat:@"%.1f", time];
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
-    speedLabel.text = [NSString stringWithFormat:@"%.1f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
+    if (time != 0) {
+        speedLabel.text = [NSString stringWithFormat:@"%.2f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
+    } else {
+        speedLabel.text = @"N/A";
+    }
     
     [cell.contentView addSubview:startTimeLabel];
     [cell.contentView addSubview:timeLabel];
@@ -165,10 +173,16 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     [self performFetch];
 	// Do any additional setup after loading the view.
 }

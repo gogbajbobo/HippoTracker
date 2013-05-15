@@ -38,7 +38,6 @@
     
     NSDictionary *trackers = [NSDictionary dictionaryWithObjectsAndKeys:
                               [[STHTLapTracker alloc] init], @"locationTracker",
-                              [[STBatteryTracker alloc] init], @"batteryTracker",
                               nil];
     
     [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] trackers:trackers settings:sessionSettings];
