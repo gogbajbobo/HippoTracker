@@ -1,19 +1,17 @@
 //
-//  STLapHistoryVC.m
+//  STHTLapInfoVC.m
 //  HippoTracker
 //
 //  Created by Maxim Grigoriev on 5/15/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STHTLapHistoryVC.h"
+#import "STHTLapInfoVC.h"
 #import <STManagedTracker/STSessionManager.h>
-#import "STHTLap.h"
 #import "STHTLapCheckpoint.h"
 #import "STHTLapTracker.h"
-#import "STHTLapInfoVC.h"
 
-@interface STHTLapHistoryVC () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface STHTLapInfoVC () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
@@ -21,7 +19,7 @@
 
 @end
 
-@implementation STHTLapHistoryVC
+@implementation STHTLapInfoVC
 
 - (STSession *)session {
     if (!_session) {
@@ -32,9 +30,10 @@
 
 - (NSFetchedResultsController *)resultsController {
     if (!_resultsController) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTLap"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTLapCheckpoint"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"cts" ascending:NO selector:@selector(compare:)]];
-        _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.session.document.managedObjectContext sectionNameKeyPath:@"dayAsString" cacheName:nil];
+        request.predicate = [NSPredicate predicateWithFormat:@"SELF.lap == %@", self.lap];
+        _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.session.document.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _resultsController.delegate = self;
     }
     return _resultsController;
@@ -71,41 +70,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"lapCell";
+    static NSString *CellIdentifier = @"lapInfoCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-    STHTLap *lap = (STHTLap *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+    STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
-    UILabel *startTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
-    if (lap.startTime) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-
-        startTimeLabel.text = [dateFormatter stringFromDate:lap.startTime];
-    } else {
-        startTimeLabel.text = @"N/A";
-    }
-
+    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
+    distanceLabel.text = [NSString stringWithFormat:@"%.f", [checkpoint.checkpointNumber intValue] * HTCheckpointInterval];
+    
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, 80, 24)];
-    NSTimeInterval time = 0;
-    for (STHTLapCheckpoint *checkpoint in lap.checkpoints) {
-        time += [checkpoint.time doubleValue];
-    }
-    timeLabel.text = [NSString stringWithFormat:@"%.1f", time];
-
-    UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
-    if (time != 0) {
-        speedLabel.text = [NSString stringWithFormat:@"%.2f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
-    } else {
-        speedLabel.text = @"N/A";
-    }
+    timeLabel.text = [NSString stringWithFormat:@"%.1f", [checkpoint.time doubleValue]];
     
-    [cell.contentView addSubview:startTimeLabel];
+    UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
+    speedLabel.text = [NSString stringWithFormat:@"%.2f", [checkpoint.speed doubleValue]];
+    
+    [cell.contentView addSubview:distanceLabel];
     [cell.contentView addSubview:timeLabel];
     [cell.contentView addSubview:speedLabel];
-
+    
     return cell;
 }
 
@@ -122,9 +105,6 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-    STHTLap *lap = (STHTLap *)[[sectionInfo objects] objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"showLapInfo" sender:lap];
     return indexPath;
     
 }
@@ -135,15 +115,6 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"showLapInfo"]) {
-        if ([segue.destinationViewController isKindOfClass:[STHTLapInfoVC class]] && [sender isKindOfClass:[STHTLap class]]) {
-            [(STHTLapInfoVC *)segue.destinationViewController setLap:(STHTLap *)sender];
-        }
-    }
-    
-}
 
 
 #pragma mark - NSFetchedResultsController delegate
@@ -179,6 +150,7 @@
     
 }
 
+
 #pragma mark - view lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -190,18 +162,12 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self performFetch];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

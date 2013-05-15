@@ -111,6 +111,17 @@
                                 <rect key="frame" x="0.0" y="40" width="320" height="282"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="lapInfoCell" id="qgZ-fj-zGq">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="djK-7o-bnK">
                                 <rect key="frame" x="20" y="330" width="280" height="67"/>
@@ -175,9 +186,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="iF4-G9-ItH" kind="push" id="owA-jH-u0F"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -208,16 +216,17 @@
                     <navigationItem key="navigationItem" title="Laps history" id="4jQ-yR-eK3"/>
                     <connections>
                         <outlet property="tableView" destination="xx7-EJ-dEg" id="fEV-oG-tSq"/>
+                        <segue destination="iF4-G9-ItH" kind="push" identifier="showLapInfo" id="0mm-9X-5GK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJP-Bs-Ccj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="736" y="-473"/>
         </scene>
-        <!--View Controller - Lap info-->
+        <!--Lap InfoVC - Lap info-->
         <scene sceneID="nth-hN-dZG">
             <objects>
-                <viewController id="iF4-G9-ItH" sceneMemberID="viewController">
+                <viewController id="iF4-G9-ItH" customClass="STHTLapInfoVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2fZ-Aa-g0z">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -233,6 +242,17 @@
                                 <rect key="frame" x="0.0" y="69" width="320" height="347"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="lapInfoCell" id="X8V-Xq-dP3">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance, m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BUP-3y-TZA">
                                 <rect key="frame" x="0.0" y="29" width="118" height="32"/>
@@ -259,6 +279,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Lap info" id="45n-Tw-HcX"/>
+                    <connections>
+                        <outlet property="tableView" destination="A8h-hj-N70" id="nhq-aB-l72"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPc-vU-T5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

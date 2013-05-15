@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
-#import "STTracker.h"
+#import <STManagedTracker/STTracker.h>
 #import "STHTHippodrome.h"
 #import "STHTLap.h"
 

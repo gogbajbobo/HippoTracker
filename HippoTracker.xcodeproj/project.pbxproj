@@ -11,6 +11,7 @@
 		2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */; };
 		2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01A1743C14000B7F807 /* STHTLap+dayAsString.m */; };
 		2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01D1743CAA400B7F807 /* STHTLapTracker.m */; };
+		2C4CC0211743D49700B7F807 /* STHTLapInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC0201743D49700B7F807 /* STHTLapInfoVC.m */; };
 		2C73CF78173BF0520070238F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF77173BF0520070238F /* UIKit.framework */; };
 		2C73CF7A173BF0520070238F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF79173BF0520070238F /* Foundation.framework */; };
 		2C73CF7C173BF0520070238F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF7B173BF0520070238F /* CoreGraphics.framework */; };
@@ -54,6 +55,8 @@
 		2C4CC01A1743C14000B7F807 /* STHTLap+dayAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "STHTLap+dayAsString.m"; sourceTree = "<group>"; };
 		2C4CC01C1743CAA400B7F807 /* STHTLapTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapTracker.h; sourceTree = "<group>"; };
 		2C4CC01D1743CAA400B7F807 /* STHTLapTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapTracker.m; sourceTree = "<group>"; };
+		2C4CC01F1743D49700B7F807 /* STHTLapInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapInfoVC.h; sourceTree = "<group>"; };
+		2C4CC0201743D49700B7F807 /* STHTLapInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapInfoVC.m; sourceTree = "<group>"; };
 		2C73CF74173BF0520070238F /* HippoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HippoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73CF77173BF0520070238F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2C73CF79173BF0520070238F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -210,6 +213,8 @@
 				2C749DF417420787005B7844 /* STHTMainViewController.m */,
 				2C4CC0161743BB6800B7F807 /* STHTLapHistoryVC.h */,
 				2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */,
+				2C4CC01F1743D49700B7F807 /* STHTLapInfoVC.h */,
+				2C4CC0201743D49700B7F807 /* STHTLapInfoVC.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */,
 				2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */,
 				2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */,
+				2C4CC0211743D49700B7F807 /* STHTLapInfoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
