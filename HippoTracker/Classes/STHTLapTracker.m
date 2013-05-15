@@ -19,7 +19,8 @@
 @property (nonatomic) CLLocationDistance distanceFilter;
 @property (nonatomic) NSTimeInterval timeFilter;
 @property (nonatomic) CLLocationDistance checkpointDistance;
-@property (nonatomic) NSTimeInterval timeOverlap;
+@property (nonatomic, strong) NSDate *checkpointTime;
+@property (nonatomic) NSTimeInterval overlapTime;
 
 
 @end
@@ -128,7 +129,9 @@
             if (self.lapTracking) {
                 if (self.locationManager.distanceFilter == 0) {
                     self.currentLap.startTime = [NSDate date];
-                    self.timeOverlap = 0;
+                    self.checkpointTime = self.currentLap.startTime;
+                    self.overlapTime = 0;
+                    self.checkpointDistance = 0;
                     self.locationManager.distanceFilter = -1;
                 }
                 [self addLocation:newLocation];
@@ -165,8 +168,9 @@
         self.checkpointDistance -= HTCheckpointInterval;
         NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
         NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
-        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.currentLap.startTime] + self.timeOverlap + t];
-        self.timeOverlap = time - t;
+        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + self.overlapTime + t];
+        self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
+        self.overlapTime = time - t;
     }
 }
 
