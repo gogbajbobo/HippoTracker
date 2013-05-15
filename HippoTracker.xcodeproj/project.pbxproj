@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2421CB8A50B94B9396E97083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E16D92E4A04E48A75B0766 /* libPods.a */; };
+		2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */; };
 		2C73CF78173BF0520070238F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF77173BF0520070238F /* UIKit.framework */; };
 		2C73CF7A173BF0520070238F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF79173BF0520070238F /* Foundation.framework */; };
 		2C73CF7C173BF0520070238F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73CF7B173BF0520070238F /* CoreGraphics.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C4CC0161743BB6800B7F807 /* STHTLapHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapHistoryVC.h; sourceTree = "<group>"; };
+		2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapHistoryVC.m; sourceTree = "<group>"; };
 		2C73CF74173BF0520070238F /* HippoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HippoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73CF77173BF0520070238F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2C73CF79173BF0520070238F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,6 +206,8 @@
 				2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */,
 				2C749DF317420786005B7844 /* STHTMainViewController.h */,
 				2C749DF417420787005B7844 /* STHTMainViewController.m */,
+				2C4CC0161743BB6800B7F807 /* STHTLapHistoryVC.h */,
+				2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */,
 				2C749EA317438415005B7844 /* STHTLapCheckpoint.m in Sources */,
 				2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */,
+				2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
