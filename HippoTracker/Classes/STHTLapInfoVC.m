@@ -14,6 +14,7 @@
 @interface STHTLapInfoVC () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *lapDateLabel;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 @property (nonatomic, strong) STSession *session;
 
@@ -150,6 +151,19 @@
     
 }
 
+- (NSString *)formatedLapDate {
+    
+    NSString *lapDate;
+    if (self.lap.startTime) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        lapDate = [dateFormatter stringFromDate:self.lap.startTime];
+    } else {
+        lapDate = @"N/A";
+    }
+    return lapDate;
+}
 
 #pragma mark - view lifecycle
 
@@ -167,6 +181,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.lapDateLabel.text = [self formatedLapDate];
     [self performFetch];
 }
 

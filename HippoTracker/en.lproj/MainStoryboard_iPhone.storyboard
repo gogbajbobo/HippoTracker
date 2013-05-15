@@ -280,6 +280,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Lap info" id="45n-Tw-HcX"/>
                     <connections>
+                        <outlet property="lapDateLabel" destination="5ri-Ki-b6D" id="oyN-dE-kxU"/>
                         <outlet property="tableView" destination="A8h-hj-N70" id="nhq-aB-l72"/>
                     </connections>
                 </viewController>
