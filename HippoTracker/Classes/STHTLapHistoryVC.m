@@ -78,12 +78,16 @@
     
     UILabel *startTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
     if (lap.startTime) {
-        startTimeLabel.text = [NSString stringWithFormat:@"%@", lap.startTime];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+
+        startTimeLabel.text = [dateFormatter stringFromDate:lap.startTime];
     } else {
         startTimeLabel.text = @"N/A";
     }
 
-    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 10, 100, 24)];
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, 80, 24)];
     NSTimeInterval time = 0;
     for (STHTLapCheckpoint *checkpoint in lap.checkpoints) {
         time += [checkpoint.time doubleValue];
