@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="STBatteryStatus" representedClassName="STBatteryStatus" parentEntity="STDatum" syncable="YES">
+        <attribute name="batteryLevel" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="batteryState" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="STDatum" representedClassName="STDatum" isAbstract="YES" syncable="YES">
         <attribute name="cts" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -17,15 +21,18 @@
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
+        <relationship name="checkpoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLapCheckpoint" inverseName="lap" inverseEntity="STHTLapCheckpoint" syncable="YES"/>
         <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
-        <relationship name="hundreds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLapCheckpoint" inverseName="lap" inverseEntity="STHTLapCheckpoint" syncable="YES"/>
-        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STLocation" inverseName="lap" inverseEntity="STLocation" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
     </entity>
     <entity name="STHTLapCheckpoint" representedClassName="STHTLapCheckpoint" parentEntity="STDatum" syncable="YES">
-        <attribute name="pointNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="checkpointNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hundreds" inverseEntity="STHTLap" syncable="YES"/>
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="checkpoints" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STLocation" syncable="YES">
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="locations" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STLocation" representedClassName="STLocation" parentEntity="STDatum" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -36,7 +43,6 @@
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="locations" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STLogMessage" representedClassName="STLogMessage" parentEntity="STDatum" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,12 +54,14 @@
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="STBatteryStatus" positionX="-290" positionY="35" width="128" height="73"/>
         <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="STHTHippodrome" positionX="205" positionY="-99" width="128" height="120"/>
-        <element name="STHTLapCheckpoint" positionX="171" positionY="297" width="128" height="103"/>
-        <element name="STHTLap" positionX="207" positionY="135" width="128" height="90"/>
-        <element name="STLocation" positionX="-83" positionY="225" width="128" height="180"/>
+        <element name="STLocation" positionX="-153" positionY="243" width="128" height="163"/>
         <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>
-        <element name="STSettings" positionX="-225" positionY="-72" width="128" height="90"/>
+        <element name="STSettings" positionX="-191" positionY="-99" width="128" height="90"/>
+        <element name="STHTHippodrome" positionX="162" positionY="-184" width="128" height="118"/>
+        <element name="STHTLap" positionX="187" positionY="90" width="128" height="88"/>
+        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="103"/>
+        <element name="STHTLocation" positionX="27" positionY="261" width="128" height="58"/>
     </elements>
 </model>

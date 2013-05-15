@@ -1,5 +1,5 @@
 //
-//  STHTLapCheckpoint.h
+//  STHTLocation.h
 //  HippoTracker
 //
 //  Created by Maxim Grigoriev on 5/15/13.
@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "STDatum.h"
+#import "STLocation.h"
 
 @class STHTLap;
 
-@interface STHTLapCheckpoint : STDatum
+@interface STHTLocation : STLocation
 
-@property (nonatomic, retain) NSNumber * speed;
-@property (nonatomic, retain) NSNumber * time;
-@property (nonatomic, retain) NSNumber * checkpointNumber;
 @property (nonatomic, retain) STHTLap *lap;
 
 @end

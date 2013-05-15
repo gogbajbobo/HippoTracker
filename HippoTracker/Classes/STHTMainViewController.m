@@ -8,6 +8,7 @@
 
 #import "STHTMainViewController.h"
 #import "STSessionManager.h"
+#import "STHTLapTracker.h"
 
 @interface STHTMainViewController ()
 
@@ -29,7 +30,7 @@
 }
 
 - (IBAction)startTrackerButtonPressed:(id)sender {
-    STHTLapTracker *lapTracker = self.session.lapTracker;
+    STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
     if (!lapTracker.tracking) {
         [lapTracker startTracking];
         [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
@@ -59,8 +60,8 @@
 
 - (void)currentAccuracyChanged:(NSNotification *)notification {
 
-    CLLocationAccuracy currentAccuracy = self.session.lapTracker.currentAccuracy;
-    CLLocationAccuracy requiredAccuracy = [[self.session.lapTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
+    CLLocationAccuracy currentAccuracy = [(STHTLapTracker *)self.session.locationTracker currentAccuracy];
+    CLLocationAccuracy requiredAccuracy = [[self.session.locationTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
     
     if (currentAccuracy == 0.0) {
         self.currentAccuracyLabel.text = @"Current accuracy: N/A";
@@ -93,12 +94,12 @@
 
 - (void)addNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.lapTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
 }
 
 - (void)removeNotificationsObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.lapTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
 }
 
 #pragma mark - view lifecycle

@@ -10,6 +10,8 @@
 #import "STSessionManager.h"
 #import "STAuthBasic.h"
 #import <UDPushAuth/UDAuthTokenRetriever.h>
+#import "STHTLapTracker.h"
+#import <STManagedTracker/STBatteryTracker.h>
 
 @implementation STAppDelegate
 
@@ -34,9 +36,13 @@
                                      @"0.0", @"timeFilter",
                                      nil];
     
-    [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] settings:sessionSettings];
+    NSDictionary *trackers = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [[STHTLapTracker alloc] init], @"locationTracker",
+                              [[STBatteryTracker alloc] init], @"batteryTracker",
+                              nil];
+    
+    [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] trackers:trackers settings:sessionSettings];
 
-    // Override point for customization after application launch.
     return YES;
 }
 
