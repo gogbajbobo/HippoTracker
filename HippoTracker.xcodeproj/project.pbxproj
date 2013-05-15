@@ -26,7 +26,6 @@
 		2C73CFD2173BF1ED0070238F /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */; };
 		2C73D014173BF78F0070238F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D013173BF78E0070238F /* CoreData.framework */; };
 		2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D015173BF7940070238F /* CoreLocation.framework */; };
-		2C73D018173BF79A0070238F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D017173BF79A0070238F /* MapKit.framework */; };
 		2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D019173BF84F0070238F /* QuartzCore.framework */; };
 		2C73D01E173BF8D20070238F /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */; };
 		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
@@ -34,7 +33,7 @@
 		2C749E9A17438412005B7844 /* STHTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9917438412005B7844 /* STHTLocation.m */; };
 		2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9F17438414005B7844 /* STHTHippodrome.m */; };
 		2C749EA317438415005B7844 /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749EA217438415005B7844 /* STHTLapCheckpoint.m */; };
-		2C749EA617438462005B7844 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749EA517438462005B7844 /* STHTLap.m */; };
+		2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC930F41743B1FC00FC9830 /* STHTLap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +71,6 @@
 		2C73CFCE173BF1EC0070238F /* STHTLapTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapTracker.m; sourceTree = "<group>"; };
 		2C73D013173BF78E0070238F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2C73D015173BF7940070238F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		2C73D017173BF79A0070238F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2C73D019173BF84F0070238F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C749DF317420786005B7844 /* STHTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTMainViewController.h; sourceTree = "<group>"; };
 		2C749DF417420787005B7844 /* STHTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTMainViewController.m; sourceTree = "<group>"; };
@@ -83,8 +81,8 @@
 		2C749E9F17438414005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
 		2C749EA117438414005B7844 /* STHTLapCheckpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapCheckpoint.h; sourceTree = "<group>"; };
 		2C749EA217438415005B7844 /* STHTLapCheckpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapCheckpoint.m; sourceTree = "<group>"; };
-		2C749EA417438462005B7844 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
-		2C749EA517438462005B7844 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
+		2CC930F31743B1FC00FC9830 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
+		2CC930F41743B1FC00FC9830 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -95,7 +93,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */,
-				2C73D018173BF79A0070238F /* MapKit.framework in Frameworks */,
 				2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */,
 				2C73D014173BF78F0070238F /* CoreData.framework in Frameworks */,
 				2C73CF78173BF0520070238F /* UIKit.framework in Frameworks */,
@@ -142,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				2C73D019173BF84F0070238F /* QuartzCore.framework */,
-				2C73D017173BF79A0070238F /* MapKit.framework */,
 				2C73D015173BF7940070238F /* CoreLocation.framework */,
 				2C73D013173BF78E0070238F /* CoreData.framework */,
 				2C73CF77173BF0520070238F /* UIKit.framework */,
@@ -215,8 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				2C749E8A174382C3005B7844 /* STDataModel.xcdatamodel */,
-				2C749EA417438462005B7844 /* STHTLap.h */,
-				2C749EA517438462005B7844 /* STHTLap.m */,
+				2CC930F31743B1FC00FC9830 /* STHTLap.h */,
+				2CC930F41743B1FC00FC9830 /* STHTLap.m */,
 				2C749EA117438414005B7844 /* STHTLapCheckpoint.h */,
 				2C749EA217438415005B7844 /* STHTLapCheckpoint.m */,
 				2C749E9E17438413005B7844 /* STHTHippodrome.h */,
@@ -376,7 +372,7 @@
 				2C749E9A17438412005B7844 /* STHTLocation.m in Sources */,
 				2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */,
 				2C749EA317438415005B7844 /* STHTLapCheckpoint.m in Sources */,
-				2C749EA617438462005B7844 /* STHTLap.m in Sources */,
+				2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

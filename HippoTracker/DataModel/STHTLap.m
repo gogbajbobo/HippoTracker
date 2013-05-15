@@ -14,8 +14,9 @@
 
 @implementation STHTLap
 
-@dynamic hippodrome;
+@dynamic startTime;
 @dynamic checkpoints;
+@dynamic hippodrome;
 @dynamic locations;
 
 @end

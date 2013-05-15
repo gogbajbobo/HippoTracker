@@ -8,19 +8,20 @@
 
 #import "STHTLapTracker.h"
 #import "STHTLocation.h"
+#import "STHTLapCheckpoint.h"
+
+#define HTCheckpointInterval 100.0
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *lastLocation;
-//@property (nonatomic, strong) STHTTrack *currentTrack;
-
 @property (nonatomic) CLLocationAccuracy desiredAccuracy;
 @property (nonatomic) double requiredAccuracy;
 @property (nonatomic) CLLocationDistance distanceFilter;
 @property (nonatomic) NSTimeInterval timeFilter;
-//@property (nonatomic) NSTimeInterval trackDetectionTime;
-//@property (nonatomic) CLLocationDistance trackSeparationDistance;
+@property (nonatomic) CLLocationDistance checkpointDistance;
+@property (nonatomic) NSTimeInterval timeOverlap;
 
 
 @end
@@ -127,6 +128,11 @@
         self.currentAccuracy = newLocation.horizontalAccuracy;
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
+                if (self.locationManager.distanceFilter == 0) {
+                    self.currentLap.startTime = [NSDate date];
+                    self.timeOverlap = 0;
+                    self.locationManager.distanceFilter = -1;
+                }
                 [self addLocation:newLocation];
             }
         }
@@ -134,11 +140,15 @@
     
 }
 
-#pragma mark - track management
+#pragma mark - lap management
 
 - (void)addLocation:(CLLocation *)currentLocation {
 
     [self.currentLap addLocationsObject:[self locationObjectFromCLLocation:currentLocation]];
+    
+    if (self.lastLocation) {
+        [self calculateDistance:currentLocation];
+    }
     self.lastLocation = currentLocation;
     
     [self.document saveDocument:^(BOOL success) {
@@ -148,6 +158,26 @@
         }
     }];
   
+}
+
+- (void)calculateDistance:(CLLocation *)location {
+    CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
+    self.checkpointDistance += distance;
+    if (self.checkpointDistance >= HTCheckpointInterval) {
+        self.checkpointDistance -= HTCheckpointInterval;
+        NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
+        NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
+        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.currentLap.startTime] + self.timeOverlap + t];
+        self.timeOverlap = time - t;
+    }
+}
+
+- (void)addCheckpointWithTime:(NSTimeInterval)time {
+    STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
+    checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
+    checkpoint.time = [NSNumber numberWithDouble:time];
+    checkpoint.speed = [NSNumber numberWithDouble:3.6 * HTCheckpointInterval / time];
+    [self.currentLap addCheckpointsObject:checkpoint];
 }
 
 - (void)startNewLap {
@@ -167,6 +197,7 @@
 
 - (void)finishLap {
     self.lapTracking = NO;
+    self.locationManager.distanceFilter = 0;
     [self.document saveDocument:^(BOOL success) {
         NSLog(@"save lap");
         if (success) {

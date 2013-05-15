@@ -21,6 +21,7 @@
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
     <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="checkpoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLapCheckpoint" inverseName="lap" inverseEntity="STHTLapCheckpoint" syncable="YES"/>
         <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
@@ -56,12 +57,12 @@
     <elements>
         <element name="STBatteryStatus" positionX="-290" positionY="35" width="128" height="73"/>
         <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="STHTHippodrome" positionX="162" positionY="-184" width="128" height="118"/>
+        <element name="STHTLap" positionX="187" positionY="90" width="128" height="103"/>
+        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="103"/>
+        <element name="STHTLocation" positionX="27" positionY="261" width="128" height="58"/>
         <element name="STLocation" positionX="-153" positionY="243" width="128" height="163"/>
         <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>
         <element name="STSettings" positionX="-191" positionY="-99" width="128" height="90"/>
-        <element name="STHTHippodrome" positionX="162" positionY="-184" width="128" height="118"/>
-        <element name="STHTLap" positionX="187" positionY="90" width="128" height="88"/>
-        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="103"/>
-        <element name="STHTLocation" positionX="27" positionY="261" width="128" height="58"/>
     </elements>
 </model>

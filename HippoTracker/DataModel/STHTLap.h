@@ -14,8 +14,9 @@
 
 @interface STHTLap : STDatum
 
-@property (nonatomic, retain) STHTHippodrome *hippodrome;
+@property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSSet *checkpoints;
+@property (nonatomic, retain) STHTHippodrome *hippodrome;
 @property (nonatomic, retain) NSSet *locations;
 @end
 
