@@ -1,5 +1,5 @@
 //
-//  STHTHundred.h
+//  STHTLapCheckpoint.h
 //  HippoTracker
 //
 //  Created by Maxim Grigoriev on 5/14/13.
@@ -12,10 +12,11 @@
 
 @class STHTLap;
 
-@interface STHTHundred : STDatum
+@interface STHTLapCheckpoint : STDatum
 
-@property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) NSNumber * speed;
+@property (nonatomic, retain) NSNumber * time;
+@property (nonatomic, retain) NSNumber * pointNumber;
 @property (nonatomic, retain) STHTLap *lap;
 
 @end

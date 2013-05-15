@@ -53,8 +53,8 @@
 		2C749DEF174110F8005B7844 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DEE174110F8005B7844 /* STHTLap.m */; };
 		2C749DF2174110F9005B7844 /* STSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF1174110F9005B7844 /* STSettings.m */; };
 		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
-		2C749DF817426881005B7844 /* STHTHundred.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF717426881005B7844 /* STHTHundred.m */; };
 		2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DFA17426D59005B7844 /* STHTHippodrome.m */; };
+		2C749E801742BACD005B7844 /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E7F1742BACC005B7844 /* STHTLapCheckpoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,10 +129,10 @@
 		2C749DF1174110F9005B7844 /* STSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSettings.m; sourceTree = "<group>"; };
 		2C749DF317420786005B7844 /* STHTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTMainViewController.h; sourceTree = "<group>"; };
 		2C749DF417420787005B7844 /* STHTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTMainViewController.m; sourceTree = "<group>"; };
-		2C749DF617426881005B7844 /* STHTHundred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHundred.h; sourceTree = "<group>"; };
-		2C749DF717426881005B7844 /* STHTHundred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHundred.m; sourceTree = "<group>"; };
 		2C749DF917426D59005B7844 /* STHTHippodrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodrome.h; sourceTree = "<group>"; };
 		2C749DFA17426D59005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
+		2C749E7E1742BACC005B7844 /* STHTLapCheckpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapCheckpoint.h; sourceTree = "<group>"; };
+		2C749E7F1742BACC005B7844 /* STHTLapCheckpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapCheckpoint.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -305,8 +305,8 @@
 				2C749DFA17426D59005B7844 /* STHTHippodrome.m */,
 				2C749DED174110F8005B7844 /* STHTLap.h */,
 				2C749DEE174110F8005B7844 /* STHTLap.m */,
-				2C749DF617426881005B7844 /* STHTHundred.h */,
-				2C749DF717426881005B7844 /* STHTHundred.m */,
+				2C749E7E1742BACC005B7844 /* STHTLapCheckpoint.h */,
+				2C749E7F1742BACC005B7844 /* STHTLapCheckpoint.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -472,8 +472,8 @@
 				2C749DEF174110F8005B7844 /* STHTLap.m in Sources */,
 				2C749DF2174110F9005B7844 /* STSettings.m in Sources */,
 				2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */,
-				2C749DF817426881005B7844 /* STHTHundred.m in Sources */,
 				2C749DFB17426D59005B7844 /* STHTHippodrome.m in Sources */,
+				2C749E801742BACD005B7844 /* STHTLapCheckpoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

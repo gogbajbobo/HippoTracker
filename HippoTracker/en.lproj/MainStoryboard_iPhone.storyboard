@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWx-yU-kbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-69" y="109"/>
+            <point key="canvasLocation" x="-118" y="109"/>
         </scene>
         <!--Main View Controller - HippoTracker-->
         <scene sceneID="6iw-XL-WYL">

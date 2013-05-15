@@ -16,15 +16,16 @@
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
     </entity>
-    <entity name="STHTHundred" representedClassName="STHTHundred" parentEntity="STDatum" syncable="YES">
+    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
+        <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
+        <relationship name="hundreds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLapCheckpoint" inverseName="lap" inverseEntity="STHTLapCheckpoint" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STLocation" inverseName="lap" inverseEntity="STLocation" syncable="YES"/>
+    </entity>
+    <entity name="STHTLapCheckpoint" representedClassName="STHTLapCheckpoint" parentEntity="STDatum" syncable="YES">
+        <attribute name="pointNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hundreds" inverseEntity="STHTLap" syncable="YES"/>
-    </entity>
-    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
-        <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
-        <relationship name="hundreds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTHundred" inverseName="lap" inverseEntity="STHTHundred" syncable="YES"/>
-        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STLocation" inverseName="lap" inverseEntity="STLocation" syncable="YES"/>
     </entity>
     <entity name="STLocation" representedClassName="STLocation" parentEntity="STDatum" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -49,7 +50,7 @@
     <elements>
         <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
         <element name="STHTHippodrome" positionX="205" positionY="-99" width="128" height="120"/>
-        <element name="STHTHundred" positionX="171" positionY="297" width="128" height="90"/>
+        <element name="STHTLapCheckpoint" positionX="171" positionY="297" width="128" height="103"/>
         <element name="STHTLap" positionX="207" positionY="135" width="128" height="90"/>
         <element name="STLocation" positionX="-83" positionY="225" width="128" height="180"/>
         <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>

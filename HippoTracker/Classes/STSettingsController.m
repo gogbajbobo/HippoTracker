@@ -253,20 +253,24 @@
     [self.session settingsLoadComplete];
 }
 
-- (NSString *)applyNewSettings:(NSDictionary *)newSettings {
+- (void)addNewSettings:(NSDictionary *)newSettings forGroup:(NSString *)group {
 
     NSString *value;
     for (NSString *settingName in [newSettings allKeys]) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name == %@", settingName];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.group == %@ && SELF.name == %@", group, settingName];
         STSettings *setting = [[[self currentSettings] filteredArrayUsingPredicate:predicate] lastObject];
         value = [STSettingsController normalizeValue:[newSettings valueForKey:settingName] forKey:settingName];
         if (value) {
+            if (!setting) {
+                setting = (STSettings *)[NSEntityDescription insertNewObjectForEntityForName:@"STSettings" inManagedObjectContext:self.session.document.managedObjectContext];
+                setting.group = group;
+                setting.name = settingName;
+            }
             setting.value = value;
         } else {
-            value = setting.value;
+            NSLog(@"wrong value %@ for setting %@", [newSettings valueForKey:settingName], settingName);
         }
     }
-    return value;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
