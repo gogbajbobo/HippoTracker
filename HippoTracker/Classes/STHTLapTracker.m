@@ -1,16 +1,14 @@
 //
-//  STGTLocationTracker.m
-//  geotracker
+//  STLapTracker.m
+//  HippoTracker
 //
-//  Created by Maxim Grigoriev on 4/3/13.
+//  Created by Maxim Grigoriev on 5/15/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
 #import "STHTLapTracker.h"
 #import "STHTLocation.h"
 #import "STHTLapCheckpoint.h"
-
-#define HTCheckpointInterval 100.0
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
@@ -38,13 +36,16 @@
 }
 
 - (STHTHippodrome *)hippodrome {
-    if (!_hippodrome) {        
+    if (!_hippodrome) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTHippodrome"];
         request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"label" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
         NSError *error;
+        NSLog(@"document %@", self.document);
         STHTHippodrome *hippodrome = [[self.document.managedObjectContext executeFetchRequest:request error:&error] lastObject];
+        NSLog(@"hippodrome %@", hippodrome);
         if (!hippodrome) {
             hippodrome = (STHTHippodrome *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTHippodrome" inManagedObjectContext:self.document.managedObjectContext];
+            NSLog(@"managedObjectContext2 %@", self.document.managedObjectContext);
         }
         _hippodrome = hippodrome;
     }
@@ -143,7 +144,7 @@
 #pragma mark - lap management
 
 - (void)addLocation:(CLLocation *)currentLocation {
-
+    
     [self.currentLap addLocationsObject:[self locationObjectFromCLLocation:currentLocation]];
     
     if (self.lastLocation) {
@@ -157,7 +158,7 @@
             NSLog(@"save newLocation success");
         }
     }];
-  
+    
 }
 
 - (void)calculateDistance:(CLLocation *)location {
@@ -192,7 +193,7 @@
             NSLog(@"save newLap success");
         }
     }];
-
+    
 }
 
 - (void)finishLap {
@@ -222,13 +223,14 @@
 - (CLLocation *)locationFromLocationObject:(STLocation *)locationObject {
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([locationObject.latitude doubleValue], [locationObject.longitude doubleValue]);
     CLLocation *location = [[CLLocation alloc] initWithCoordinate:coordinate
-                                                  altitude:[locationObject.altitude doubleValue]
-                                        horizontalAccuracy:[locationObject.horizontalAccuracy doubleValue]
-                                          verticalAccuracy:[locationObject.verticalAccuracy doubleValue]
-                                                    course:[locationObject.course doubleValue]
-                                                     speed:[locationObject.speed doubleValue]
-                                                 timestamp:locationObject.timestamp];
+                                                         altitude:[locationObject.altitude doubleValue]
+                                               horizontalAccuracy:[locationObject.horizontalAccuracy doubleValue]
+                                                 verticalAccuracy:[locationObject.verticalAccuracy doubleValue]
+                                                           course:[locationObject.course doubleValue]
+                                                            speed:[locationObject.speed doubleValue]
+                                                        timestamp:locationObject.timestamp];
     return location;
 }
+
 
 @end

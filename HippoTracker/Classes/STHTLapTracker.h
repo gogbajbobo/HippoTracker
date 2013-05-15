@@ -1,14 +1,16 @@
 //
-//  STGTLocationTracker.h
-//  geotracker
+//  STLapTracker.h
+//  HippoTracker
 //
-//  Created by Maxim Grigoriev on 4/3/13.
+//  Created by Maxim Grigoriev on 5/15/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
+#import "STTracker.h"
 #import "STHTHippodrome.h"
 #import "STHTLap.h"
-#import <STManagedTracker/STTracker.h>
+
+#define HTCheckpointInterval 100.0
 
 @interface STHTLapTracker : STTracker
 
