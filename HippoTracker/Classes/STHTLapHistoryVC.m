@@ -97,7 +97,7 @@
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
     if (time != 0) {
-        speedLabel.text = [NSString stringWithFormat:@"%.2f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
+        speedLabel.text = [NSString stringWithFormat:@"%.f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
     } else {
         speedLabel.text = @"N/A";
     }

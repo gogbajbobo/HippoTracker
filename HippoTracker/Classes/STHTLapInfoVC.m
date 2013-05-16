@@ -101,7 +101,7 @@
     timeLabel.text = [NSString stringWithFormat:@"%.1f", [checkpoint.time doubleValue]];
     
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
-    speedLabel.text = [NSString stringWithFormat:@"%.2f", [checkpoint.speed doubleValue]];
+    speedLabel.text = [NSString stringWithFormat:@"%.f", [checkpoint.speed doubleValue]];
     
     [cell.contentView addSubview:distanceLabel];
     [cell.contentView addSubview:timeLabel];
