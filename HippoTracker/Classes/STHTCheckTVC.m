@@ -157,37 +157,46 @@
 }
 
 - (NSTimeInterval)overallTimeFor:(NSIndexPath *)indexPath {
-    NSNumber *result = [self.overallTimes valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
-    if (!result) {
-        NSTimeInterval overallTime = 0;
-        for (int i = 1; i <= indexPath.row; i++) {
+    NSTimeInterval overallTime = 0;
+    if (indexPath.row != 0) {
+        NSNumber *result = [self.overallTimes valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+        if (!result) {
             id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
-            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
-            NSTimeInterval timeInterval = -[previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
-            overallTime += timeInterval;
+            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row-1];
+            NSTimeInterval timeInterval = [location.timestamp timeIntervalSinceDate:previousLocation.timestamp];
+            NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+            NSTimeInterval previousTime = [self overallTimeFor:previousIndexPath];
+            overallTime = previousTime + timeInterval;
+            [self.overallTimes setValue:[NSNumber numberWithDouble:overallTime] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+        } else {
+            overallTime = [result doubleValue];
         }
-        [self.overallTimes setValue:[NSNumber numberWithDouble:overallTime] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
     }
-    return [[self.overallTimes valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]] doubleValue];
+    return overallTime;
 }
 
+
 - (CLLocationDistance)overallDistanceFor:(NSIndexPath *)indexPath {
-    NSNumber *result = [self.overallDistances valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
-    if (!result) {
-        CLLocationDistance overallDistance = 0;
-        for (int i = 1; i <= indexPath.row; i++) {
+    CLLocationDistance overallDistance = 0;
+    if (indexPath.row != 0) {
+        NSNumber *result = [self.overallDistances valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+        if (!result) {
             id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
-            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
+            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row-1];
             CLLocation *loc = [self locationFromLocationObject:location];
             CLLocation *prevLoc = [self locationFromLocationObject:previousLocation];
             CLLocationDistance distance = [loc distanceFromLocation:prevLoc];
-            overallDistance += distance;
+            NSIndexPath *previousIndexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+            CLLocationDistance previousDistance = [self overallDistanceFor:previousIndexPath];
+            overallDistance = previousDistance + distance;
             [self.overallDistances setValue:[NSNumber numberWithDouble:overallDistance] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+        } else {
+            overallDistance = [result doubleValue];
         }
     }
-    return [[self.overallDistances valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]] doubleValue];
+    return overallDistance;
 }
 
 - (CLLocation *)locationFromLocationObject:(STLocation *)locationObject {
