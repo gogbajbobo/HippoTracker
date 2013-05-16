@@ -93,9 +93,12 @@
 }
 
 - (void)lapTracking:(NSNotification *)notification {
-    
     self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"distanceFilter"]];
-    
+}
+
+- (void)stopDetected:(NSNotification *)notification {
+    self.startTrackerButton.enabled = YES;
+    [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
 }
 
 #pragma mark - view init
@@ -115,6 +118,8 @@
 - (void)addNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"lapTracking" object:self.session.locationTracker];
 }
@@ -122,6 +127,7 @@
 - (void)removeNotificationsObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapTracking" object:self.session.locationTracker];
 }

@@ -164,13 +164,17 @@
 
 - (void)calculateDistance:(CLLocation *)location {
     CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
-    self.checkpointDistance += distance;
-    if (self.checkpointDistance >= HTCheckpointInterval) {
-        self.checkpointDistance -= HTCheckpointInterval;
-        NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
-        NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
-        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
-        self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
+    if (distance == 0) {
+        [self stopDetected];
+    } else {
+        self.checkpointDistance += distance;
+        if (self.checkpointDistance >= HTCheckpointInterval) {
+            self.checkpointDistance -= HTCheckpointInterval;
+            NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
+            NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
+            [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
+            self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
+        }
     }
 }
 
@@ -211,6 +215,11 @@
             NSLog(@"save lap success");
         }
     }];
+}
+
+- (void)stopDetected {
+    [self finishLap];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"stopDetected" object:self userInfo:nil];
 }
 
 - (STHTLocation *)locationObjectFromCLLocation:(CLLocation *)location {
