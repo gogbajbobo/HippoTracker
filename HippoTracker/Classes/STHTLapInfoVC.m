@@ -174,7 +174,7 @@
     if (self.lap.startTime) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
         lapDate = [dateFormatter stringFromDate:self.lap.startTime];
     } else {
         lapDate = @"N/A";

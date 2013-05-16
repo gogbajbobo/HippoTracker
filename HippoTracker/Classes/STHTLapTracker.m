@@ -20,7 +20,6 @@
 @property (nonatomic) NSTimeInterval timeFilter;
 @property (nonatomic) CLLocationDistance checkpointDistance;
 @property (nonatomic, strong) NSDate *checkpointTime;
-@property (nonatomic) NSTimeInterval overlapTime;
 
 
 @end
@@ -124,15 +123,15 @@
     
     CLLocation *newLocation = [locations lastObject];
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
-    if (locationAge < 5.0 && newLocation.horizontalAccuracy > 0) {
+    if (locationAge < 2.0 && newLocation.horizontalAccuracy > 0) {
         self.currentAccuracy = newLocation.horizontalAccuracy;
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
                 if (self.locationManager.distanceFilter == 0) {
-                    self.currentLap.startTime = [NSDate date];
+                    self.currentLap.startTime = newLocation.timestamp;
                     self.checkpointTime = self.currentLap.startTime;
-                    self.overlapTime = 0;
                     self.checkpointDistance = 0;
+                    self.lastLocation = nil;
                     self.locationManager.distanceFilter = -1;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
                 }
@@ -170,9 +169,8 @@
         self.checkpointDistance -= HTCheckpointInterval;
         NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
         NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
-        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + self.overlapTime + t];
+        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
         self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
-        self.overlapTime = time - t;
     }
 }
 

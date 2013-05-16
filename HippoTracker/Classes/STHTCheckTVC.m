@@ -24,7 +24,7 @@
 - (NSFetchedResultsController *)resultsController {
     if (!_resultsController) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"STHTLocation"];
-        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"cts" ascending:NO selector:@selector(compare:)]];
+        request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES selector:@selector(compare:)]];
         request.predicate = [NSPredicate predicateWithFormat:@"SELF.lap == %@", self.lap];
         _resultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.session.document.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _resultsController.delegate = self;
@@ -90,17 +90,19 @@
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
     STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
-    UILabel *firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
+    UIFont *font = [UIFont systemFontOfSize:14];
+    
+    UILabel *firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 24)];
     
     if (indexPath.row == 0) {
         firstLabel.text = @"t";
     } else {
         STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row-1];
-        NSTimeInterval timeInterval = [previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
+        NSTimeInterval timeInterval = -[previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
         firstLabel.text = [NSString stringWithFormat:@"%.2f", timeInterval];
     }
     
-    UILabel *secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 80, 24)];
+    UILabel *secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 80, 24)];
     if (indexPath.row == 0) {
         secondLabel.text = @"ot";
     } else {
@@ -108,7 +110,7 @@
         secondLabel.text = [NSString stringWithFormat:@"%.2f", [self overallTimeFor:indexPath]];
     }
 
-    UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 80, 24)];
+    UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 10, 80, 24)];
     if (indexPath.row == 0) {
         thirdLabel.text = @"d";
     } else {
@@ -119,17 +121,37 @@
         thirdLabel.text = [NSString stringWithFormat:@"%.2f", distance];
     }
 
-    UILabel *fourthLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
+    UILabel *fourthLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 24)];
     if (indexPath.row == 0) {
         fourthLabel.text = @"od";
     } else {
         fourthLabel.text = [NSString stringWithFormat:@"%.2f", [self overallDistanceFor:indexPath]];
     }
     
+    UILabel *timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 80, 24)];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    timestampLabel.text = [dateFormatter stringFromDate:location.timestamp];
+    
+    UILabel *accuracyLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 10, 50, 24)];
+    accuracyLabel.text = [NSString stringWithFormat:@"%@", location.horizontalAccuracy];
+    
+    firstLabel.font = font;
+    secondLabel.font = font;
+    thirdLabel.font = font;
+    fourthLabel.font = font;
+    timestampLabel.font = font;
+    accuracyLabel.font = font;
+    
     [cell.contentView addSubview:firstLabel];
     [cell.contentView addSubview:secondLabel];
     [cell.contentView addSubview:thirdLabel];
-        [cell.contentView addSubview:fourthLabel];
+    [cell.contentView addSubview:fourthLabel];
+    [cell.contentView addSubview:timestampLabel];
+    [cell.contentView addSubview:accuracyLabel];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
@@ -142,7 +164,7 @@
             id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
             STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
             STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
-            NSTimeInterval timeInterval = [previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
+            NSTimeInterval timeInterval = -[previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
             overallTime += timeInterval;
         }
         [self.overallTimes setValue:[NSNumber numberWithDouble:overallTime] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
@@ -225,15 +247,14 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
+//    STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+//    NSString *message = [NSString stringWithFormat:@"timestamp %@ \r\n accuracy %@ \r\n", location.timestamp, location.horizontalAccuracy];
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location info" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//    [alert show];
+//}
 
 @end
