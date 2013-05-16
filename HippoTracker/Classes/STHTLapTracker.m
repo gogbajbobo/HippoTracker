@@ -20,6 +20,7 @@
 @property (nonatomic) NSTimeInterval timeFilter;
 @property (nonatomic) CLLocationDistance checkpointDistance;
 @property (nonatomic, strong) NSDate *checkpointTime;
+@property (nonatomic, strong) STHTLapCheckpoint *lastCheckpoint;
 
 
 @end
@@ -132,6 +133,7 @@
                     self.checkpointTime = self.currentLap.startTime;
                     self.checkpointDistance = 0;
                     self.lastLocation = nil;
+                    self.lastCheckpoint = nil;
                     self.locationManager.distanceFilter = -1;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
                 }
@@ -179,11 +181,16 @@
 }
 
 - (void)addCheckpointWithTime:(NSTimeInterval)time {
-    STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
-    checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
-    checkpoint.time = [NSNumber numberWithDouble:time];
-    checkpoint.speed = [NSNumber numberWithDouble:3.6 * HTCheckpointInterval / time];
-    [self.currentLap addCheckpointsObject:checkpoint];
+    if ([self.lastCheckpoint.time doubleValue] * HTSlowdownValue > time) {
+        [self stopDetected];
+    } else {
+        STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
+        checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
+        checkpoint.time = [NSNumber numberWithDouble:time];
+        checkpoint.speed = [NSNumber numberWithDouble:3.6 * HTCheckpointInterval / time];
+        [self.currentLap addCheckpointsObject:checkpoint];
+        self.lastCheckpoint = checkpoint;
+    }
 }
 
 - (void)startNewLap {
