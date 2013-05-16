@@ -82,12 +82,20 @@
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3VM-ES-E5S">
+                                <rect key="frame" x="131" y="272" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="HippoTracker" id="OwZ-LQ-dH6"/>
                     <connections>
                         <outlet property="currentAccuracyLabel" destination="0ZE-Le-Jch" id="C52-ko-fxP"/>
+                        <outlet property="distanceFilterValueLabel" destination="3VM-ES-E5S" id="IdI-cv-zCF"/>
                         <outlet property="lapsHistoryButton" destination="IRD-fF-UJU" id="ZTj-ep-deh"/>
                         <outlet property="startNewLapButton" destination="hbs-2u-Gce" id="qtr-9g-BMX"/>
                         <outlet property="startTrackerButton" destination="bV9-kI-rh7" id="n96-pc-MDk"/>
@@ -278,15 +286,53 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Lap info" id="45n-Tw-HcX"/>
+                    <navigationItem key="navigationItem" title="Lap info" id="45n-Tw-HcX">
+                        <barButtonItem key="rightBarButtonItem" title="Check" id="0pt-RY-oR1">
+                            <connections>
+                                <action selector="checkButtonPressed:" destination="iF4-G9-ItH" id="hey-Cv-QX0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="checkButton" destination="0pt-RY-oR1" id="tZb-DR-VYg"/>
                         <outlet property="lapDateLabel" destination="5ri-Ki-b6D" id="oyN-dE-kxU"/>
                         <outlet property="tableView" destination="A8h-hj-N70" id="nhq-aB-l72"/>
+                        <segue destination="5hc-hW-xd5" kind="push" identifier="showCheckTVC" id="9CU-CI-ZOJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPc-vU-T5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1154" y="-473"/>
+        </scene>
+        <!--CheckTVC-->
+        <scene sceneID="zmG-Fo-q5I">
+            <objects>
+                <tableViewController id="5hc-hW-xd5" customClass="STHTCheckTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IGe-Ig-oDp">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="checkCell" id="8cC-t7-Kxd">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5hc-hW-xd5" id="nSB-1g-P7d"/>
+                            <outlet property="delegate" destination="5hc-hW-xd5" id="EFA-Cj-rDL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="xDR-GB-uSz"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uGd-n8-L64" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1571" y="-473"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

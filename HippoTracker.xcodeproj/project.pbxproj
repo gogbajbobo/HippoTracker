@@ -35,6 +35,7 @@
 		2C749E9A17438412005B7844 /* STHTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9917438412005B7844 /* STHTLocation.m */; };
 		2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9F17438414005B7844 /* STHTHippodrome.m */; };
 		2C749EA317438415005B7844 /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749EA217438415005B7844 /* STHTLapCheckpoint.m */; };
+		2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */; };
 		2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC930F41743B1FC00FC9830 /* STHTLap.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,8 @@
 		2C749E9F17438414005B7844 /* STHTHippodrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTHippodrome.m; sourceTree = "<group>"; };
 		2C749EA117438414005B7844 /* STHTLapCheckpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapCheckpoint.h; sourceTree = "<group>"; };
 		2C749EA217438415005B7844 /* STHTLapCheckpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapCheckpoint.m; sourceTree = "<group>"; };
+		2CC2C95C1744C7A500EDD93A /* STHTCheckTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTCheckTVC.h; sourceTree = "<group>"; };
+		2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTCheckTVC.m; sourceTree = "<group>"; };
 		2CC930F31743B1FC00FC9830 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
 		2CC930F41743B1FC00FC9830 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -215,6 +218,8 @@
 				2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */,
 				2C4CC01F1743D49700B7F807 /* STHTLapInfoVC.h */,
 				2C4CC0201743D49700B7F807 /* STHTLapInfoVC.m */,
+				2CC2C95C1744C7A500EDD93A /* STHTCheckTVC.h */,
+				2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */,
 				2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */,
 				2C4CC0211743D49700B7F807 /* STHTLapInfoVC.m in Sources */,
+				2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

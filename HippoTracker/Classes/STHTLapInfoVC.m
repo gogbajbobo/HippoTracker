@@ -10,11 +10,13 @@
 #import <STManagedTracker/STSessionManager.h>
 #import "STHTLapCheckpoint.h"
 #import "STHTLapTracker.h"
+#import "STHTCheckTVC.h"
 
 @interface STHTLapInfoVC () <NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *lapDateLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *checkButton;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 @property (nonatomic, strong) STSession *session;
 
@@ -47,6 +49,21 @@
     } else {
         
     }
+}
+
+- (IBAction)checkButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"showCheckTVC" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showCheckTVC"]) {
+        if ([segue.destinationViewController isKindOfClass:[STHTCheckTVC class]]) {
+            [(STHTCheckTVC *)segue.destinationViewController setLap:self.lap];
+            [(STHTCheckTVC *)segue.destinationViewController setSession:self.session];
+        }
+    }
+    
 }
 
 #pragma mark - Table view data source

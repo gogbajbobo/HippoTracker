@@ -10,7 +10,7 @@
 #import "STHTHippodrome.h"
 #import "STHTLap.h"
 
-#define HTCheckpointInterval 100.0
+#define HTCheckpointInterval 10.0
 
 @interface STHTLapTracker : STTracker
 

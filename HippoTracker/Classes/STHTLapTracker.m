@@ -114,7 +114,8 @@
         _locationManager.delegate = self;
         _locationManager.distanceFilter = self.distanceFilter;
         _locationManager.desiredAccuracy = self.desiredAccuracy;
-        self.locationManager.pausesLocationUpdatesAutomatically = NO;
+        _locationManager.pausesLocationUpdatesAutomatically = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:_locationManager.distanceFilter] forKey:@"distanceFilter"]];
     }
     return _locationManager;
 }
@@ -133,6 +134,7 @@
                     self.overlapTime = 0;
                     self.checkpointDistance = 0;
                     self.locationManager.distanceFilter = -1;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
                 }
                 [self addLocation:newLocation];
             }
@@ -200,6 +202,7 @@
 - (void)finishLap {
     self.lapTracking = NO;
     self.locationManager.distanceFilter = 0;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
     if (!self.currentLap.startTime) {
         [self.document.managedObjectContext deleteObject:self.currentLap];
         self.currentLap = nil;

@@ -16,6 +16,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *lapsHistoryButton;
 @property (nonatomic, weak) IBOutlet UIButton *startNewLapButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentAccuracyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceFilterValueLabel;
+
 @property (nonatomic, strong) STSession *session;
 
 @end
@@ -90,6 +92,12 @@
 
 }
 
+- (void)lapTracking:(NSNotification *)notification {
+    
+    self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"distanceFilter"]];
+    
+}
+
 #pragma mark - view init
 
 - (void)buttonsInit {
@@ -101,16 +109,21 @@
     self.startNewLapButton.enabled = NO;
     self.currentAccuracyLabel.text = @"Current accuracy: N/A";
     self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    self.distanceFilterValueLabel.text = @"";
 }
 
 - (void)addNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"lapTracking" object:self.session.locationTracker];
 }
 
 - (void)removeNotificationsObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapTracking" object:self.session.locationTracker];
 }
 
 #pragma mark - view lifecycle
