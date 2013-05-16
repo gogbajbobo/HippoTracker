@@ -86,7 +86,9 @@
         self.startNewLapButton.enabled = YES;
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
     } else {
-        self.startNewLapButton.enabled = NO;
+        if (![(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+            self.startNewLapButton.enabled = NO;
+        }
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.0 blue:0.0 alpha:1.0];
     }
 
