@@ -13,6 +13,8 @@
 @interface STHTCheckTVC () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
+@property (nonatomic, strong) NSMutableDictionary *overallTimes;
+@property (nonatomic, strong) NSMutableDictionary *overallDistances;
 
 @end
 
@@ -55,6 +57,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.overallDistances = [NSMutableDictionary dictionary];
+    self.overallTimes = [NSMutableDictionary dictionary];
     [self performFetch];
     
 }
@@ -101,7 +105,7 @@
         secondLabel.text = @"ot";
     } else {
         
-        secondLabel.text = [NSString stringWithFormat:@"%.2f", [self timeFor:indexPath]];
+        secondLabel.text = [NSString stringWithFormat:@"%.2f", [self overallTimeFor:indexPath]];
     }
 
     UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 80, 24)];
@@ -119,7 +123,7 @@
     if (indexPath.row == 0) {
         fourthLabel.text = @"od";
     } else {
-        fourthLabel.text = [NSString stringWithFormat:@"%.2f", [self distanceFor:indexPath]];
+        fourthLabel.text = [NSString stringWithFormat:@"%.2f", [self overallDistanceFor:indexPath]];
     }
     
     [cell.contentView addSubview:firstLabel];
@@ -130,36 +134,38 @@
     return cell;
 }
 
-- (NSTimeInterval)timeFor:(NSIndexPath *)indexPath {
-    NSTimeInterval overallTime = 0;
-//    NSLog(@"indexPath.row %d", indexPath.row);
-    for (int i = 1; i <= indexPath.row; i++) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-        STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
-        STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
-        NSTimeInterval timeInterval = [previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
-        overallTime += timeInterval;
-        
-//        NSLog(@"i %d", i);
-//        NSLog(@"timeInterval %.2f", timeInterval);
-//        NSLog(@"overallTime %.2f", overallTime);
-        
+- (NSTimeInterval)overallTimeFor:(NSIndexPath *)indexPath {
+    NSNumber *result = [self.overallTimes valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    if (!result) {
+        NSTimeInterval overallTime = 0;
+        for (int i = 1; i <= indexPath.row; i++) {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
+            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
+            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
+            NSTimeInterval timeInterval = [previousLocation.timestamp timeIntervalSinceDate:location.timestamp];
+            overallTime += timeInterval;
+        }
+        [self.overallTimes setValue:[NSNumber numberWithDouble:overallTime] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
     }
-    return overallTime;
+    return [[self.overallTimes valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]] doubleValue];
 }
 
-- (CLLocationDistance)distanceFor:(NSIndexPath *)indexPath {
-    CLLocationDistance overallDistance = 0;
-    for (int i = 1; i <= indexPath.row; i++) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
-        STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
-        STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
-        CLLocation *loc = [self locationFromLocationObject:location];
-        CLLocation *prevLoc = [self locationFromLocationObject:previousLocation];
-        CLLocationDistance distance = [loc distanceFromLocation:prevLoc];
-        overallDistance += distance;
+- (CLLocationDistance)overallDistanceFor:(NSIndexPath *)indexPath {
+    NSNumber *result = [self.overallDistances valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+    if (!result) {
+        CLLocationDistance overallDistance = 0;
+        for (int i = 1; i <= indexPath.row; i++) {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
+            STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i];
+            STHTLocation *previousLocation = (STHTLocation *)[[sectionInfo objects] objectAtIndex:i-1];
+            CLLocation *loc = [self locationFromLocationObject:location];
+            CLLocation *prevLoc = [self locationFromLocationObject:previousLocation];
+            CLLocationDistance distance = [loc distanceFromLocation:prevLoc];
+            overallDistance += distance;
+            [self.overallDistances setValue:[NSNumber numberWithDouble:overallDistance] forKey:[NSString stringWithFormat:@"%d", indexPath.row]];
+        }
     }
-    return overallDistance;
+    return [[self.overallDistances valueForKey:[NSString stringWithFormat:@"%d", indexPath.row]] doubleValue];
 }
 
 - (CLLocation *)locationFromLocationObject:(STLocation *)locationObject {
