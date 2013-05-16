@@ -92,7 +92,7 @@
     
     UIFont *font = [UIFont systemFontOfSize:14];
     
-    UILabel *firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 24)];
+    UILabel *firstLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 24)];
     
     if (indexPath.row == 0) {
         firstLabel.text = @"t";
@@ -102,7 +102,7 @@
         firstLabel.text = [NSString stringWithFormat:@"%.2f", timeInterval];
     }
     
-    UILabel *secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 10, 80, 24)];
+    UILabel *secondLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 10, 50, 24)];
     if (indexPath.row == 0) {
         secondLabel.text = @"ot";
     } else {
@@ -110,7 +110,7 @@
         secondLabel.text = [NSString stringWithFormat:@"%.2f", [self overallTimeFor:indexPath]];
     }
 
-    UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 10, 80, 24)];
+    UILabel *thirdLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 40, 24)];
     if (indexPath.row == 0) {
         thirdLabel.text = @"d";
     } else {
@@ -121,28 +121,33 @@
         thirdLabel.text = [NSString stringWithFormat:@"%.2f", distance];
     }
 
-    UILabel *fourthLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 10, 100, 24)];
+    UILabel *fourthLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, 50, 24)];
     if (indexPath.row == 0) {
         fourthLabel.text = @"od";
     } else {
         fourthLabel.text = [NSString stringWithFormat:@"%.2f", [self overallDistanceFor:indexPath]];
     }
     
-    UILabel *timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(210, 10, 80, 24)];
+    UILabel *timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake(190, 10, 80, 24)];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterNoStyle];
     [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
     timestampLabel.text = [dateFormatter stringFromDate:location.timestamp];
     
-    UILabel *accuracyLabel = [[UILabel alloc] initWithFrame:CGRectMake(300, 10, 50, 24)];
+    UILabel *accuracyLabel = [[UILabel alloc] initWithFrame:CGRectMake(270, 10, 20, 24)];
     accuracyLabel.text = [NSString stringWithFormat:@"%@", location.horizontalAccuracy];
-    
+
+    UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(290, 10, 30, 24)];
+    double speed = [location.speed doubleValue] *3.6;
+    speedLabel.text = [NSString stringWithFormat:@"%.1f", speed];
+
     firstLabel.font = font;
     secondLabel.font = font;
     thirdLabel.font = font;
     fourthLabel.font = font;
     timestampLabel.font = font;
     accuracyLabel.font = font;
+    speedLabel.font = font;
     
     [cell.contentView addSubview:firstLabel];
     [cell.contentView addSubview:secondLabel];
@@ -150,6 +155,7 @@
     [cell.contentView addSubview:fourthLabel];
     [cell.contentView addSubview:timestampLabel];
     [cell.contentView addSubview:accuracyLabel];
+    [cell.contentView addSubview:speedLabel];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
