@@ -96,8 +96,11 @@
     timeLabel.text = [NSString stringWithFormat:@"%.1f", time];
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
+    
+    CLLocationDistance checkpointInterval = [[[self.session.settingsController currentSettingsForGroup:@"location"] valueForKey:@"HTCheckpointInterval"] doubleValue];
+    
     if (time != 0) {
-        speedLabel.text = [NSString stringWithFormat:@"%.f", 3.6 * lap.checkpoints.count * HTCheckpointInterval / time];
+        speedLabel.text = [NSString stringWithFormat:@"%.f", 3.6 * lap.checkpoints.count * checkpointInterval / time];
     } else {
         speedLabel.text = @"N/A";
     }

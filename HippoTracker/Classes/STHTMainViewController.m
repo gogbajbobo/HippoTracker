@@ -9,6 +9,7 @@
 #import "STHTMainViewController.h"
 #import "STSessionManager.h"
 #import "STHTLapTracker.h"
+#import "STHTSettingsTVC.h"
 
 @interface STHTMainViewController ()
 
@@ -17,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *startNewLapButton;
 @property (weak, nonatomic) IBOutlet UILabel *currentAccuracyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceFilterValueLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @property (nonatomic, strong) STSession *session;
 
@@ -29,6 +31,12 @@
         _session = [[STSessionManager sharedManager] currentSession];
     }
     return _session;
+}
+
+- (IBAction)settingsButtonPressed:(id)sender {
+    STHTSettingsTVC *settingsTVC = [[STHTSettingsTVC alloc] init];
+    settingsTVC.session = self.session;
+    [self.navigationController pushViewController:settingsTVC animated:YES];
 }
 
 - (IBAction)startTrackerButtonPressed:(id)sender {
@@ -68,6 +76,7 @@
     if ([self.session.status isEqualToString:@"running"]) {
         self.startTrackerButton.enabled = YES;
         self.lapsHistoryButton.enabled = YES;
+        self.settingsButton.enabled = YES;
     }
 }
 
@@ -95,7 +104,11 @@
 }
 
 - (void)lapTracking:(NSNotification *)notification {
-    self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%@", [notification.userInfo objectForKey:@"distanceFilter"]];
+    if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+        self.distanceFilterValueLabel.text = @"-1";
+    } else {
+        self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%.f", [[[self.session.settingsController currentSettingsForGroup:@"location"] objectForKey:@"distanceFilter"] doubleValue]];
+    }
 }
 
 - (void)stopDetected:(NSNotification *)notification {
@@ -112,6 +125,7 @@
     self.startTrackerButton.enabled = NO;
     self.lapsHistoryButton.enabled = NO;
     self.startNewLapButton.enabled = NO;
+    self.settingsButton.enabled = NO;
     self.currentAccuracyLabel.text = @"Current accuracy: N/A";
     self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     self.distanceFilterValueLabel.text = @"";
@@ -122,7 +136,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
 
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"lapTracking" object:self.session.locationTracker];
 }
 
@@ -131,6 +145,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
 
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapTracking" object:self.session.locationTracker];
 }
 
@@ -143,6 +158,10 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad

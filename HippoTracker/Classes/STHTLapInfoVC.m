@@ -95,7 +95,10 @@
     STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
     UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 24)];
-    distanceLabel.text = [NSString stringWithFormat:@"%.f", ([checkpoint.checkpointNumber intValue] +1) * HTCheckpointInterval];
+    
+    CLLocationDistance checkpointInterval = [[[self.session.settingsController currentSettingsForGroup:@"location"] valueForKey:@"HTCheckpointInterval"] doubleValue];
+
+    distanceLabel.text = [NSString stringWithFormat:@"%.f", ([checkpoint.checkpointNumber intValue] +1) * checkpointInterval];
     
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, 80, 24)];
     timeLabel.text = [NSString stringWithFormat:@"%.1f", [checkpoint.time doubleValue]];
