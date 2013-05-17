@@ -198,6 +198,7 @@
         checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
         checkpoint.time = [NSNumber numberWithDouble:time];
         checkpoint.speed = [NSNumber numberWithDouble:3.6 * self.checkpointInterval / time];
+        checkpoint.interval = [NSNumber numberWithDouble:self.checkpointInterval];
         [self.currentLap addCheckpointsObject:checkpoint];
         self.lastCheckpoint = checkpoint;
     }

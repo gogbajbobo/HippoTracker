@@ -28,6 +28,7 @@
     </entity>
     <entity name="STHTLapCheckpoint" representedClassName="STHTLapCheckpoint" parentEntity="STDatum" syncable="YES">
         <attribute name="checkpointNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="interval" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="checkpoints" inverseEntity="STHTLap" syncable="YES"/>
@@ -59,7 +60,7 @@
         <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
         <element name="STHTHippodrome" positionX="162" positionY="-184" width="128" height="118"/>
         <element name="STHTLap" positionX="187" positionY="90" width="128" height="103"/>
-        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="103"/>
+        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="118"/>
         <element name="STHTLocation" positionX="27" positionY="261" width="128" height="58"/>
         <element name="STLocation" positionX="-153" positionY="243" width="128" height="163"/>
         <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>

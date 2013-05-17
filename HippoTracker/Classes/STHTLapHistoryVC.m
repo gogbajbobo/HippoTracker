@@ -90,17 +90,17 @@
 
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 10, 80, 24)];
     NSTimeInterval time = 0;
+    CLLocationDistance distance = 0;
     for (STHTLapCheckpoint *checkpoint in lap.checkpoints) {
         time += [checkpoint.time doubleValue];
+        distance += [checkpoint.interval doubleValue];
     }
     timeLabel.text = [NSString stringWithFormat:@"%.1f", time];
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 10, 100, 24)];
     
-    CLLocationDistance checkpointInterval = [[[self.session.settingsController currentSettingsForGroup:@"location"] valueForKey:@"HTCheckpointInterval"] doubleValue];
-    
     if (time != 0) {
-        speedLabel.text = [NSString stringWithFormat:@"%.f", 3.6 * lap.checkpoints.count * checkpointInterval / time];
+        speedLabel.text = [NSString stringWithFormat:@"%.f", 3.6 * distance / time];
     } else {
         speedLabel.text = @"N/A";
     }

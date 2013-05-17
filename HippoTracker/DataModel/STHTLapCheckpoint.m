@@ -2,7 +2,7 @@
 //  STHTLapCheckpoint.m
 //  HippoTracker
 //
-//  Created by Maxim Grigoriev on 5/15/13.
+//  Created by Maxim Grigoriev on 5/17/13.
 //  Copyright (c) 2013 Maxim Grigoriev. All rights reserved.
 //
 
@@ -12,9 +12,10 @@
 
 @implementation STHTLapCheckpoint
 
+@dynamic checkpointNumber;
 @dynamic speed;
 @dynamic time;
-@dynamic checkpointNumber;
+@dynamic interval;
 @dynamic lap;
 
 @end
