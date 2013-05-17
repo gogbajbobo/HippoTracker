@@ -21,6 +21,8 @@
 @property (nonatomic) CLLocationDistance checkpointDistance;
 @property (nonatomic, strong) NSDate *checkpointTime;
 @property (nonatomic, strong) STHTLapCheckpoint *lastCheckpoint;
+@property (nonatomic) CLLocationDistance checkpointInterval;
+@property (nonatomic) double slowdownValue;
 
 
 @end
@@ -80,6 +82,14 @@
 
 - (NSTimeInterval)timeFilter {
     return [[self.settings valueForKey:@"timeFilter"] doubleValue];
+}
+
+- (CLLocationDistance)checkpointInterval {
+    return [[self.settings valueForKey:@"HTCheckpointInterval"] doubleValue];
+}
+
+- (double)slowdownValue {
+    return [[self.settings valueForKey:@"HTSlowdownValue"] doubleValue];
 }
 
 - (void)setCurrentAccuracy:(CLLocationAccuracy)currentAccuracy {
@@ -170,8 +180,8 @@
         [self stopDetected];
     } else {
         self.checkpointDistance += distance;
-        if (self.checkpointDistance >= HTCheckpointInterval) {
-            self.checkpointDistance -= HTCheckpointInterval;
+        if (self.checkpointDistance >= self.checkpointInterval) {
+            self.checkpointDistance -= self.checkpointInterval;
             NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
             NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
             [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
@@ -181,13 +191,14 @@
 }
 
 - (void)addCheckpointWithTime:(NSTimeInterval)time {
-    if ([self.lastCheckpoint.time doubleValue] * HTSlowdownValue > time) {
+    if ([self.lastCheckpoint.time doubleValue] * self.slowdownValue > time) {
         [self stopDetected];
     } else {
         STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
         checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
         checkpoint.time = [NSNumber numberWithDouble:time];
-        checkpoint.speed = [NSNumber numberWithDouble:3.6 * HTCheckpointInterval / time];
+        checkpoint.speed = [NSNumber numberWithDouble:3.6 * self.checkpointInterval / time];
+        checkpoint.interval = [NSNumber numberWithDouble:self.checkpointInterval];
         [self.currentLap addCheckpointsObject:checkpoint];
         self.lastCheckpoint = checkpoint;
     }
@@ -210,7 +221,7 @@
 
 - (void)finishLap {
     self.lapTracking = NO;
-    self.locationManager.distanceFilter = 0;
+    self.locationManager.distanceFilter = self.distanceFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
     if (!self.currentLap.startTime) {
         [self.document.managedObjectContext deleteObject:self.currentLap];

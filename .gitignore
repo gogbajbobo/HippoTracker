@@ -16,3 +16,5 @@
 HippoTracker/.DS_Store
 
 HippoTracker/Classes/.DS_Store
+
+*.lock
