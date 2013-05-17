@@ -192,9 +192,10 @@
 
 - (void)addCheckpointWithTime:(NSTimeInterval)time {
     if (self.lastCheckpoint.time) {
-        CLLocationSpeed lastCheckpointSpeed = self.lastCheckpoint.interval / self.lastCheckpoint.time;
+        CLLocationSpeed lastCheckpointSpeed = [self.lastCheckpoint.interval doubleValue] / [self.lastCheckpoint.time doubleValue];
         CLLocationSpeed currentSpeed = self.checkpointInterval / time;
-        if (currentSpeed < (lastCheckpointSpeed * self.slowdownValue))) {
+        CLLocationSpeed compareSpeed = lastCheckpointSpeed * self.slowdownValue;
+        if (currentSpeed < compareSpeed) {
             [self stopDetected];
         }
     } else {
