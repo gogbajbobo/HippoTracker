@@ -7,6 +7,7 @@
 //
 
 #import <STManagedTracker/STTracker.h>
+#import <CoreLocation/CoreLocation.h>
 #import "STHTHippodrome.h"
 #import "STHTLap.h"
 

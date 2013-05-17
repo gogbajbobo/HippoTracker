@@ -191,8 +191,12 @@
 }
 
 - (void)addCheckpointWithTime:(NSTimeInterval)time {
-    if ([self.lastCheckpoint.time doubleValue] * self.slowdownValue > time) {
-        [self stopDetected];
+    if (self.lastCheckpoint.time) {
+        CLLocationSpeed lastCheckpointSpeed = self.lastCheckpoint.interval / self.lastCheckpoint.time;
+        CLLocationSpeed currentSpeed = self.checkpointInterval / time;
+        if (currentSpeed < (lastCheckpointSpeed * self.slowdownValue))) {
+            [self stopDetected];
+        }
     } else {
         STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
         checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
