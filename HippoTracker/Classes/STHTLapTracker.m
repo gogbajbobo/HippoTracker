@@ -9,6 +9,7 @@
 #import "STHTLapTracker.h"
 #import "STHTLocation.h"
 #import "STHTLapCheckpoint.h"
+#import <STManagedTracker/STSession.h>
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
@@ -165,6 +166,7 @@
         self.lastCheckpoint = nil;
         self.locationManager.distanceFilter = -1;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
+        [[(STSession *)self.session logger] saveLogMessageWithText:@"startNewLap" type:@""];
         [self.document saveDocument:^(BOOL success) {
 //            NSLog(@"save newLap");
             if (success) {
@@ -219,6 +221,7 @@
         CLLocationSpeed currentSpeed = self.checkpointInterval / time;
         CLLocationSpeed compareSpeed = lastCheckpointSpeed * self.slowdownValue;
         if (currentSpeed < compareSpeed) {
+            [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
             [self stopDetected];
         }
     } else {
@@ -242,6 +245,7 @@
 //        self.currentLap = nil;
 //    }
     self.currentLap = nil;
+    [[(STSession *)self.session logger] saveLogMessageWithText:@"finishLap" type:@""];
     [self.document saveDocument:^(BOOL success) {
 //        NSLog(@"save lap");
         if (success) {

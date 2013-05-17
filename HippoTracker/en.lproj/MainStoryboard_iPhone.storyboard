@@ -93,6 +93,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="HippoTracker" id="OwZ-LQ-dH6">
+                        <barButtonItem key="leftBarButtonItem" title="Log" id="qTx-bt-4rw">
+                            <connections>
+                                <action selector="logButtonPressed:" destination="ETD-yH-C6t" id="Q0Z-QC-zAx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="BCh-Of-hWY">
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="ETD-yH-C6t" id="fhY-xj-i8a"/>
@@ -103,6 +108,7 @@
                         <outlet property="currentAccuracyLabel" destination="0ZE-Le-Jch" id="C52-ko-fxP"/>
                         <outlet property="distanceFilterValueLabel" destination="3VM-ES-E5S" id="IdI-cv-zCF"/>
                         <outlet property="lapsHistoryButton" destination="IRD-fF-UJU" id="ZTj-ep-deh"/>
+                        <outlet property="logButton" destination="qTx-bt-4rw" id="MU5-vQ-kmo"/>
                         <outlet property="settingsButton" destination="BCh-Of-hWY" id="9np-7n-sra"/>
                         <outlet property="startNewLapButton" destination="hbs-2u-Gce" id="qtr-9g-BMX"/>
                         <outlet property="startTrackerButton" destination="bV9-kI-rh7" id="n96-pc-MDk"/>

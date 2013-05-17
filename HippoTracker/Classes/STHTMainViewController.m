@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentAccuracyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceFilterValueLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logButton;
 
 @property (nonatomic, strong) STSession *session;
 
@@ -31,6 +32,14 @@
         _session = [[STSessionManager sharedManager] currentSession];
     }
     return _session;
+}
+
+- (IBAction)logButtonPressed:(id)sender {
+    UITableViewController *logTVC = [[UITableViewController alloc] init];
+    logTVC.tableView.delegate = self.session.logger;
+    logTVC.tableView.dataSource = self.session.logger;
+    self.session.logger.tableView = logTVC.tableView;
+    [self.navigationController pushViewController:logTVC animated:YES];
 }
 
 - (IBAction)settingsButtonPressed:(id)sender {
@@ -78,6 +87,7 @@
         self.startTrackerButton.enabled = YES;
         self.lapsHistoryButton.enabled = YES;
         self.settingsButton.enabled = YES;
+        self.logButton.enabled = YES;
     }
 }
 
@@ -127,6 +137,7 @@
     self.lapsHistoryButton.enabled = NO;
     self.startNewLapButton.enabled = NO;
     self.settingsButton.enabled = NO;
+    self.logButton.enabled = NO;
     self.currentAccuracyLabel.text = @"Current accuracy: N/A";
     self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     self.distanceFilterValueLabel.text = @"";
