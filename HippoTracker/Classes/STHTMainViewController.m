@@ -63,7 +63,8 @@
     if (!lapTracker.lapTracking) {
         self.startTrackerButton.enabled = NO;
         [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
-        [lapTracker startNewLap];
+        lapTracker.lapTracking = YES;
+//        [lapTracker startNewLap];
     } else {
         self.startTrackerButton.enabled = YES;
         [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];

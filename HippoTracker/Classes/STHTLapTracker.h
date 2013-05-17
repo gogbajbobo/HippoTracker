@@ -21,7 +21,7 @@
 @property (nonatomic, strong) STHTLap *currentLap;
 @property (nonatomic) BOOL lapTracking;
 
-- (void)startNewLap;
+- (void)startNewLapAtTime:(NSDate *)timestamp;
 - (void)finishLap;
 
 @end

@@ -37,6 +37,8 @@
 		2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */; };
 		2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */; };
 		2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */; };
+		2CC2C96A1746B1D500EDD93A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC2C9691746B1D500EDD93A /* Icon.png */; };
+		2CC2C96C1746B1D800EDD93A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC2C96B1746B1D800EDD93A /* Icon@2x.png */; };
 		2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC930F41743B1FC00FC9830 /* STHTLap.m */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,8 @@
 		2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettingsTVC.m; sourceTree = "<group>"; };
 		2CC2C9661746259700EDD93A /* STHTLapCheckpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapCheckpoint.h; sourceTree = "<group>"; };
 		2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapCheckpoint.m; sourceTree = "<group>"; };
+		2CC2C9691746B1D500EDD93A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		2CC2C96B1746B1D800EDD93A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2CC930F31743B1FC00FC9830 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
 		2CC930F41743B1FC00FC9830 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -132,6 +136,8 @@
 		2C73CF6B173BF0520070238F = {
 			isa = PBXGroup;
 			children = (
+				2CC2C96B1746B1D800EDD93A /* Icon@2x.png */,
+				2CC2C9691746B1D500EDD93A /* Icon.png */,
 				2C73CF7D173BF0520070238F /* HippoTracker */,
 				2C73CFA4173BF0520070238F /* HippoTrackerTests */,
 				2C73CF76173BF0520070238F /* Frameworks */,
@@ -326,6 +332,8 @@
 				2C73CF8C173BF0520070238F /* Default@2x.png in Resources */,
 				2C73CF8E173BF0520070238F /* Default-568h@2x.png in Resources */,
 				2C73CF91173BF0520070238F /* MainStoryboard_iPhone.storyboard in Resources */,
+				2CC2C96A1746B1D500EDD93A /* Icon.png in Resources */,
+				2CC2C96C1746B1D800EDD93A /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

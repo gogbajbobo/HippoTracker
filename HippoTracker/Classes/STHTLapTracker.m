@@ -35,6 +35,7 @@
 
 - (void)customInit {
     self.group = @"location";
+    self.currentLap = nil;
     [super customInit];
 }
 
@@ -138,14 +139,9 @@
         self.currentAccuracy = newLocation.horizontalAccuracy;
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
-                if (self.locationManager.distanceFilter == 0) {
-                    self.currentLap.startTime = newLocation.timestamp;
-                    self.checkpointTime = self.currentLap.startTime;
-                    self.checkpointDistance = 0;
-                    self.lastLocation = nil;
-                    self.lastCheckpoint = nil;
-                    self.locationManager.distanceFilter = -1;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
+                if (!self.currentLap) {
+                    NSLog(@"newLocation.timestamp %@", newLocation.timestamp);
+                    [self startNewLapAtTime:newLocation.timestamp];
                 }
                 [self addLocation:newLocation];
             }
@@ -155,6 +151,31 @@
 }
 
 #pragma mark - lap management
+
+- (void)startNewLapAtTime:(NSDate *)timestamp {
+    
+    if (self.lapTracking) {
+        STHTLap *lap = (STHTLap *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLap" inManagedObjectContext:self.document.managedObjectContext];
+        self.currentLap = lap;
+        [self.hippodrome addLapsObject:lap];
+        self.currentLap.startTime = timestamp;
+        self.checkpointTime = self.currentLap.startTime;
+        self.checkpointDistance = 0;
+        self.lastLocation = nil;
+        self.lastCheckpoint = nil;
+        self.locationManager.distanceFilter = -1;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
+        [self.document saveDocument:^(BOOL success) {
+//            NSLog(@"save newLap");
+            if (success) {
+                NSLog(@"save newLap success");
+            } else {
+                NSLog(@"save newLap NO success");
+            }
+        }];
+    }
+    
+}
 
 - (void)addLocation:(CLLocation *)currentLocation {
     
@@ -166,9 +187,11 @@
     self.lastLocation = currentLocation;
     
     [self.document saveDocument:^(BOOL success) {
-        NSLog(@"save newLocation");
+//        NSLog(@"save newLocation");
         if (success) {
-            NSLog(@"save newLocation success");
+//            NSLog(@"save newLocation success");
+        } else {
+            NSLog(@"save newLocation NO success");
         }
     }];
     
@@ -177,7 +200,7 @@
 - (void)calculateDistance:(CLLocation *)location {
     CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
     if (distance == 0) {
-        [self stopDetected];
+//        [self stopDetected];
     } else {
         self.checkpointDistance += distance;
         if (self.checkpointDistance >= self.checkpointInterval) {
@@ -209,33 +232,22 @@
     }
 }
 
-- (void)startNewLap {
-    
-    STHTLap *lap = (STHTLap *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLap" inManagedObjectContext:self.document.managedObjectContext];
-    self.currentLap = lap;
-    [self.hippodrome addLapsObject:lap];
-    self.lapTracking = YES;
-    [self.document saveDocument:^(BOOL success) {
-        NSLog(@"save newLap");
-        if (success) {
-            NSLog(@"save newLap success");
-        }
-    }];
-    
-}
 
 - (void)finishLap {
     self.lapTracking = NO;
     self.locationManager.distanceFilter = self.distanceFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
-    if (!self.currentLap.startTime) {
-        [self.document.managedObjectContext deleteObject:self.currentLap];
-        self.currentLap = nil;
-    }
+//    if (!self.currentLap.startTime) {
+//        [self.document.managedObjectContext deleteObject:self.currentLap];
+//        self.currentLap = nil;
+//    }
+    self.currentLap = nil;
     [self.document saveDocument:^(BOOL success) {
-        NSLog(@"save lap");
+//        NSLog(@"save lap");
         if (success) {
             NSLog(@"save lap success");
+        } else {
+            NSLog(@"save lap NO success");
         }
     }];
 }
