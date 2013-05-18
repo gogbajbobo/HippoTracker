@@ -8,9 +8,17 @@
 
 #import "STQueue.h"
 
+@interface STQueue()
+
+@property (nonatomic, strong) NSMutableArray *backStore;
+
+@end
+
+
 @implementation STQueue
 
 @synthesize queueLength = _queueLength;
+@synthesize backStore = _backStore;
 
 - (BOOL)filled {
     return (self.count >= self.queueLength);
@@ -44,6 +52,7 @@
 }
 
 - (id)enqueue:(id)anObject {
+    NSLog(@"anObject %@", anObject);
     id dequeueObject = nil;
     if (anObject) {
         if (self.filled) {
@@ -68,6 +77,46 @@
     } else {
         return nil;
     }
+}
+
+
+#pragma mark - override
+
+- (id) init
+{
+    self = [super init];
+    if (self != nil) {
+        self.backStore = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (void)insertObject:(id)anObject atIndex:(NSUInteger)index {
+    [self.backStore insertObject:anObject atIndex:index];
+}
+
+- (void)removeObjectAtIndex:(NSUInteger)index {
+    [self.backStore removeObjectAtIndex:index];
+}
+
+- (void)addObject:(id)anObject {
+    [self.backStore addObject:anObject];
+}
+
+- (void)removeLastObject {
+    [self.backStore removeLastObject];
+}
+
+- (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
+    [self.backStore replaceObjectAtIndex:index withObject:anObject];
+}
+
+- (NSUInteger)count {
+    return [self.backStore count];
+}
+
+- (id)objectAtIndex:(NSUInteger)index {
+    return [self.backStore objectAtIndex:index];
 }
 
 @end
