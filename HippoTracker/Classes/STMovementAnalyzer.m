@@ -26,24 +26,24 @@
         CLLocationDistance distanceFilter = [[[[(STSession *)self.sesstion locationTracker] settings] valueForKey:@"distanceFilter"] doubleValue];
         
         if (self.GPSMovingDetected) {
-//            CLLocation *followingLocation = [self.locationsQueue tail];
-//            if (followingLocation) {
-//                BOOL moving = NO;
-//                for (int i = self.locationsQueue.count - 2; i < 0; i--) {
-//                    CLLocation *location = [self.locationsQueue objectAtIndex:i];
-//                    moving |= [self enoughOfDistanceFrom:location to:followingLocation distanceFilter:distanceFilter];
-//                    if (moving) {
-//                        NSLog(@"moving");
-//                        break;
-//                    }
-//                    followingLocation = location;
-//                }
-//                if (!moving) {
-//                    self.GPSMovingDetected = moving;
-//                }
-//            } else {
-//                
-//            }
+            CLLocation *followingLocation = [self.locationsQueue tail];
+            if (followingLocation) {
+                BOOL moving = NO;
+                for (int i = self.locationsQueue.count - 2; i >= 0; i--) {
+                    CLLocation *location = [self.locationsQueue objectAtIndex:i];
+                    moving |= [self enoughOfDistanceFrom:location to:followingLocation distanceFilter:distanceFilter];
+                    if (moving) {
+                        NSLog(@"moving");
+                        break;
+                    }
+                    followingLocation = location;
+                }
+                if (!moving) {
+                    self.GPSMovingDetected = moving;
+                }
+            } else {
+
+            }
             
         } else {
             CLLocation *prevLocation = [self.locationsQueue head];
