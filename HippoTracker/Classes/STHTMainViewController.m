@@ -10,6 +10,7 @@
 #import "STSessionManager.h"
 #import "STHTLapTracker.h"
 #import "STHTSettingsTVC.h"
+#import "STHTLapInfoVC.h"
 
 @interface STHTMainViewController ()
 
@@ -73,10 +74,12 @@
         self.startTrackerButton.enabled = NO;
         [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
         lapTracker.lapTracking = YES;
-//        [lapTracker startNewLap];
     } else {
         self.startTrackerButton.enabled = YES;
+        self.startNewLapButton.frame = CGRectMake(20, 330, 280, 67);
         [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
+        [[self.view viewWithTag:1] removeFromSuperview];
+        [self.view setNeedsDisplay];
         [lapTracker finishLap];
     }
     
@@ -127,6 +130,34 @@
     [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
 }
 
+- (void)startNewLap:(NSNotification *)notification {
+    self.startNewLapButton.frame = CGRectMake(20, 330, 220, 67);
+    UIButton *currentLapButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    currentLapButton.frame = CGRectMake(250, 330, 50, 67);
+    [currentLapButton setTitle:@">>" forState:UIControlStateNormal];
+    [currentLapButton addTarget:self action:@selector(currentLapButtonPressed:) forControlEvents:UIControlEventTouchDown];
+    currentLapButton.tag = 1;
+    [self.view addSubview:currentLapButton];
+    [self.view setNeedsDisplay];
+    [self performSegueWithIdentifier:@"showCurrentLap" sender:self];
+}
+
+- (IBAction)currentLapButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"showCurrentLap" sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"showCurrentLap"]) {
+        if ([segue.destinationViewController isKindOfClass:[STHTLapInfoVC class]]) {
+            STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
+            [(STHTLapInfoVC *)segue.destinationViewController setLap:lapTracker.currentLap];
+        }
+    }
+    
+}
+
+
 #pragma mark - view init
 
 - (void)buttonsInit {
@@ -147,6 +178,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startNewLap:) name:@"startNewLap" object:self.session.locationTracker];
+
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"lapTracking" object:self.session.locationTracker];
@@ -156,6 +189,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startNewLap" object:self.session.locationTracker];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapTracking" object:self.session.locationTracker];

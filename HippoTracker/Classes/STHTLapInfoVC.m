@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *lapDateLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *checkButton;
+@property (weak, nonatomic) IBOutlet UIButton *lapButton;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 @property (nonatomic, strong) STSession *session;
 
@@ -200,6 +201,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.lapDateLabel.text = [self formatedLapDate];
+    [self.lapButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    self.lapButton.enabled = NO;
     [self performFetch];
 }
 

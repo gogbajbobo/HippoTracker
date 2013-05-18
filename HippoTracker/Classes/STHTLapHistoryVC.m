@@ -177,7 +177,9 @@
     } else if (type == NSFetchedResultsChangeUpdate) {
         
         //        NSLog(@"NSFetchedResultsChangeUpdate");
-        
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+
     }
     
 }

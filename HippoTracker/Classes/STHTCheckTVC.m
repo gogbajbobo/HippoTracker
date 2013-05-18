@@ -138,8 +138,8 @@
     accuracyLabel.text = [NSString stringWithFormat:@"%@", location.horizontalAccuracy];
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(290, 10, 30, 24)];
-//    double speed = [location.speed doubleValue] *3.6;
-    double speed = [location.course doubleValue];
+    double speed = [location.speed doubleValue] *3.6;
+//    double speed = [location.course doubleValue];
     speedLabel.text = [NSString stringWithFormat:@"%.1f", speed];
 
     firstLabel.font = font;

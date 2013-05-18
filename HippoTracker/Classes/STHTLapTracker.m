@@ -141,7 +141,7 @@
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
                 if (!self.currentLap) {
-                    NSLog(@"newLocation.timestamp %@", newLocation.timestamp);
+//                    NSLog(@"newLocation.timestamp %@", newLocation.timestamp);
                     [self startNewLapAtTime:newLocation.timestamp];
                 }
                 [self addLocation:newLocation];
@@ -166,11 +166,11 @@
         self.lastCheckpoint = nil;
         self.locationManager.distanceFilter = -1;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"startNewLap" object:self userInfo:[NSDictionary dictionaryWithObject:self.currentLap forKey:@"currentLap"]];
         [[(STSession *)self.session logger] saveLogMessageWithText:@"startNewLap" type:@""];
         [self.document saveDocument:^(BOOL success) {
-//            NSLog(@"save newLap");
             if (success) {
-                NSLog(@"save newLap success");
+//                NSLog(@"save newLap success");
             } else {
                 NSLog(@"save newLap NO success");
             }
@@ -221,8 +221,8 @@
         CLLocationSpeed currentSpeed = self.checkpointInterval / time;
         CLLocationSpeed compareSpeed = lastCheckpointSpeed * self.slowdownValue;
         if (currentSpeed < compareSpeed) {
-            [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
-            [self stopDetected];
+//            [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
+//            [self stopDetected];
         }
     }
     if (self.lapTracking) {
