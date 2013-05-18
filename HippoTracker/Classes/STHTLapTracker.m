@@ -260,20 +260,18 @@
     self.lapTracking = NO;
     self.locationManager.distanceFilter = self.distanceFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
-//    if (!self.currentLap.startTime) {
-//        [self.document.managedObjectContext deleteObject:self.currentLap];
-//        self.currentLap = nil;
-//    }
-    self.currentLap = nil;
-    [[(STSession *)self.session logger] saveLogMessageWithText:@"finishLap" type:@""];
-    [self.document saveDocument:^(BOOL success) {
-//        NSLog(@"save lap");
-        if (success) {
-            NSLog(@"save lap success");
-        } else {
-            NSLog(@"save lap NO success");
-        }
-    }];
+
+    if (self.currentLap) {
+        self.currentLap = nil;
+        [[(STSession *)self.session logger] saveLogMessageWithText:@"finishLap" type:@""];
+        [self.document saveDocument:^(BOOL success) {
+            if (success) {
+                NSLog(@"save lap success");
+            } else {
+                NSLog(@"save lap NO success");
+            }
+        }];
+    }
 }
 
 - (void)deleteLap:(STHTLap *)lap {
