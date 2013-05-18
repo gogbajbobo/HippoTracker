@@ -10,6 +10,7 @@
 #import "STHTLocation.h"
 #import "STHTLapCheckpoint.h"
 #import <STManagedTracker/STSession.h>
+#import "STMovementAnalyzer.h"
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) STHTLapCheckpoint *lastCheckpoint;
 @property (nonatomic) CLLocationDistance checkpointInterval;
 @property (nonatomic) double slowdownValue;
+@property (nonatomic, strong) STMovementAnalyzer *movementAnalyzer;
 
 
 @end
@@ -107,6 +109,8 @@
     [super startTracking];
     if (self.tracking) {
         [[self locationManager] startUpdatingLocation];
+        self.movementAnalyzer = [[STMovementAnalyzer alloc] init];
+        self.movementAnalyzer.locationsQueue.queueLength = 4;
     }
 }
 
@@ -114,6 +118,7 @@
     [[self locationManager] stopUpdatingLocation];
     self.locationManager.delegate = nil;
     self.locationManager = nil;
+    self.movementAnalyzer = nil;
     [super stopTracking];
 }
 
@@ -140,11 +145,22 @@
         self.currentAccuracy = newLocation.horizontalAccuracy;
         if (newLocation.horizontalAccuracy <= self.requiredAccuracy) {
             if (self.lapTracking) {
-                if (!self.currentLap) {
-//                    NSLog(@"newLocation.timestamp %@", newLocation.timestamp);
-                    [self startNewLapAtTime:newLocation.timestamp];
+                if (!self.movementAnalyzer.GPSMovingDetected) {
+                    [self.movementAnalyzer addLocation:newLocation];
+                    if (self.movementAnalyzer.GPSMovingDetected) {
+                        [[(STSession *)self.session logger] saveLogMessageWithText:@"startDetectedByAnalyzer" type:@""];
+                        for (CLLocation *location in self.movementAnalyzer.locationsQueue) {
+                            [self addLocation:location];
+                        }
+                    }
+                } else {
+                    [self addLocation:newLocation];
+                    [self.movementAnalyzer addLocation:newLocation];
+                    if (!self.movementAnalyzer.GPSMovingDetected) {
+                        [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetectedByAnalyzer" type:@""];                        
+                        [self stopDetected];
+                    }
                 }
-                [self addLocation:newLocation];
             }
         }
     }
@@ -181,6 +197,9 @@
 
 - (void)addLocation:(CLLocation *)currentLocation {
     
+    if (!self.currentLap) {
+        [self startNewLapAtTime:currentLocation.timestamp];
+    }
     [self.currentLap addLocationsObject:[self locationObjectFromCLLocation:currentLocation]];
     
     if (self.lastLocation) {
@@ -201,17 +220,13 @@
 
 - (void)calculateDistance:(CLLocation *)location {
     CLLocationDistance distance = [location distanceFromLocation:self.lastLocation];
-    if (distance == 0) {
-//        [self stopDetected];
-    } else {
-        self.checkpointDistance += distance;
-        if (self.checkpointDistance >= self.checkpointInterval) {
-            self.checkpointDistance -= self.checkpointInterval;
-            NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
-            NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
-            [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
-            self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
-        }
+    self.checkpointDistance += distance;
+    if (self.checkpointDistance >= self.checkpointInterval) {
+        self.checkpointDistance -= self.checkpointInterval;
+        NSTimeInterval time = [location.timestamp timeIntervalSinceDate:self.lastLocation.timestamp];
+        NSTimeInterval t = time - (self.checkpointDistance * time) / distance;
+        [self addCheckpointWithTime:[self.lastLocation.timestamp timeIntervalSinceDate:self.checkpointTime] + t];
+        self.checkpointTime = [NSDate dateWithTimeInterval:t sinceDate:self.lastLocation.timestamp];
     }
 }
 
