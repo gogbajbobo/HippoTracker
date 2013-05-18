@@ -95,6 +95,10 @@
 }
 
 - (void)currentAccuracyChanged:(NSNotification *)notification {
+    [self setCurrentAccuracyText];
+}
+
+- (void)setCurrentAccuracyText {
 
     CLLocationAccuracy currentAccuracy = [(STHTLapTracker *)self.session.locationTracker currentAccuracy];
     CLLocationAccuracy requiredAccuracy = [[self.session.locationTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
@@ -131,6 +135,11 @@
 }
 
 - (void)startNewLap:(NSNotification *)notification {
+    [self addCurrentLapButton];
+    [self performSegueWithIdentifier:@"showCurrentLap" sender:self];
+}
+
+- (void)addCurrentLapButton {
     self.startNewLapButton.frame = CGRectMake(20, 330, 220, 67);
     UIButton *currentLapButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     currentLapButton.frame = CGRectMake(250, 330, 50, 67);
@@ -139,7 +148,6 @@
     currentLapButton.tag = 1;
     [self.view addSubview:currentLapButton];
     [self.view setNeedsDisplay];
-    [self performSegueWithIdentifier:@"showCurrentLap" sender:self];
 }
 
 - (IBAction)currentLapButtonPressed:(id)sender {
@@ -160,18 +168,39 @@
 
 #pragma mark - view init
 
-- (void)buttonsInit {
+- (void)interfaceInit {
     [self.startTrackerButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.startNewLapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-    self.startTrackerButton.enabled = NO;
-    self.lapsHistoryButton.enabled = NO;
-    self.startNewLapButton.enabled = NO;
-    self.settingsButton.enabled = NO;
-    self.logButton.enabled = NO;
-    self.currentAccuracyLabel.text = @"Current accuracy: N/A";
-    self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
-    self.distanceFilterValueLabel.text = @"";
+    if (![self.session.status isEqualToString:@"running"]) {
+        self.startTrackerButton.enabled = NO;
+        self.lapsHistoryButton.enabled = NO;
+        self.settingsButton.enabled = NO;
+        self.logButton.enabled = NO;
+        self.startNewLapButton.enabled = NO;
+        self.currentAccuracyLabel.text = @"Current accuracy: N/A";
+        self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+        self.distanceFilterValueLabel.text = @"";
+    } else {
+        self.startTrackerButton.enabled = YES;
+        self.lapsHistoryButton.enabled = YES;
+        self.settingsButton.enabled = YES;
+        self.logButton.enabled = YES;
+        self.startNewLapButton.enabled = YES;
+        if ([self.session.locationTracker tracking]) {
+            [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
+        }
+        if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+            self.startTrackerButton.enabled = NO;
+            [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
+            if ([(STHTLapTracker *)self.session.locationTracker currentLap]) {
+                [self addCurrentLapButton];
+            }
+            self.distanceFilterValueLabel.text = @"-1";
+        }
+        [self setCurrentAccuracyText];
+        self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%.f", [[[self.session.settingsController currentSettingsForGroup:@"location"] objectForKey:@"distanceFilter"] doubleValue]];
+    }
 }
 
 - (void)addNotificationObservers {
@@ -210,11 +239,16 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self addNotificationObservers];
-    [self buttonsInit];
+    [self interfaceInit];
 }
 
 - (void)didReceiveMemoryWarning
