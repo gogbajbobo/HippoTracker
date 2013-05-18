@@ -236,8 +236,8 @@
         CLLocationSpeed currentSpeed = self.checkpointInterval / time;
         CLLocationSpeed compareSpeed = lastCheckpointSpeed * self.slowdownValue;
         if (currentSpeed < compareSpeed) {
-//            [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
-//            [self stopDetected];
+            [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
+            [self stopDetected];
         }
     }
     if (self.lapTracking) {
