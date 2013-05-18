@@ -54,7 +54,7 @@
     NSMutableArray *locationTrackerSettings = [NSMutableArray array];
     //                                      control, min, max, step, name
     [locationTrackerSettings addObject:@[@"slider", @"0", @"5", @"1", @"desiredAccuracy"]];
-    [locationTrackerSettings addObject:@[@"slider", @"5", @"30", @"10", @"requiredAccuracy"]];
+    [locationTrackerSettings addObject:@[@"slider", @"5", @"100", @"10", @"requiredAccuracy"]];
     [locationTrackerSettings addObject:@[@"slider", @"-1", @"20", @"1", @"distanceFilter"]];
     [locationTrackerSettings addObject:@[@"slider", @"0", @"5", @"1", @"timeFilter"]];
 //    [locationTrackerSettings addObject:@[@"slider", @"0", @"600", @"30", @"trackDetectionTime"]];

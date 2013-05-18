@@ -224,7 +224,8 @@
             [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
             [self stopDetected];
         }
-    } else {
+    }
+    if (self.lapTracking) {
         STHTLapCheckpoint *checkpoint = (STHTLapCheckpoint *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLapCheckpoint" inManagedObjectContext:self.document.managedObjectContext];
         checkpoint.checkpointNumber = [NSNumber numberWithInt:self.currentLap.checkpoints.count];
         checkpoint.time = [NSNumber numberWithDouble:time];
@@ -234,7 +235,6 @@
         self.lastCheckpoint = checkpoint;
     }
 }
-
 
 - (void)finishLap {
     self.lapTracking = NO;

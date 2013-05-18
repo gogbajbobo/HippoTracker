@@ -138,7 +138,8 @@
     accuracyLabel.text = [NSString stringWithFormat:@"%@", location.horizontalAccuracy];
 
     UILabel *speedLabel = [[UILabel alloc] initWithFrame:CGRectMake(290, 10, 30, 24)];
-    double speed = [location.speed doubleValue] *3.6;
+//    double speed = [location.speed doubleValue] *3.6;
+    double speed = [location.course doubleValue];
     speedLabel.text = [NSString stringWithFormat:@"%.1f", speed];
 
     firstLabel.font = font;
@@ -271,5 +272,39 @@
 //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location info" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
 //    [alert show];
 //}
+
+#pragma mark - NSFetchedResultsController delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    //    NSLog(@"controllerWillChangeContent");
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    //    NSLog(@"controllerDidChangeContent");
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    //    NSLog(@"controller didChangeObject");
+    
+    if (type == NSFetchedResultsChangeDelete) {
+        
+        //        NSLog(@"NSFetchedResultsChangeDelete");
+        
+    } else if (type == NSFetchedResultsChangeInsert) {
+        
+        //        NSLog(@"NSFetchedResultsChangeInsert");
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        
+        
+    } else if (type == NSFetchedResultsChangeUpdate) {
+        
+        //        NSLog(@"NSFetchedResultsChangeUpdate");
+        
+    }
+    
+}
+
 
 @end
