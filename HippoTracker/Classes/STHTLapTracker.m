@@ -235,9 +235,13 @@
         CLLocationSpeed lastCheckpointSpeed = [self.lastCheckpoint.interval doubleValue] / [self.lastCheckpoint.time doubleValue];
         CLLocationSpeed currentSpeed = self.checkpointInterval / time;
         CLLocationSpeed compareSpeed = lastCheckpointSpeed * self.slowdownValue;
+        [[(STSession *)self.session logger] saveLogMessageWithText:[NSString stringWithFormat:@"lastCP speed %.1f", lastCheckpointSpeed] type:@""];
+        [[(STSession *)self.session logger] saveLogMessageWithText:[NSString stringWithFormat:@"currentCP speed %.1f", currentSpeed] type:@""];
         if (currentSpeed < compareSpeed) {
             [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetected by slowdown" type:@""];
             [self stopDetected];
+        } else {
+            [[(STSession *)self.session logger] saveLogMessageWithText:@"no slowdown detected" type:@""];
         }
     }
     if (self.lapTracking) {
@@ -248,6 +252,7 @@
         checkpoint.interval = [NSNumber numberWithDouble:self.checkpointInterval];
         [self.currentLap addCheckpointsObject:checkpoint];
         self.lastCheckpoint = checkpoint;
+        [[(STSession *)self.session logger] saveLogMessageWithText:@"newCheckpoint" type:@""];
     }
 }
 
