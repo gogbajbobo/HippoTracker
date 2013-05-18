@@ -23,5 +23,6 @@
 
 - (void)startNewLapAtTime:(NSDate *)timestamp;
 - (void)finishLap;
+- (void)deleteLap:(STHTLap *)lap;
 
 @end

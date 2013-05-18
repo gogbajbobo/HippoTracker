@@ -109,6 +109,8 @@
     [cell.contentView addSubview:timeLabel];
     [cell.contentView addSubview:speedLabel];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 

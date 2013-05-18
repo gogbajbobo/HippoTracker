@@ -271,6 +271,15 @@
     }];
 }
 
+- (void)deleteLap:(STHTLap *)lap {
+    [self.document.managedObjectContext deleteObject:lap];
+    [self.document saveDocument:^(BOOL success) {
+        if (success) {
+            NSLog(@"deleteLap success");
+        }
+    }];
+}
+
 - (void)stopDetected {
     [self finishLap];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"stopDetected" object:self userInfo:nil];

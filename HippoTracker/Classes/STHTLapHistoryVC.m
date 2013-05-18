@@ -109,17 +109,29 @@
     [cell.contentView addSubview:timeLabel];
     [cell.contentView addSubview:speedLabel];
 
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return UITableViewCellEditingStyleNone;
+
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return UITableViewCellEditingStyleNone;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
     
 }
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
+        STHTLap *lap = (STHTLap *)[[sectionInfo objects] objectAtIndex:indexPath.row];
+        [(STHTLapTracker *)self.session.locationTracker deleteLap:lap];
+    }
     
 }
 
@@ -166,6 +178,15 @@
     if (type == NSFetchedResultsChangeDelete) {
         
         //        NSLog(@"NSFetchedResultsChangeDelete");
+        
+        if ([self.tableView numberOfRowsInSection:indexPath.section] == 1) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:YES];
+//            [self.tableView reloadData];
+        } else {
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        }
+
         
     } else if (type == NSFetchedResultsChangeInsert) {
         
