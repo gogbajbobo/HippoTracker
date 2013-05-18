@@ -52,7 +52,7 @@
 }
 
 - (id)enqueue:(id)anObject {
-    NSLog(@"anObject %@", anObject);
+//    NSLog(@"anObject %@", anObject);
     id dequeueObject = nil;
     if (anObject) {
         if (self.filled) {

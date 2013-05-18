@@ -140,6 +140,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     
     CLLocation *newLocation = [locations lastObject];
+//    [[(STSession *)self.session logger] saveLogMessageWithText:@"didUpdateLocation" type:@""];
     NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
     if (locationAge < 2.0 && newLocation.horizontalAccuracy > 0) {
         self.currentAccuracy = newLocation.horizontalAccuracy;

@@ -276,16 +276,18 @@
 #pragma mark - NSFetchedResultsController delegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    //    NSLog(@"controllerWillChangeContent");
+//    NSLog(@"controllerWillChangeContent");
+    [self.tableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    //    NSLog(@"controllerDidChangeContent");
+//    NSLog(@"controllerDidChangeContent");
+    [self.tableView endUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
-    //    NSLog(@"controller didChangeObject");
+//    NSLog(@"controller didChangeObject");
     
     if (type == NSFetchedResultsChangeDelete) {
         
@@ -295,7 +297,7 @@
         
         //        NSLog(@"NSFetchedResultsChangeInsert");
         [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//        [self.tableView scrollToRowAtIndexPath:newIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         
         
     } else if (type == NSFetchedResultsChangeUpdate) {
