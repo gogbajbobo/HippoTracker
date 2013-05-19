@@ -31,7 +31,7 @@
     NSDictionary *sessionSettings = [NSDictionary dictionaryWithObjectsAndKeys:
                                      @"-2", @"desiredAccuracy",
                                      @"10", @"requiredAccuracy",
-                                     @"1", @"distanceFilter",
+                                     @"-1", @"distanceFilter",
                                      @"0.0", @"timeFilter",
                                      @"100", @"HTCheckpointInterval",
                                      @"0.7", @"HTSlowdownValue",

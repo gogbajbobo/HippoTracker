@@ -121,6 +121,7 @@
         [[self locationManager] startUpdatingLocation];
         self.movementAnalyzer = [[STMovementAnalyzer alloc] init];
         self.movementAnalyzer.locationsQueue.queueLength = 4;
+        self.movementAnalyzer.distanceFilter = 1.0;
     }
 }
 
