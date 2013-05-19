@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceFilterValueLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logButton;
+@property (nonatomic, strong) STHTLapTracker *lapTracker;
 
 @property (nonatomic, strong) STSession *session;
 
@@ -33,6 +34,13 @@
         _session = [[STSessionManager sharedManager] currentSession];
     }
     return _session;
+}
+
+- (STHTLapTracker *)lapTracker {
+    if (!_lapTracker) {
+        _lapTracker = (STHTLapTracker *)self.session.locationTracker;
+    }
+    return _lapTracker;
 }
 
 - (IBAction)logButtonPressed:(id)sender {
@@ -50,13 +58,12 @@
 }
 
 - (IBAction)startTrackerButtonPressed:(id)sender {
-    STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
-    if (!lapTracker.tracking) {
-        [lapTracker startTracking];
+    if (!self.lapTracker.tracking) {
+        [self.lapTracker startTracking];
         [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
         [self currentAccuracyChanged:nil];
     } else {
-        [lapTracker stopTracking];
+        [self.lapTracker stopTracking];
         [self.startTrackerButton setTitle:@"START TRACKER" forState:UIControlStateNormal];
         self.startNewLapButton.enabled = NO;
         self.currentAccuracyLabel.text = @"Current accuracy: N/A";
@@ -69,15 +76,14 @@
 }
 
 - (IBAction)startNewLapButtonPressed:(id)sender {
-    STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
-    if (!lapTracker.lapTracking) {
+    if (!self.lapTracker.lapTracking) {
         self.startTrackerButton.enabled = NO;
-        [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
-        lapTracker.lapTracking = YES;
+        [self.startNewLapButton setTitle:@"WAITING START" forState:UIControlStateNormal];
+        self.lapTracker.lapTracking = YES;
     } else {
         self.startTrackerButton.enabled = YES;
         [self removeCurrentLapButton];
-        [lapTracker finishLap];
+        [self.lapTracker finishLap];
     }
     
 }
@@ -97,7 +103,7 @@
 
 - (void)setCurrentAccuracyText {
 
-    CLLocationAccuracy currentAccuracy = [(STHTLapTracker *)self.session.locationTracker currentAccuracy];
+    CLLocationAccuracy currentAccuracy = [self.lapTracker currentAccuracy];
     CLLocationAccuracy requiredAccuracy = [[self.session.locationTracker.settings objectForKey:@"requiredAccuracy"] doubleValue];
     
     if (currentAccuracy == 0.0) {
@@ -110,7 +116,7 @@
         self.startNewLapButton.enabled = YES;
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
     } else {
-        if (![(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+        if (!self.lapTracker.lapTracking) {
             self.startNewLapButton.enabled = NO;
         }
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.0 blue:0.0 alpha:1.0];
@@ -119,7 +125,7 @@
 }
 
 - (void)lapTracking:(NSNotification *)notification {
-    if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+    if (self.lapTracker.lapTracking) {
         self.distanceFilterValueLabel.text = @"-1";
     } else {
         self.distanceFilterValueLabel.text = [NSString stringWithFormat:@"%.f", [[[self.session.settingsController currentSettingsForGroup:@"location"] objectForKey:@"distanceFilter"] doubleValue]];
@@ -140,6 +146,7 @@
 
 - (void)addCurrentLapButton {
     self.startNewLapButton.frame = CGRectMake(20, 330, 220, 67);
+    [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
     UIButton *currentLapButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     currentLapButton.frame = CGRectMake(250, 330, 50, 67);
     [currentLapButton setTitle:@">>" forState:UIControlStateNormal];
@@ -164,8 +171,7 @@
     
     if ([segue.identifier isEqualToString:@"showCurrentLap"]) {
         if ([segue.destinationViewController isKindOfClass:[STHTLapInfoVC class]]) {
-            STHTLapTracker *lapTracker = (STHTLapTracker *)self.session.locationTracker;
-            [(STHTLapInfoVC *)segue.destinationViewController setLap:lapTracker.currentLap];
+            [(STHTLapInfoVC *)segue.destinationViewController setLap:self.lapTracker.currentLap];
         }
     }
     
@@ -196,11 +202,13 @@
         if ([self.session.locationTracker tracking]) {
             [self.startTrackerButton setTitle:@"STOP TRACKER" forState:UIControlStateNormal];
         }
-        if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+        if (self.lapTracker.lapTracking) {
             self.startTrackerButton.enabled = NO;
-            [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
-            if ([(STHTLapTracker *)self.session.locationTracker currentLap]) {
+            if (self.lapTracker.currentLap) {
                 [self addCurrentLapButton];
+                [self.startNewLapButton setTitle:@"FINISH LAP" forState:UIControlStateNormal];
+            } else {
+                [self.startNewLapButton setTitle:@"WAITING START" forState:UIControlStateNormal];
             }
             self.distanceFilterValueLabel.text = @"-1";
         }
