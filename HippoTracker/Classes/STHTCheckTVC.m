@@ -87,6 +87,12 @@
     static NSString *CellIdentifier = @"checkCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+//    for (UIView *subviews in cell.contentView.subviews) {
+//        if ([subviews isKindOfClass:[UILabel class]]) {
+//            [subviews removeFromSuperview];
+//        }
+//    }
+    
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
     STHTLocation *location = (STHTLocation *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     

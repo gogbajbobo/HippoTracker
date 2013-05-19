@@ -74,6 +74,12 @@
     static NSString *CellIdentifier = @"lapCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    for (UIView *subviews in cell.contentView.subviews) {
+        if ([subviews isKindOfClass:[UILabel class]]) {
+            [subviews removeFromSuperview];
+        }
+    }
+
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.resultsController sections] objectAtIndex:indexPath.section];
     STHTLap *lap = (STHTLap *)[[sectionInfo objects] objectAtIndex:indexPath.row];
     
@@ -109,7 +115,7 @@
     [cell.contentView addSubview:timeLabel];
     [cell.contentView addSubview:speedLabel];
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
 }
