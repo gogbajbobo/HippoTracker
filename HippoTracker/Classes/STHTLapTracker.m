@@ -285,6 +285,8 @@
             }
         }];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"lapFinished" object:self userInfo:nil];
+
 }
 
 - (void)deleteLap:(STHTLap *)lap {

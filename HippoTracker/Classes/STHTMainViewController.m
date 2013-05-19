@@ -134,6 +134,10 @@
 }
 
 - (void)stopDetected:(NSNotification *)notification {
+
+}
+
+- (void)lapFinished:(NSNotification *)notification {
     self.startTrackerButton.enabled = YES;
     [self removeCurrentLapButton];
 }
@@ -234,6 +238,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionStatusChanged:) name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentAccuracyChanged:) name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapFinished:) name:@"lapFinished" object:self.session.locationTracker];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startNewLap:) name:@"startNewLap" object:self.session.locationTracker];
 
 
@@ -245,6 +251,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sessionStatusChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"currentAccuracyChanged" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapFinished" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startNewLap" object:self.session.locationTracker];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"locationSettingsChanged" object:self.session];
