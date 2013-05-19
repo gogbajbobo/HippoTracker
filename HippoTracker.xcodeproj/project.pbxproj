@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2421CB8A50B94B9396E97083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E16D92E4A04E48A75B0766 /* libPods.a */; };
-		2C28A9F717479BF1001AE36B /* STQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C28A9F617479BF1001AE36B /* STQueue.m */; };
-		2C28A9FD1747A13E001AE36B /* STMovementAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C28A9FC1747A13E001AE36B /* STMovementAnalyzer.m */; };
 		2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */; };
 		2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01A1743C14000B7F807 /* STHTLap+dayAsString.m */; };
 		2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01D1743CAA400B7F807 /* STHTLapTracker.m */; };
@@ -55,10 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C28A9F517479BF1001AE36B /* STQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STQueue.h; sourceTree = "<group>"; };
-		2C28A9F617479BF1001AE36B /* STQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STQueue.m; sourceTree = "<group>"; };
-		2C28A9FB1747A13E001AE36B /* STMovementAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMovementAnalyzer.h; sourceTree = "<group>"; };
-		2C28A9FC1747A13E001AE36B /* STMovementAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMovementAnalyzer.m; sourceTree = "<group>"; };
 		2C4CC0161743BB6800B7F807 /* STHTLapHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapHistoryVC.h; sourceTree = "<group>"; };
 		2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapHistoryVC.m; sourceTree = "<group>"; };
 		2C4CC0191743C14000B7F807 /* STHTLap+dayAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTLap+dayAsString.h"; sourceTree = "<group>"; };
@@ -223,10 +217,6 @@
 			children = (
 				2C4CC01C1743CAA400B7F807 /* STHTLapTracker.h */,
 				2C4CC01D1743CAA400B7F807 /* STHTLapTracker.m */,
-				2C28A9F517479BF1001AE36B /* STQueue.h */,
-				2C28A9F617479BF1001AE36B /* STQueue.m */,
-				2C28A9FB1747A13E001AE36B /* STMovementAnalyzer.h */,
-				2C28A9FC1747A13E001AE36B /* STMovementAnalyzer.m */,
 				2C749DF317420786005B7844 /* STHTMainViewController.h */,
 				2C749DF417420787005B7844 /* STHTMainViewController.m */,
 				2CC2C9631746188100EDD93A /* STHTSettingsTVC.h */,
@@ -428,8 +418,6 @@
 				2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */,
 				2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */,
 				2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */,
-				2C28A9F717479BF1001AE36B /* STQueue.m in Sources */,
-				2C28A9FD1747A13E001AE36B /* STMovementAnalyzer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
