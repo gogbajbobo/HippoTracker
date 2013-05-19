@@ -133,7 +133,9 @@
 
 - (void)startNewLap:(NSNotification *)notification {
     [self addCurrentLapButton];
-    [self performSegueWithIdentifier:@"showCurrentLap" sender:self];
+    if ([self.view window]) {
+        [self performSegueWithIdentifier:@"showCurrentLap" sender:self];
+    }
 }
 
 - (void)addCurrentLapButton {

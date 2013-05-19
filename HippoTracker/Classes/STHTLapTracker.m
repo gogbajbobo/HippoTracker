@@ -215,6 +215,8 @@
     
     if (self.lastLocation) {
         [self calculateDistance:currentLocation];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:self.lastLocation, @"lastLocation", currentLocation, @"currentLocation", [NSNumber numberWithDouble:self.checkpointDistance], @"checkpointDistance", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newLocation" object:self userInfo:userInfo];
     }
     self.lastLocation = currentLocation;
     

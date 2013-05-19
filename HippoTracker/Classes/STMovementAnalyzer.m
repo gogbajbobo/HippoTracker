@@ -33,7 +33,7 @@
                     CLLocation *location = [self.locationsQueue objectAtIndex:i];
                     moving |= [self enoughOfDistanceFrom:location to:followingLocation distanceFilter:distanceFilter];
                     if (moving) {
-                        NSLog(@"moving");
+//                        NSLog(@"moving");
                         break;
                     }
                     followingLocation = location;
@@ -53,7 +53,7 @@
                     CLLocation *location = [self.locationsQueue objectAtIndex:i];
                     moving &= [self enoughOfDistanceFrom:location to:prevLocation distanceFilter:distanceFilter];
                     if (!moving) {
-                        NSLog(@"not moving");
+//                        NSLog(@"not moving");
                         break;
                     }
                     prevLocation = location;

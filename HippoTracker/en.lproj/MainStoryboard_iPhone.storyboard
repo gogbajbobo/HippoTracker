@@ -155,6 +155,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="lapButtonPressed:" destination="tkK-FT-r4U" eventType="touchUpInside" id="tgC-wY-fcF"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance, m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1KJ-eO-uOy">
                                 <rect key="frame" x="0.0" y="0.0" width="118" height="32"/>

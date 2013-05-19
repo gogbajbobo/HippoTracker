@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lapDateLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *checkButton;
 @property (weak, nonatomic) IBOutlet UIButton *lapButton;
+@property (nonatomic, strong) NSString *lapInfo;
 @property (nonatomic, strong) NSFetchedResultsController *resultsController;
 @property (nonatomic, strong) STSession *session;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -48,12 +50,22 @@
     if (![self.resultsController performFetch:&error]) {
         NSLog(@"performFetch error %@", error);
     } else {
-        
+        [self.tableView reloadData];
     }
 }
 
 - (IBAction)checkButtonPressed:(id)sender {
     [self performSegueWithIdentifier:@"showCheckTVC" sender:self];
+}
+
+- (IBAction)lapButtonPressed:(id)sender {
+    if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+        [(STHTLapTracker *)self.session.locationTracker finishLap];
+        [self stopDetected:nil];
+    } else {
+        [self lapButtonWaitingStartDetection];
+        [(STHTLapTracker *)self.session.locationTracker setLapTracking:YES];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -65,6 +77,54 @@
         }
     }
     
+}
+
+- (void)stopDetected:(NSNotification *)notification {
+    [self.timer invalidate];
+    self.timer = nil;
+    [self lapButtonInit];
+}
+
+- (void)newLapStarted:(NSNotification *)notification {
+    self.lap = [notification.userInfo objectForKey:@"currentLap"];
+    self.resultsController = nil;
+    [self performFetch];
+    if (!self.timer) {
+        [self timerInit];
+    }
+}
+
+- (void)newLocationReceived:(NSNotification *)notification {
+    CLLocation *lastLocation = [notification.userInfo objectForKey:@"lastLocation"];
+    CLLocation *currentLocation = [notification.userInfo objectForKey:@"currentLocation"];
+    CLLocationDistance checkpointDistance = [[notification.userInfo objectForKey:@"checkpointDistance"] doubleValue];
+    CLLocationDistance distance = [currentLocation distanceFromLocation:lastLocation];
+    NSTimeInterval time = [currentLocation.timestamp timeIntervalSinceDate:lastLocation.timestamp];
+    CLLocationSpeed speed = 3.6 * distance / time;
+    self.lapInfo = [NSString stringWithFormat:@"%.1fm %.fkm/h", checkpointDistance, speed];
+}
+
+- (void)lapButtonWaitingStartDetection {
+    [self.lapButton setTitle:@"WAITING START" forState:UIControlStateNormal];
+}
+
+- (void)lapButtonShowLapInfo:(NSString *)lapInfo {
+    [self.lapButton setTitle:lapInfo forState:UIControlStateNormal];
+}
+
+- (void)lapButtonInit {
+    [self.lapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
+}
+
+- (void)timerTick {
+    NSTimeInterval timeFromStart = [[NSDate date] timeIntervalSinceDate:self.lap.startTime];
+    NSString *info = [NSString stringWithFormat:@"%.1fs %@", timeFromStart, self.lapInfo];
+    [self lapButtonShowLapInfo:info];
+}
+
+- (void)timerInit {
+    self.timer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:0.1 target:self selector:@selector(timerTick) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark - Table view data source
@@ -200,18 +260,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.lapDateLabel.text = [self formatedLapDate];
-    [self.lapButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-    self.lapButton.enabled = NO;
+
+    if (self.lapButton) {
+        [self.lapButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+        [self addNotificationObservers];
+        if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
+            self.lapInfo = @"0m 0km/h";
+            [self timerInit];
+        } else {
+            [self lapButtonInit];
+        }
+    }
+
     [self performFetch];
+}
+
+- (void)addNotificationObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLocationReceived:) name:@"newLocation" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLapStarted:) name:@"startNewLap" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
+
+}
+
+- (void)removeNotificationsObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newLocation" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startNewLap" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     if ([self isViewLoaded] && [self.view window] == nil) {
+        if (self.lapButton) {
+            [self removeNotificationsObservers];
+            [self.timer invalidate];
+        }
         self.view = nil;
     }
 }
