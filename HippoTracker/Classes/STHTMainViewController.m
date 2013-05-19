@@ -152,7 +152,7 @@
     currentLapButton.frame = CGRectMake(250, 330, 50, 67);
     [currentLapButton setTitle:@">>" forState:UIControlStateNormal];
     [currentLapButton addTarget:self action:@selector(currentLapButtonPressed:) forControlEvents:UIControlEventTouchDown];
-    currentLapButton.tag = 1;
+    currentLapButton.tag = 3;
     [self.view addSubview:currentLapButton];
     [self.view setNeedsDisplay];
 }
@@ -160,7 +160,7 @@
 - (void)removeCurrentLapButton {
     self.startNewLapButton.frame = CGRectMake(20, 330, 280, 67);
     [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
-    [[self.view viewWithTag:1] removeFromSuperview];
+    [[self.view viewWithTag:3] removeFromSuperview];
     [self.view setNeedsDisplay];
 }
 
@@ -181,6 +181,16 @@
 
 #pragma mark - view init
 
+- (void)waitingSessionStart {
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = self.view.center;
+    spinner.tag = 1;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+
+}
+
 - (void)interfaceInit {
     [self.startTrackerButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
@@ -194,12 +204,7 @@
         self.currentAccuracyLabel.text = @"Current accuracy: N/A";
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
         self.distanceFilterValueLabel.text = @"";
-        
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        spinner.center = self.view.center;
-        spinner.tag = 1;
-        [self.view addSubview:spinner];
-        [spinner startAnimating];
+        [self waitingSessionStart];
         
     } else {
         self.startTrackerButton.enabled = YES;
