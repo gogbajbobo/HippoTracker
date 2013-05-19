@@ -90,6 +90,7 @@
 
 - (void)sessionStatusChanged:(NSNotification *)notification {
     if ([self.session.status isEqualToString:@"running"]) {
+        [[self.view viewWithTag:1] removeFromSuperview];
         self.startTrackerButton.enabled = YES;
         self.lapsHistoryButton.enabled = YES;
         self.settingsButton.enabled = YES;
@@ -193,6 +194,13 @@
         self.currentAccuracyLabel.text = @"Current accuracy: N/A";
         self.currentAccuracyLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
         self.distanceFilterValueLabel.text = @"";
+        
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        spinner.center = self.view.center;
+        spinner.tag = 1;
+        [self.view addSubview:spinner];
+        [spinner startAnimating];
+        
     } else {
         self.startTrackerButton.enabled = YES;
         self.lapsHistoryButton.enabled = YES;
