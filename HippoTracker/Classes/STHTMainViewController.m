@@ -76,10 +76,7 @@
         lapTracker.lapTracking = YES;
     } else {
         self.startTrackerButton.enabled = YES;
-        self.startNewLapButton.frame = CGRectMake(20, 330, 280, 67);
-        [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
-        [[self.view viewWithTag:1] removeFromSuperview];
-        [self.view setNeedsDisplay];
+        [self removeCurrentLapButton];
         [lapTracker finishLap];
     }
     
@@ -131,7 +128,7 @@
 
 - (void)stopDetected:(NSNotification *)notification {
     self.startTrackerButton.enabled = YES;
-    [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
+    [self removeCurrentLapButton];
 }
 
 - (void)startNewLap:(NSNotification *)notification {
@@ -147,6 +144,13 @@
     [currentLapButton addTarget:self action:@selector(currentLapButtonPressed:) forControlEvents:UIControlEventTouchDown];
     currentLapButton.tag = 1;
     [self.view addSubview:currentLapButton];
+    [self.view setNeedsDisplay];
+}
+
+- (void)removeCurrentLapButton {
+    self.startNewLapButton.frame = CGRectMake(20, 330, 280, 67);
+    [self.startNewLapButton setTitle:@"START NEW LAP" forState:UIControlStateNormal];
+    [[self.view viewWithTag:1] removeFromSuperview];
     [self.view setNeedsDisplay];
 }
 
