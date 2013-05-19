@@ -103,6 +103,16 @@
     }
 }
 
+- (void)setLapTracking:(BOOL)lapTracking {
+    if (lapTracking != _lapTracking) {
+        _lapTracking = lapTracking;
+        if (_lapTracking) {
+            [self.movementAnalyzer.locationsQueue clear];
+            [self.movementAnalyzer.accelerometerQueue clear];
+        }
+    }
+}
+
 #pragma mark - tracking
 
 - (void)startTracking {

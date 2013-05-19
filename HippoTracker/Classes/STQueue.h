@@ -16,5 +16,6 @@
 - (id)enqueue:(id)anObject;
 - (id)head;
 - (id)tail;
+- (void)clear;
 
 @end

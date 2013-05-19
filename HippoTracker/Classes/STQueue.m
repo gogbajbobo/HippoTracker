@@ -79,8 +79,12 @@
     }
 }
 
+- (void)clear {
+    [self removeAllObjects];
+}
 
-#pragma mark - override
+
+#pragma mark - override NSMutableArray methods
 
 - (id) init
 {
