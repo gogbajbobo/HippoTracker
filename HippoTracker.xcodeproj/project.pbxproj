@@ -36,6 +36,7 @@
 		2C7CB7131748FB3100054E47 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7101748FB3100054E47 /* Default.png */; };
 		2C7CB7151748FB3100054E47 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7121748FB3100054E47 /* Default@2x.png */; };
 		2C7CB7191748FB8B00054E47 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7181748FB8A00054E47 /* Default-568h@2x.png */; };
+		2C7CB722174A07C200054E47 /* STHTAuthBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CB721174A07C200054E47 /* STHTAuthBasic.m */; };
 		2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */; };
 		2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */; };
 		2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */; };
@@ -93,6 +94,8 @@
 		2C7CB7101748FB3100054E47 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2C7CB7121748FB3100054E47 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2C7CB7181748FB8A00054E47 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2C7CB720174A07C200054E47 /* STHTAuthBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTAuthBasic.h; sourceTree = "<group>"; };
+		2C7CB721174A07C200054E47 /* STHTAuthBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTAuthBasic.m; sourceTree = "<group>"; };
 		2CC2C95C1744C7A500EDD93A /* STHTCheckTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTCheckTVC.h; sourceTree = "<group>"; };
 		2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTCheckTVC.m; sourceTree = "<group>"; };
 		2CC2C9631746188100EDD93A /* STHTSettingsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTSettingsTVC.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				2C4CC0201743D49700B7F807 /* STHTLapInfoVC.m */,
 				2CC2C95C1744C7A500EDD93A /* STHTCheckTVC.h */,
 				2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */,
+				2C7CB720174A07C200054E47 /* STHTAuthBasic.h */,
+				2C7CB721174A07C200054E47 /* STHTAuthBasic.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */,
 				2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */,
 				2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */,
+				2C7CB722174A07C200054E47 /* STHTAuthBasic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

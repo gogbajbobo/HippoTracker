@@ -8,7 +8,7 @@
 
 #import "STAppDelegate.h"
 #import "STSessionManager.h"
-#import "STAuthBasic.h"
+#import "STHTAuthBasic.h"
 #import <UDPushAuth/UDAuthTokenRetriever.h>
 #import "STHTLapTracker.h"
 #import <STManagedTracker/STBatteryTracker.h>
@@ -19,11 +19,11 @@
 {
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-    [[STAuthBasic sharedOAuth] checkToken];
+    [[STHTAuthBasic sharedOAuth] checkToken];
     
     self.pushNotificatonCenter = [UDPushNotificationCenter sharedPushNotificationCenter];
-    self.authCodeRetriever = (UDPushAuthCodeRetriever *)[(UDAuthTokenRetriever *)[[STAuthBasic sharedOAuth] tokenRetriever] codeDelegate];
-    self.reachability = [Reachability reachabilityWithHostname:[[STAuthBasic sharedOAuth] reachabilityServer]];
+    self.authCodeRetriever = (UDPushAuthCodeRetriever *)[(UDAuthTokenRetriever *)[[STHTAuthBasic sharedOAuth] tokenRetriever] codeDelegate];
+    self.reachability = [Reachability reachabilityWithHostname:[[STHTAuthBasic sharedOAuth] reachabilityServer]];
     self.reachability.reachableOnWWAN = YES;
     [self.reachability startNotifier];
     
@@ -39,7 +39,7 @@
                               [[STHTLapTracker alloc] init], @"locationTracker",
                               nil];
     
-    [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STAuthBasic sharedOAuth] trackers:trackers settings:sessionSettings];
+    [[STSessionManager sharedManager] startSessionForUID:@"1" authDelegate:[STHTAuthBasic sharedOAuth] trackers:trackers settings:sessionSettings];
 
     return YES;
 }
