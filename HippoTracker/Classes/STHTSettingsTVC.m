@@ -65,7 +65,9 @@
 
     [locationTrackerSettings addObject:@[@"slider", @"10", @"500", @"50", @"HTCheckpointInterval"]];
     [locationTrackerSettings addObject:@[@"slider", @"0.1", @"0.9", @"0.1", @"HTSlowdownValue"]];
-    
+    [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTStartSpeedThreshold"]];
+    [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTFinishSpeedThreshold"]];
+
     [controlsSettings setValue:locationTrackerSettings forKey:@"location"];
     
     
@@ -188,7 +190,7 @@
         timeFormatter.formatWidth = 2;
         timeFormatter.paddingCharacter = @"0";
         valueString = [NSString stringWithFormat:@"%@:%@", [timeFormatter stringFromNumber:[NSNumber numberWithDouble:hours]], [timeFormatter stringFromNumber:[NSNumber numberWithDouble:minutes]]];
-    } else if ([settingName isEqualToString:@"trackScale"] || [settingName isEqualToString:@"HTSlowdownValue"]) {
+    } else if ([settingName isEqualToString:@"trackScale"] || [settingName isEqualToString:@"HTSlowdownValue"] || [settingName isEqualToString:@"HTStartSpeedThreshold"] || [settingName isEqualToString:@"HTFinishSpeedThreshold"]) {
         valueString = [NSString stringWithFormat:@"%.1f", [valueString doubleValue]];
     } else {
         valueString = [NSString stringWithFormat:@"%.f", [valueString doubleValue]];

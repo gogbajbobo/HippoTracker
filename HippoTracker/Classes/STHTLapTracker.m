@@ -26,7 +26,8 @@
 @property (nonatomic) CLLocationDistance checkpointInterval;
 @property (nonatomic) double slowdownValue;
 @property (nonatomic, strong) STMovementAnalyzer *movementAnalyzer;
-
+@property (nonatomic) CLLocationDistance startSpeedThreshold;
+@property (nonatomic) CLLocationDistance finishSpeedThreshold;
 
 @end
 
@@ -96,6 +97,14 @@
     return [[self.settings valueForKey:@"HTSlowdownValue"] doubleValue];
 }
 
+- (CLLocationDistance)startSpeedThreshold {
+    return [[self.settings valueForKey:@"HTStartSpeedThreshold"] doubleValue];
+}
+
+- (CLLocationDistance)finishSpeedThreshold {
+    return [[self.settings valueForKey:@"HTFinishSpeedThreshold"] doubleValue];    
+}
+
 - (void)setCurrentAccuracy:(CLLocationAccuracy)currentAccuracy {
     if (_currentAccuracy != currentAccuracy) {
         _currentAccuracy = currentAccuracy;
@@ -109,6 +118,7 @@
         if (_lapTracking) {
             [self.movementAnalyzer.locationsQueue clear];
             [self.movementAnalyzer.accelerometerQueue clear];
+            self.movementAnalyzer.distanceFilter = self.startSpeedThreshold;
         }
     }
 }
@@ -121,7 +131,6 @@
         [[self locationManager] startUpdatingLocation];
         self.movementAnalyzer = [[STMovementAnalyzer alloc] init];
         self.movementAnalyzer.locationsQueue.queueLength = 4;
-        self.movementAnalyzer.distanceFilter = 1.0;
     }
 }
 
@@ -160,6 +169,7 @@
                 if (!self.movementAnalyzer.GPSMovingDetected) {
                     [self.movementAnalyzer addLocation:newLocation];
                     if (self.movementAnalyzer.GPSMovingDetected) {
+                        self.movementAnalyzer.distanceFilter = self.finishSpeedThreshold;
                         [[(STSession *)self.session logger] saveLogMessageWithText:@"startDetectedByAnalyzer" type:@""];
                         for (CLLocation *location in self.movementAnalyzer.locationsQueue) {
                             [self addLocation:location];
@@ -169,7 +179,8 @@
                     [self addLocation:newLocation];
                     [self.movementAnalyzer addLocation:newLocation];
                     if (!self.movementAnalyzer.GPSMovingDetected) {
-                        [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetectedByAnalyzer" type:@""];                        
+                        self.movementAnalyzer.distanceFilter = self.startSpeedThreshold;
+                        [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetectedByAnalyzer" type:@""];
                         [self stopDetected];
                     }
                 }
