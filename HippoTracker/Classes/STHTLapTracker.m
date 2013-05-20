@@ -117,9 +117,17 @@
         _lapTracking = lapTracking;
         if (_lapTracking) {
             [self.movementAnalyzer.locationsQueue clear];
-            [self.movementAnalyzer.accelerometerQueue clear];
             self.movementAnalyzer.startSpeedThreshold = self.startSpeedThreshold;
             self.movementAnalyzer.finishSpeedThreshold = self.finishSpeedThreshold;
+            [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking ON" type:@""];
+            NSString *message = [NSString stringWithFormat:@"startThreshold %.1f", self.movementAnalyzer.startSpeedThreshold];
+            [[(STSession *)self.session logger] saveLogMessageWithText:message type:@""];
+            message = [NSString stringWithFormat:@"finishThreshold %.1f", self.movementAnalyzer.finishSpeedThreshold];
+            [[(STSession *)self.session logger] saveLogMessageWithText:message type:@""];
+            message = [NSString stringWithFormat:@"locationsQueue count = %d", self.movementAnalyzer.locationsQueue.count];
+            [[(STSession *)self.session logger] saveLogMessageWithText:message type:@""];
+        } else {
+            [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking OFF" type:@""];
         }
     }
 }
@@ -196,15 +204,15 @@
     if (self.lapTracking) {
         STHTLap *lap = (STHTLap *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLap" inManagedObjectContext:self.document.managedObjectContext];
         self.currentLap = lap;
-        [self.hippodrome addLapsObject:lap];
         self.currentLap.startTime = timestamp;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"startNewLap" object:self userInfo:[NSDictionary dictionaryWithObject:self.currentLap forKey:@"currentLap"]];
+        [self.hippodrome addLapsObject:lap];
         self.checkpointTime = self.currentLap.startTime;
         self.checkpointDistance = 0;
         self.lastLocation = nil;
         self.lastCheckpoint = nil;
         self.locationManager.distanceFilter = -1;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"startNewLap" object:self userInfo:[NSDictionary dictionaryWithObject:self.currentLap forKey:@"currentLap"]];
         [[(STSession *)self.session logger] saveLogMessageWithText:@"startNewLap" type:@""];
         [self.document saveDocument:^(BOOL success) {
             if (success) {

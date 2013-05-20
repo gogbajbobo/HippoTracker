@@ -85,6 +85,12 @@
     [self lapButtonInit];
 }
 
+- (void)lapFinished:(NSNotification *)notification {
+    [self.timer invalidate];
+    self.timer = nil;
+    [self lapButtonInit];
+}
+
 - (void)newLapStarted:(NSNotification *)notification {
     self.lap = [notification.userInfo objectForKey:@"currentLap"];
     self.resultsController = nil;
@@ -282,14 +288,14 @@
 - (void)addNotificationObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLocationReceived:) name:@"newLocation" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newLapStarted:) name:@"startNewLap" object:self.session.locationTracker];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopDetected:) name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapFinished:) name:@"lapFinished" object:self.session.locationTracker];
 
 }
 
 - (void)removeNotificationsObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"newLocation" object:self.session.locationTracker];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startNewLap" object:self.session.locationTracker];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"stopDetected" object:self.session.locationTracker];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapFinished" object:self.session.locationTracker];
 }
 
 - (void)didReceiveMemoryWarning
