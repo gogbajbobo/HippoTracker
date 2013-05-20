@@ -33,6 +33,7 @@
                                      @"10", @"requiredAccuracy",
                                      @"-1", @"distanceFilter",
                                      @"0.0", @"timeFilter",
+                                     @"100", @"fetchLimit",
                                      nil];
     
     NSDictionary *trackers = [NSDictionary dictionaryWithObjectsAndKeys:
