@@ -214,13 +214,13 @@
         self.locationManager.distanceFilter = -1;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
         [[(STSession *)self.session logger] saveLogMessageWithText:@"startNewLap" type:@""];
-        [self.document saveDocument:^(BOOL success) {
-            if (success) {
-//                NSLog(@"save newLap success");
-            } else {
-                NSLog(@"save newLap NO success");
-            }
-        }];
+//        [self.document saveDocument:^(BOOL success) {
+//            if (success) {
+////                NSLog(@"save newLap success");
+//            } else {
+//                NSLog(@"save newLap NO success");
+//            }
+//        }];
     }
     
 }
@@ -239,14 +239,14 @@
     }
     self.lastLocation = currentLocation;
     
-    [self.document saveDocument:^(BOOL success) {
-//        NSLog(@"save newLocation");
-        if (success) {
-//            NSLog(@"save newLocation success");
-        } else {
-            NSLog(@"save newLocation NO success");
-        }
-    }];
+//    [self.document saveDocument:^(BOOL success) {
+////        NSLog(@"save newLocation");
+//        if (success) {
+////            NSLog(@"save newLocation success");
+//        } else {
+//            NSLog(@"save newLocation NO success");
+//        }
+//    }];
     
 }
 
@@ -311,11 +311,11 @@
 
 - (void)deleteLap:(STHTLap *)lap {
     [self.document.managedObjectContext deleteObject:lap];
-    [self.document saveDocument:^(BOOL success) {
-        if (success) {
-            NSLog(@"deleteLap success");
-        }
-    }];
+//    [self.document saveDocument:^(BOOL success) {
+//        if (success) {
+//            NSLog(@"deleteLap success");
+//        }
+//    }];
 }
 
 - (void)stopDetected {
