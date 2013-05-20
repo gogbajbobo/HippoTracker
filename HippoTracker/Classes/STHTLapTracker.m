@@ -290,6 +290,7 @@
 
 - (void)finishLap {
     self.lapTracking = NO;
+    self.movementAnalyzer.GPSMovingDetected = NO;
     self.locationManager.distanceFilter = self.distanceFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
 
