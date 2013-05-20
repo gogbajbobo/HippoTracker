@@ -118,7 +118,8 @@
         if (_lapTracking) {
             [self.movementAnalyzer.locationsQueue clear];
             [self.movementAnalyzer.accelerometerQueue clear];
-            self.movementAnalyzer.distanceFilter = self.startSpeedThreshold;
+            self.movementAnalyzer.startSpeedThreshold = self.startSpeedThreshold;
+            self.movementAnalyzer.finishSpeedThreshold = self.finishSpeedThreshold;
         }
     }
 }
@@ -169,7 +170,6 @@
                 if (!self.movementAnalyzer.GPSMovingDetected) {
                     [self.movementAnalyzer addLocation:newLocation];
                     if (self.movementAnalyzer.GPSMovingDetected) {
-                        self.movementAnalyzer.distanceFilter = self.finishSpeedThreshold;
                         [[(STSession *)self.session logger] saveLogMessageWithText:@"startDetectedByAnalyzer" type:@""];
                         for (CLLocation *location in self.movementAnalyzer.locationsQueue) {
                             [self addLocation:location];
@@ -179,7 +179,6 @@
                     [self addLocation:newLocation];
                     [self.movementAnalyzer addLocation:newLocation];
                     if (!self.movementAnalyzer.GPSMovingDetected) {
-                        self.movementAnalyzer.distanceFilter = self.startSpeedThreshold;
                         [[(STSession *)self.session logger] saveLogMessageWithText:@"stopDetectedByAnalyzer" type:@""];
                         [self stopDetected];
                     }
