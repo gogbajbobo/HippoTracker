@@ -80,22 +80,18 @@
 }
 
 - (void)stopDetected:(NSNotification *)notification {
-    [self.timer invalidate];
-    self.timer = nil;
-    [self lapButtonInit];
 }
 
 - (void)lapFinished:(NSNotification *)notification {
-    [self.timer invalidate];
-    self.timer = nil;
     [self lapButtonInit];
+    [self.timer invalidate];
 }
 
 - (void)newLapStarted:(NSNotification *)notification {
     self.lap = [notification.userInfo objectForKey:@"currentLap"];
     self.resultsController = nil;
     [self performFetch];
-    if (!self.timer) {
+    if (![self.timer isValid]) {
         [self timerInit];
     }
 }
@@ -283,6 +279,10 @@
     }
 
     [self performFetch];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self removeNotificationsObservers];
 }
 
 - (void)addNotificationObservers {
