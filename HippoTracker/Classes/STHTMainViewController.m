@@ -196,6 +196,9 @@
 }
 
 - (void)interfaceInit {
+    
+    self.distanceFilterValueLabel.hidden = YES;
+    
     [self.startTrackerButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.startNewLapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
