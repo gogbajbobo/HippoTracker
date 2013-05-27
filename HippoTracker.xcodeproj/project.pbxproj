@@ -34,13 +34,16 @@
 		2C7CB7021748F93700054E47 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7001748F93700054E47 /* Icon.png */; };
 		2C7CB7031748F93700054E47 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7011748F93700054E47 /* Icon@2x.png */; };
 		2C7CB7131748FB3100054E47 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7101748FB3100054E47 /* Default.png */; };
-		2C7CB7151748FB3100054E47 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7121748FB3100054E47 /* Default@2x.png */; };
 		2C7CB7191748FB8B00054E47 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7181748FB8A00054E47 /* Default-568h@2x.png */; };
 		2C7CB722174A07C200054E47 /* STHTAuthBasic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CB721174A07C200054E47 /* STHTAuthBasic.m */; };
 		2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */; };
 		2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */; };
 		2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */; };
 		2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC930F41743B1FC00FC9830 /* STHTLap.m */; };
+		D9E804531753DA62007CE0AF /* Hippo icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804521753DA62007CE0AF /* Hippo icon.png */; };
+		D9E804661753E4A7007CE0AF /* Hippo icon 114.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804651753E4A7007CE0AF /* Hippo icon 114.png */; };
+		D9E804691753E5C2007CE0AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804601753E064007CE0AF /* Default@2x.png */; };
+		D9E8046D1753E7EB007CE0AF /* Hippo icon 57.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E8046C1753E7EB007CE0AF /* Hippo icon 57.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +95,6 @@
 		2C7CB7001748F93700054E47 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		2C7CB7011748F93700054E47 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		2C7CB7101748FB3100054E47 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2C7CB7121748FB3100054E47 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		2C7CB7181748FB8A00054E47 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2C7CB720174A07C200054E47 /* STHTAuthBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTAuthBasic.h; sourceTree = "<group>"; };
 		2C7CB721174A07C200054E47 /* STHTAuthBasic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTAuthBasic.m; sourceTree = "<group>"; };
@@ -105,6 +107,10 @@
 		2CC930F31743B1FC00FC9830 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
 		2CC930F41743B1FC00FC9830 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		D9E804521753DA62007CE0AF /* Hippo icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hippo icon.png"; sourceTree = "<group>"; };
+		D9E804601753E064007CE0AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D9E804651753E4A7007CE0AF /* Hippo icon 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hippo icon 114.png"; sourceTree = "<group>"; };
+		D9E8046C1753E7EB007CE0AF /* Hippo icon 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hippo icon 57.png"; sourceTree = "<group>"; };
 		E9E16D92E4A04E48A75B0766 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -257,9 +263,12 @@
 		2C7CB6FF1748F90800054E47 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9E804601753E064007CE0AF /* Default@2x.png */,
+				D9E804521753DA62007CE0AF /* Hippo icon.png */,
+				D9E804651753E4A7007CE0AF /* Hippo icon 114.png */,
+				D9E8046C1753E7EB007CE0AF /* Hippo icon 57.png */,
 				2C7CB7181748FB8A00054E47 /* Default-568h@2x.png */,
 				2C7CB7101748FB3100054E47 /* Default.png */,
-				2C7CB7121748FB3100054E47 /* Default@2x.png */,
 				2C7CB7001748F93700054E47 /* Icon.png */,
 				2C7CB7011748F93700054E47 /* Icon@2x.png */,
 			);
@@ -345,8 +354,11 @@
 				2C7CB7021748F93700054E47 /* Icon.png in Resources */,
 				2C7CB7031748F93700054E47 /* Icon@2x.png in Resources */,
 				2C7CB7131748FB3100054E47 /* Default.png in Resources */,
-				2C7CB7151748FB3100054E47 /* Default@2x.png in Resources */,
 				2C7CB7191748FB8B00054E47 /* Default-568h@2x.png in Resources */,
+				D9E804531753DA62007CE0AF /* Hippo icon.png in Resources */,
+				D9E804661753E4A7007CE0AF /* Hippo icon 114.png in Resources */,
+				D9E804691753E5C2007CE0AF /* Default@2x.png in Resources */,
+				D9E8046D1753E7EB007CE0AF /* Hippo icon 57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
