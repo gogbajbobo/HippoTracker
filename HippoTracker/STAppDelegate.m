@@ -34,6 +34,7 @@
                                      @"-1", @"distanceFilter",
                                      @"0.0", @"timeFilter",
                                      @"100", @"fetchLimit",
+                                     @"https://system.unact.ru/utils/chest2json.php", @"syncServerURI",
                                      nil];
     
     NSDictionary *trackers = [NSDictionary dictionaryWithObjectsAndKeys:

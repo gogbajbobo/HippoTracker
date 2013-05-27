@@ -306,6 +306,7 @@
         }];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapFinished" object:self userInfo:nil];
+    [[(STSession *)self.session syncer] syncData];
 
 }
 
