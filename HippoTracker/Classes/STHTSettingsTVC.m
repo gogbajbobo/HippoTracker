@@ -395,7 +395,7 @@
         value = [self desiredAccuracyValueFrom:rint(slider.value)];
     }
     NSString *groupName = [[self groupNames] objectAtIndex:indexPath.section];
-    [[(STSession *)self.session settingsController] addNewSettings:[NSDictionary dictionaryWithObjectsAndKeys:value, settingName, nil]forGroup:groupName];
+    [[(STSession *)self.session settingsController] addNewSettings:[NSDictionary dictionaryWithObjectsAndKeys:value, settingName, nil] forGroup:groupName];
 }
 
 - (NSString *)desiredAccuracyValueFrom:(int)index {

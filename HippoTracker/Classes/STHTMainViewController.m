@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logButton;
 @property (nonatomic, strong) STHTLapTracker *lapTracker;
+@property (weak, nonatomic) IBOutlet UILabel *startIndicator;
 
 @property (nonatomic, strong) STSession *session;
 
@@ -133,6 +134,22 @@
     }
 }
 
+- (void)startAnalyzer:(NSNotification *)notification {
+    
+    int numberOfIntervals = [[notification.userInfo valueForKey:@"numberOfIntervals"] intValue];
+    
+    if (numberOfIntervals == 1) {
+        self.startIndicator.text = @"1";
+    } else if (numberOfIntervals == 2) {
+        self.startIndicator.text = @"1     2";
+    } else if (numberOfIntervals == 3) {
+        self.startIndicator.text = @"1     2     3";
+    } else if (numberOfIntervals == 0) {
+        self.startIndicator.text = @"";
+    }
+
+}
+
 - (void)stopDetected:(NSNotification *)notification {
 
 }
@@ -199,6 +216,8 @@
     
     self.distanceFilterValueLabel.hidden = YES;
     
+    self.startIndicator.text = @"";
+    
     [self.startTrackerButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.lapsHistoryButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     [self.startNewLapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
@@ -248,6 +267,10 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lapTracking:) name:@"lapTracking" object:self.session.locationTracker];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnalyzer:) name:@"startAnalyzer" object:[(STHTLapTracker *)self.session.locationTracker movementAnalyzer]];
+    
+    
 }
 
 - (void)removeNotificationsObservers {
@@ -259,6 +282,8 @@
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"locationSettingsChanged" object:self.session];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"lapTracking" object:self.session.locationTracker];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"startAnalyzer" object:[(STHTLapTracker *)self.session.locationTracker movementAnalyzer]];
 }
 
 #pragma mark - view lifecycle

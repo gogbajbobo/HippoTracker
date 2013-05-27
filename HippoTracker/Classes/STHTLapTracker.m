@@ -10,7 +10,6 @@
 #import "STHTLocation.h"
 #import "STHTLapCheckpoint.h"
 #import <STManagedTracker/STSession.h>
-#import "STMovementAnalyzer.h"
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
@@ -25,7 +24,6 @@
 @property (nonatomic, strong) STHTLapCheckpoint *lastCheckpoint;
 @property (nonatomic) CLLocationDistance checkpointInterval;
 @property (nonatomic) double slowdownValue;
-@property (nonatomic, strong) STMovementAnalyzer *movementAnalyzer;
 @property (nonatomic) CLLocationDistance startSpeedThreshold;
 @property (nonatomic) CLLocationDistance finishSpeedThreshold;
 
@@ -119,6 +117,11 @@
             [self.movementAnalyzer.locationsQueue clear];
             self.movementAnalyzer.startSpeedThreshold = self.startSpeedThreshold;
             self.movementAnalyzer.finishSpeedThreshold = self.finishSpeedThreshold;
+            
+            NSLog(@"startSpeedThreshold %f", self.startSpeedThreshold);
+            NSLog(@"finishSpeedThreshold %f", self.finishSpeedThreshold);
+            
+            
             [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking ON" type:@""];
             NSString *message = [NSString stringWithFormat:@"startThreshold %.1f", self.movementAnalyzer.startSpeedThreshold];
             [[(STSession *)self.session logger] saveLogMessageWithText:message type:@""];

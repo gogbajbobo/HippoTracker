@@ -82,8 +82,15 @@
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3VM-ES-E5S">
-                                <rect key="frame" x="131" y="272" width="59" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3VM-ES-E5S">
+                                <rect key="frame" x="131" y="247" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1     2     3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wyl-xu-Xvx">
+                                <rect key="frame" x="125" y="272" width="85" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -110,6 +117,7 @@
                         <outlet property="lapsHistoryButton" destination="IRD-fF-UJU" id="ZTj-ep-deh"/>
                         <outlet property="logButton" destination="qTx-bt-4rw" id="MU5-vQ-kmo"/>
                         <outlet property="settingsButton" destination="BCh-Of-hWY" id="9np-7n-sra"/>
+                        <outlet property="startIndicator" destination="wyl-xu-Xvx" id="0qf-1W-jwm"/>
                         <outlet property="startNewLapButton" destination="hbs-2u-Gce" id="qtr-9g-BMX"/>
                         <outlet property="startTrackerButton" destination="bV9-kI-rh7" id="n96-pc-MDk"/>
                         <segue destination="tkK-FT-r4U" kind="push" identifier="showCurrentLap" id="Seb-V7-lzE"/>

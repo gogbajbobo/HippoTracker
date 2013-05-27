@@ -263,6 +263,20 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.lapButton) {
+        [self addNotificationObservers];
+        [self timerInit];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.lapButton) {
+        [self removeNotificationsObservers];
+        [self.timer invalidate];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -273,10 +287,8 @@
 
     if (self.lapButton) {
         [self.lapButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        [self addNotificationObservers];
         if ([(STHTLapTracker *)self.session.locationTracker lapTracking]) {
             self.lapInfo = @"0m 0km/h";
-            [self timerInit];
         } else {
             [self lapButtonInit];
         }
@@ -302,10 +314,6 @@
 {
     [super didReceiveMemoryWarning];
     if ([self isViewLoaded] && [self.view window] == nil) {
-        if (self.lapButton) {
-            [self removeNotificationsObservers];
-            [self.timer invalidate];
-        }
         self.view = nil;
     }
 }

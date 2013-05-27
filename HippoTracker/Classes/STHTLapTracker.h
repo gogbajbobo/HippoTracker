@@ -10,9 +10,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "STHTHippodrome.h"
 #import "STHTLap.h"
+#import "STMovementAnalyzer.h"
 
-//#define HTCheckpointInterval 10.0
-//#define HTSlowdownValue 0.7
 
 @interface STHTLapTracker : STTracker
 
@@ -20,6 +19,7 @@
 @property (nonatomic) CLLocationAccuracy currentAccuracy;
 @property (nonatomic, strong) STHTLap *currentLap;
 @property (nonatomic) BOOL lapTracking;
+@property (nonatomic, strong) STMovementAnalyzer *movementAnalyzer;
 
 - (void)startNewLapAtTime:(NSDate *)timestamp;
 - (void)finishLap;
