@@ -67,6 +67,7 @@
     [locationTrackerSettings addObject:@[@"slider", @"0.1", @"0.9", @"0.1", @"HTSlowdownValue"]];
     [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTStartSpeedThreshold"]];
     [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTFinishSpeedThreshold"]];
+    [locationTrackerSettings addObject:@[@"switch", @"", @"", @"", @"deviceMotionUpdate"]];
     [locationTrackerSettings addObject:@[@"slider", @"0.01", @"1", @"0.05", @"deviceMotionUpdateInterval"]];
 
     [controlsSettings setValue:locationTrackerSettings forKey:@"location"];
@@ -279,6 +280,15 @@
     [slider addTarget:self action:@selector(sliderValueChangeFinished:) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.contentView addSubview:slider];
+
+    NSString *settingName = [self settingNameForIndexPath:indexPath];
+    if ([settingName isEqualToString:@"deviceMotionUpdateInterval"]) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.group == %@ && SELF.name == %@", @"location", @"deviceMotionUpdate"];
+        STSettings *deviceMotionUpdate = [[[[(STSession *)self.session settingsController] currentSettings] filteredArrayUsingPredicate:predicate] lastObject];
+        slider.enabled = [deviceMotionUpdate.value boolValue];
+    }
+
+    
     cell.slider = slider;
     
 }
@@ -418,6 +428,11 @@
     NSString *value = [NSString stringWithFormat:@"%d", senderSwitch.on];
     NSString *groupName = [[self groupNames] objectAtIndex:indexPath.section];
     [[(STSession *)self.session settingsController] addNewSettings:[NSDictionary dictionaryWithObjectsAndKeys:value, settingName, nil]forGroup:groupName];
+    if ([settingName isEqualToString:@"deviceMotionUpdate"]) {
+        NSIndexPath *sliderIndexPath = [self indexPathForGroup:@"location" setting:@"deviceMotionUpdateInterval"];
+        STHTSettingsTableViewCell *sliderCell = (STHTSettingsTableViewCell *)[self.tableView cellForRowAtIndexPath:sliderIndexPath];
+        sliderCell.slider.enabled = senderSwitch.on;
+    }
 }
 
 - (void)segmentedControlValueChanged:(UISegmentedControl *)segmentedControl {

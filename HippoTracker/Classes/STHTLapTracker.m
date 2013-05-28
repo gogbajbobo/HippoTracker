@@ -18,6 +18,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CMMotionManager *motionManager;
 @property (nonatomic, strong) NSString *motionData;
+@property (nonatomic) BOOL deviceMotionUpdate;
 @property (nonatomic) NSTimeInterval deviceMotionUpdateInterval;
 @property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic) CLLocationAccuracy desiredAccuracy;
@@ -123,7 +124,9 @@
             self.movementAnalyzer.startSpeedThreshold = self.startSpeedThreshold;
             self.movementAnalyzer.finishSpeedThreshold = self.finishSpeedThreshold;
             
-            [self startMotionManager];
+            if (self.deviceMotionUpdate) {
+                [self startMotionManager];
+            }
             
             [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking ON" type:@""];
             NSString *message = [NSString stringWithFormat:@"startThreshold %.1f", self.movementAnalyzer.startSpeedThreshold];
@@ -143,6 +146,10 @@
         _motionManager = [[CMMotionManager alloc] init];
     }
     return _motionManager;
+}
+
+- (BOOL)deviceMotionUpdate {
+    return [[self.settings valueForKey:@"deviceMotionUpdate"] boolValue];
 }
 
 - (NSTimeInterval)deviceMotionUpdateInterval {
@@ -199,7 +206,9 @@
                         for (CLLocation *location in self.movementAnalyzer.locationsQueue) {
                             [self addLocation:location];
                         }
-                        [self stopMotionManager];
+                        if (self.motionManager.deviceMotionActive) {
+                            [self stopMotionManager];
+                        }
                     }
                 } else {
                     [self addLocation:newLocation];
