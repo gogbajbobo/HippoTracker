@@ -33,7 +33,8 @@
                                      @"10", @"requiredAccuracy",
                                      @"-1", @"distanceFilter",
                                      @"0.0", @"timeFilter",
-                                     @"100", @"fetchLimit",
+                                     @"50", @"fetchLimit",
+                                     @"0.1", @"deviceMotionUpdateInterval",
                                      @"https://system.unact.ru/utils/chest2json.php", @"syncServerURI",
                                      nil];
     

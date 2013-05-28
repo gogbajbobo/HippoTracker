@@ -10,10 +10,15 @@
 #import "STHTLocation.h"
 #import "STHTLapCheckpoint.h"
 #import <STManagedTracker/STSession.h>
+#import <CoreMotion/CoreMotion.h>
+#import "STAccelData.h"
 
 @interface STHTLapTracker() <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CMMotionManager *motionManager;
+@property (nonatomic, strong) NSString *motionData;
+@property (nonatomic) NSTimeInterval deviceMotionUpdateInterval;
 @property (nonatomic, strong) CLLocation *lastLocation;
 @property (nonatomic) CLLocationAccuracy desiredAccuracy;
 @property (nonatomic) double requiredAccuracy;
@@ -118,9 +123,7 @@
             self.movementAnalyzer.startSpeedThreshold = self.startSpeedThreshold;
             self.movementAnalyzer.finishSpeedThreshold = self.finishSpeedThreshold;
             
-            NSLog(@"startSpeedThreshold %f", self.startSpeedThreshold);
-            NSLog(@"finishSpeedThreshold %f", self.finishSpeedThreshold);
-            
+            [self startMotionManager];
             
             [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking ON" type:@""];
             NSString *message = [NSString stringWithFormat:@"startThreshold %.1f", self.movementAnalyzer.startSpeedThreshold];
@@ -133,6 +136,17 @@
             [[(STSession *)self.session logger] saveLogMessageWithText:@"lapTracking OFF" type:@""];
         }
     }
+}
+
+- (CMMotionManager *)motionManager {
+    if (!_motionManager) {
+        _motionManager = [[CMMotionManager alloc] init];
+    }
+    return _motionManager;
+}
+
+- (NSTimeInterval)deviceMotionUpdateInterval {
+    return [[self.settings valueForKey:@"deviceMotionUpdateInterval"] doubleValue];
 }
 
 #pragma mark - tracking
@@ -185,6 +199,7 @@
                         for (CLLocation *location in self.movementAnalyzer.locationsQueue) {
                             [self addLocation:location];
                         }
+                        [self stopMotionManager];
                     }
                 } else {
                     [self addLocation:newLocation];
@@ -297,8 +312,11 @@
     self.locationManager.distanceFilter = self.distanceFilter;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapTracking" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:self.locationManager.distanceFilter] forKey:@"distanceFilter"]];
 
+    if (self.motionManager.deviceMotionActive) {
+        [self stopMotionManager];
+    }
+    
     if (self.currentLap) {
-        self.currentLap = nil;
         [[(STSession *)self.session logger] saveLogMessageWithText:@"finishLap" type:@""];
         [self.document saveDocument:^(BOOL success) {
             if (success) {
@@ -307,6 +325,7 @@
                 NSLog(@"save lap NO success");
             }
         }];
+        self.currentLap = nil;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"lapFinished" object:self userInfo:nil];
     [[(STSession *)self.session syncer] syncData];
@@ -326,6 +345,42 @@
     [self finishLap];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"stopDetected" object:self userInfo:nil];
 }
+
+
+- (void) startMotionManager {
+
+    [self.motionManager setDeviceMotionUpdateInterval:self.deviceMotionUpdateInterval];
+
+    self.motionData = @"date, timestampSince1970, timestampSinceLastBoot, accelX, accelY, accelZ \r";
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [self.motionManager startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
+        if (error) {
+            [[(STSession *)self.session logger] saveLogMessageWithText:[NSString stringWithFormat:@"startDeviceMotionUpdates error %@", error] type:@"error"];
+            [self.motionManager stopDeviceMotionUpdates];
+        } else {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSDate *currentDate = [NSDate date];
+                self.motionData = [self.motionData stringByAppendingFormat:@"%@, %f, %f, %f, %f, %f \r", currentDate, [currentDate timeIntervalSince1970], motion.timestamp, motion.userAcceleration.x, motion.userAcceleration.y, motion.userAcceleration.z];
+//                NSLog(@"self.motionData length %d", [self.motionData length]);
+            });
+            
+        }
+    }];
+}
+
+- (void)stopMotionManager {
+    [self.motionManager stopDeviceMotionUpdates];
+    STAccelData *accelData = (STAccelData *)[NSEntityDescription insertNewObjectForEntityForName:@"STAccelData" inManagedObjectContext:self.document.managedObjectContext];
+//    NSLog(@"self.motionData length final %d", [self.motionData length]);
+    accelData.accelData = self.motionData;
+    NSLog(@"accelData.accelData length final %d", [accelData.accelData length]);
+//    NSLog(@"accelData.accelData %@", accelData.accelData);
+    self.currentLap.accelData = accelData;
+}
+
+
 
 - (STHTLocation *)locationObjectFromCLLocation:(CLLocation *)location {
     STHTLocation *locationObject = (STHTLocation *)[NSEntityDescription insertNewObjectForEntityForName:@"STHTLocation" inManagedObjectContext:self.document.managedObjectContext];

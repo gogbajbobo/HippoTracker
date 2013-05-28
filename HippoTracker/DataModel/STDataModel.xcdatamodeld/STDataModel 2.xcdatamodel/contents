@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="STAccelData" representedClassName="STAccelData" parentEntity="STDatum" syncable="YES">
+        <attribute name="accelData" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="accelData" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STBatteryStatus" representedClassName="STBatteryStatus" parentEntity="STDatum" syncable="YES">
+        <attribute name="batteryLevel" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="batteryState" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STDatum" representedClassName="STDatum" isAbstract="YES" syncable="YES">
+        <attribute name="cts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sqts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="ts" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="xid" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="STHTHippodrome" representedClassName="STHTHippodrome" parentEntity="STDatum" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="laps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="hippodrome" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STHTLap" representedClassName="STHTLap" parentEntity="STDatum" syncable="YES">
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="accelData" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STAccelData" inverseName="lap" inverseEntity="STAccelData" syncable="YES"/>
+        <relationship name="checkpoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLapCheckpoint" inverseName="lap" inverseEntity="STHTLapCheckpoint" syncable="YES"/>
+        <relationship name="hippodrome" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTHippodrome" inverseName="laps" inverseEntity="STHTHippodrome" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="STHTLocation" inverseName="lap" inverseEntity="STHTLocation" syncable="YES"/>
+    </entity>
+    <entity name="STHTLapCheckpoint" representedClassName="STHTLapCheckpoint" parentEntity="STDatum" syncable="YES">
+        <attribute name="checkpointNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="interval" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="checkpoints" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STHTLocation" representedClassName="STHTLocation" parentEntity="STLocation" syncable="YES">
+        <relationship name="lap" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="STHTLap" inverseName="locations" inverseEntity="STHTLap" syncable="YES"/>
+    </entity>
+    <entity name="STLocation" representedClassName="STLocation" parentEntity="STDatum" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="STLogMessage" representedClassName="STLogMessage" parentEntity="STDatum" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="STSettings" representedClassName="STSettings" parentEntity="STDatum" syncable="YES">
+        <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="STAccelData" positionX="349" positionY="-55" width="128" height="73"/>
+        <element name="STBatteryStatus" positionX="-290" positionY="35" width="128" height="73"/>
+        <element name="STDatum" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="STHTHippodrome" positionX="162" positionY="-184" width="128" height="118"/>
+        <element name="STHTLap" positionX="187" positionY="90" width="128" height="118"/>
+        <element name="STHTLapCheckpoint" positionX="196" positionY="284" width="128" height="118"/>
+        <element name="STHTLocation" positionX="27" positionY="261" width="128" height="58"/>
+        <element name="STLocation" positionX="-153" positionY="243" width="128" height="163"/>
+        <element name="STLogMessage" positionX="-252" positionY="150" width="128" height="75"/>
+        <element name="STSettings" positionX="-191" positionY="-99" width="128" height="90"/>
+    </elements>
+</model>

@@ -67,6 +67,7 @@
     [locationTrackerSettings addObject:@[@"slider", @"0.1", @"0.9", @"0.1", @"HTSlowdownValue"]];
     [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTStartSpeedThreshold"]];
     [locationTrackerSettings addObject:@[@"slider", @"0", @"10", @"0.5", @"HTFinishSpeedThreshold"]];
+    [locationTrackerSettings addObject:@[@"slider", @"0.01", @"1", @"0.05", @"deviceMotionUpdateInterval"]];
 
     [controlsSettings setValue:locationTrackerSettings forKey:@"location"];
     
@@ -192,6 +193,8 @@
         valueString = [NSString stringWithFormat:@"%@:%@", [timeFormatter stringFromNumber:[NSNumber numberWithDouble:hours]], [timeFormatter stringFromNumber:[NSNumber numberWithDouble:minutes]]];
     } else if ([settingName isEqualToString:@"trackScale"] || [settingName isEqualToString:@"HTSlowdownValue"] || [settingName isEqualToString:@"HTStartSpeedThreshold"] || [settingName isEqualToString:@"HTFinishSpeedThreshold"]) {
         valueString = [NSString stringWithFormat:@"%.1f", [valueString doubleValue]];
+    } else if ([settingName isEqualToString:@"deviceMotionUpdateInterval"]) {
+        valueString = [NSString stringWithFormat:@"%.2f", [valueString doubleValue]];
     } else {
         valueString = [NSString stringWithFormat:@"%.f", [valueString doubleValue]];
     }

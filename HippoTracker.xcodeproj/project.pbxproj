@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2421CB8A50B94B9396E97083 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E16D92E4A04E48A75B0766 /* libPods.a */; };
+		2C345CED17549FC6006AB1E0 /* STDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C345CEA17549FC6006AB1E0 /* STDataModel.xcdatamodeld */; };
+		2C345CF61754A0AD006AB1E0 /* STAccelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C345CF51754A0AD006AB1E0 /* STAccelData.m */; };
+		2C345CF91754A0AD006AB1E0 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C345CF81754A0AD006AB1E0 /* STHTLap.m */; };
+		2C345CFB1754A238006AB1E0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C345CFA1754A238006AB1E0 /* CoreMotion.framework */; };
 		2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */; };
 		2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01A1743C14000B7F807 /* STHTLap+dayAsString.m */; };
 		2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CC01D1743CAA400B7F807 /* STHTLapTracker.m */; };
@@ -28,7 +32,6 @@
 		2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D015173BF7940070238F /* CoreLocation.framework */; };
 		2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73D019173BF84F0070238F /* QuartzCore.framework */; };
 		2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749DF417420787005B7844 /* STHTMainViewController.m */; };
-		2C749E8B174382C3005B7844 /* STDataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E8A174382C3005B7844 /* STDataModel.xcdatamodel */; };
 		2C749E9A17438412005B7844 /* STHTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9917438412005B7844 /* STHTLocation.m */; };
 		2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C749E9F17438414005B7844 /* STHTHippodrome.m */; };
 		2C7CB7021748F93700054E47 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7CB7001748F93700054E47 /* Icon.png */; };
@@ -39,7 +42,6 @@
 		2CC2C95E1744C7A500EDD93A /* STHTCheckTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C95D1744C7A500EDD93A /* STHTCheckTVC.m */; };
 		2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */; };
 		2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */; };
-		2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC930F41743B1FC00FC9830 /* STHTLap.m */; };
 		D9E804531753DA62007CE0AF /* Hippo icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804521753DA62007CE0AF /* Hippo icon.png */; };
 		D9E804661753E4A7007CE0AF /* Hippo icon 114.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804651753E4A7007CE0AF /* Hippo icon 114.png */; };
 		D9E804691753E5C2007CE0AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E804601753E064007CE0AF /* Default@2x.png */; };
@@ -57,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C345CEB17549FC6006AB1E0 /* STDataModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "STDataModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		2C345CEC17549FC6006AB1E0 /* STDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = STDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2C345CF41754A0AD006AB1E0 /* STAccelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAccelData.h; sourceTree = "<group>"; };
+		2C345CF51754A0AD006AB1E0 /* STAccelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAccelData.m; sourceTree = "<group>"; };
+		2C345CF71754A0AD006AB1E0 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
+		2C345CF81754A0AD006AB1E0 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
+		2C345CFA1754A238006AB1E0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2C4CC0161743BB6800B7F807 /* STHTLapHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapHistoryVC.h; sourceTree = "<group>"; };
 		2C4CC0171743BB6800B7F807 /* STHTLapHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapHistoryVC.m; sourceTree = "<group>"; };
 		2C4CC0191743C14000B7F807 /* STHTLap+dayAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "STHTLap+dayAsString.h"; sourceTree = "<group>"; };
@@ -87,7 +96,6 @@
 		2C73D019173BF84F0070238F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C749DF317420786005B7844 /* STHTMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTMainViewController.h; sourceTree = "<group>"; };
 		2C749DF417420787005B7844 /* STHTMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTMainViewController.m; sourceTree = "<group>"; };
-		2C749E8A174382C3005B7844 /* STDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = STDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2C749E9817438412005B7844 /* STHTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLocation.h; sourceTree = "<group>"; };
 		2C749E9917438412005B7844 /* STHTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLocation.m; sourceTree = "<group>"; };
 		2C749E9E17438413005B7844 /* STHTHippodrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTHippodrome.h; sourceTree = "<group>"; };
@@ -104,8 +112,6 @@
 		2CC2C9641746188100EDD93A /* STHTSettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTSettingsTVC.m; sourceTree = "<group>"; };
 		2CC2C9661746259700EDD93A /* STHTLapCheckpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLapCheckpoint.h; sourceTree = "<group>"; };
 		2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLapCheckpoint.m; sourceTree = "<group>"; };
-		2CC930F31743B1FC00FC9830 /* STHTLap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STHTLap.h; sourceTree = "<group>"; };
-		2CC930F41743B1FC00FC9830 /* STHTLap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STHTLap.m; sourceTree = "<group>"; };
 		574EC16DB59B4674974FC33C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D9E804521753DA62007CE0AF /* Hippo icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hippo icon.png"; sourceTree = "<group>"; };
 		D9E804601753E064007CE0AF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C345CFB1754A238006AB1E0 /* CoreMotion.framework in Frameworks */,
 				2C73D01A173BF84F0070238F /* QuartzCore.framework in Frameworks */,
 				2C73D016173BF7950070238F /* CoreLocation.framework in Frameworks */,
 				2C73D014173BF78F0070238F /* CoreData.framework in Frameworks */,
@@ -165,6 +172,7 @@
 		2C73CF76173BF0520070238F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C345CFA1754A238006AB1E0 /* CoreMotion.framework */,
 				2C73D019173BF84F0070238F /* QuartzCore.framework */,
 				2C73D015173BF7940070238F /* CoreLocation.framework */,
 				2C73D013173BF78E0070238F /* CoreData.framework */,
@@ -245,11 +253,13 @@
 		2C73CFD4173BF2190070238F /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				2C749E8A174382C3005B7844 /* STDataModel.xcdatamodel */,
+				2C345CEA17549FC6006AB1E0 /* STDataModel.xcdatamodeld */,
+				2C345CF71754A0AD006AB1E0 /* STHTLap.h */,
+				2C345CF81754A0AD006AB1E0 /* STHTLap.m */,
+				2C345CF41754A0AD006AB1E0 /* STAccelData.h */,
+				2C345CF51754A0AD006AB1E0 /* STAccelData.m */,
 				2CC2C9661746259700EDD93A /* STHTLapCheckpoint.h */,
 				2CC2C9671746259700EDD93A /* STHTLapCheckpoint.m */,
-				2CC930F31743B1FC00FC9830 /* STHTLap.h */,
-				2CC930F41743B1FC00FC9830 /* STHTLap.m */,
 				2C4CC0191743C14000B7F807 /* STHTLap+dayAsString.h */,
 				2C4CC01A1743C14000B7F807 /* STHTLap+dayAsString.m */,
 				2C749E9E17438413005B7844 /* STHTHippodrome.h */,
@@ -424,10 +434,8 @@
 				2C73CF84173BF0520070238F /* main.m in Sources */,
 				2C73CF88173BF0520070238F /* STAppDelegate.m in Sources */,
 				2C749DF517420787005B7844 /* STHTMainViewController.m in Sources */,
-				2C749E8B174382C3005B7844 /* STDataModel.xcdatamodel in Sources */,
 				2C749E9A17438412005B7844 /* STHTLocation.m in Sources */,
 				2C749EA017438414005B7844 /* STHTHippodrome.m in Sources */,
-				2CC930F51743B1FC00FC9830 /* STHTLap.m in Sources */,
 				2C4CC0181743BB6800B7F807 /* STHTLapHistoryVC.m in Sources */,
 				2C4CC01B1743C14000B7F807 /* STHTLap+dayAsString.m in Sources */,
 				2C4CC01E1743CAA400B7F807 /* STHTLapTracker.m in Sources */,
@@ -436,6 +444,9 @@
 				2CC2C9651746188100EDD93A /* STHTSettingsTVC.m in Sources */,
 				2CC2C9681746259700EDD93A /* STHTLapCheckpoint.m in Sources */,
 				2C7CB722174A07C200054E47 /* STHTAuthBasic.m in Sources */,
+				2C345CED17549FC6006AB1E0 /* STDataModel.xcdatamodeld in Sources */,
+				2C345CF61754A0AD006AB1E0 /* STAccelData.m in Sources */,
+				2C345CF91754A0AD006AB1E0 /* STHTLap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +647,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2C345CEA17549FC6006AB1E0 /* STDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2C345CEB17549FC6006AB1E0 /* STDataModel 2.xcdatamodel */,
+				2C345CEC17549FC6006AB1E0 /* STDataModel.xcdatamodel */,
+			);
+			currentVersion = 2C345CEB17549FC6006AB1E0 /* STDataModel 2.xcdatamodel */;
+			path = STDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2C73CF6C173BF0520070238F /* Project object */;
 }
