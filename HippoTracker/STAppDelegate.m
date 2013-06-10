@@ -35,7 +35,8 @@
                                      @"0.0", @"timeFilter",
                                      @"50", @"fetchLimit",
                                      @"0.1", @"deviceMotionUpdateInterval",
-                                     @"https://system.unact.ru/utils/chest2json.php", @"syncServerURI",
+//                                     @"https://system.unact.ru/utils/chest2json.php", @"syncServerURI",
+                                     @"https://system.unact.ru/iproxy/chest/test", @"syncServerURI",
                                      nil];
     
     NSDictionary *trackers = [NSDictionary dictionaryWithObjectsAndKeys:
